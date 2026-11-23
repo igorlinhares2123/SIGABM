@@ -2929,23 +2929,22 @@ async function writeToLinkedDriveFile() {
  }
 }
 
+function getSigabmAccountKey() {
+ const u = (typeof window.SIGABM_getCurrentUser === "function") ? window.SIGABM_getCurrentUser() : "";
+ return u ? `acct_${u}` : "";
+}
+
 async function performImmediateAutoSave() {
  if (isRestoringState) return;
+ const acctKey = getSigabmAccountKey();
+ if (!acctKey) return;
  const state = getState();
  const studentIdx = state.student;
 
+ await saveToIndexedDB(`sigabm_rs_${acctKey}`, state);
  try {
-  sessionStorage.setItem("abm_active_tab_draft_v10", JSON.stringify({ ...state, photoData: [] }));
+  localStorage.setItem(`sigabm_rs_ls_${acctKey}`, JSON.stringify({ ...state, photoData: [] }));
  } catch (e) {}
-
- await saveToIndexedDB("active_tab_draft", state);
-
- if (studentIdx !== "") {
-  await saveToIndexedDB(`student_draft_${studentIdx}`, state);
-  try {
-   localStorage.setItem(`abm_student_draft_v10_${studentIdx}`, JSON.stringify({ ...state, photoData: [] }));
-  } catch (e) {}
- }
 
  if (linkedDriveFileHandle) {
   await writeToLinkedDriveFile();
@@ -2953,7 +2952,7 @@ async function performImmediateAutoSave() {
 
  const timeStr = new Date().toLocaleTimeString("pt-BR");
  const studentName = studentIdx !== "" && people[Number(studentIdx)] ? ` (${people[Number(studentIdx)][5]})` : "";
- $("autoSaveBadge").textContent = `Salvo automaticamente${studentName} às ${timeStr}`;
+ $("autoSaveBadge").textContent = `Salvo localmente${studentName} às ${timeStr}`;
 }
 
 function triggerAutoSave() {
@@ -4933,22 +4932,34 @@ $("preview").addEventListener("click", (e) => {
 // Inicialização Multi-Usuário:
 // - Sempre inicia limpo ao abrir uma nova janela/computador!
 // - Se o usuário apenas recarregar a mesma aba (F5) onde já estava trabalhando, restaura a sessão ativa daquela aba.
+async function reloadForCurrentUser() {
+ resetToCleanForm();
+ const acctKey = getSigabmAccountKey();
+ if (!acctKey) {
+  $("autoSaveBadge").textContent = "Pronto";
+  return;
+ }
+ try {
+  const idbDraft = await loadFromIndexedDB(`sigabm_rs_${acctKey}`);
+  const lsRaw = localStorage.getItem(`sigabm_rs_ls_${acctKey}`);
+  const stateToRestore = idbDraft || (lsRaw ? JSON.parse(lsRaw) : null);
+  if (stateToRestore) {
+   setState(stateToRestore);
+   const timeStr = stateToRestore.savedAt ? new Date(stateToRestore.savedAt).toLocaleTimeString("pt-BR") : "agora";
+   $("autoSaveBadge").textContent = `Rascunho local restaurado (${timeStr})`;
+  } else {
+   $("autoSaveBadge").textContent = "Pronto (novo relatório)";
+  }
+ } catch (e) {
+  $("autoSaveBadge").textContent = "Pronto";
+ }
+}
+
 (async function initApp() {
  renderSleep();
  renderDuty();
  renderOfficerFields();
- try {
-  const tabSession = sessionStorage.getItem("abm_active_tab_draft_v10");
-  if (tabSession) {
-   const idbDraft = await loadFromIndexedDB("active_tab_draft");
-   const stateToRestore = idbDraft || JSON.parse(tabSession);
-   if (stateToRestore) {
-    setState(stateToRestore);
-    const timeStr = stateToRestore.savedAt ? new Date(stateToRestore.savedAt).toLocaleTimeString("pt-BR") : "agora";
-    $("autoSaveBadge").textContent = `Sessão restaurada (${timeStr})`;
-   }
-  }
- } catch (e) {}
+ await reloadForCurrentUser();
 })();
 
 // =========================================================================
@@ -5071,6 +5082,7 @@ if (btnImportMf) btnImportMf.addEventListener("click", importFromMapaDeForca);
     ensureInit: function() {
       renderPreview();
     },
-    importFromMapaDeForca
+    importFromMapaDeForca,
+    reloadForCurrentUser
   };
 })();

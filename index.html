@@ -1498,11 +1498,22 @@
             <span class="sidebar-label truncate flex-1">Coordenação e Ordens</span><span id="navCoordBadgeDesk" class="hidden px-1.5 py-0.5 rounded-full bg-[#C1262D] text-white text-[10px] font-black mono-num">0</span>
           </button>
 
-          <!-- 6A-2. Serviço / Comando (Aluno de Dia, Xerife e CDF) -->
-          <button type="button" id="navTabServicoDesk" data-tab="servico" title="Serviço / Comando" class="nav-tab-btn btn-tactile w-full text-left px-2.5 py-2 rounded-lg text-xs flex items-center justify-start gap-2.5">
-            <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <span class="sidebar-label truncate flex-1">Serviço / Comando</span>
-          </button>
+          <!-- 6A-2. Função de Comando (Aluno de Dia e Xerife) -->
+          <div class="space-y-1" id="sidebarGroupServico">
+            <button type="button" id="navTabServicoDesk" data-tab="servico" title="Função de Comando" class="nav-tab-btn btn-tactile w-full text-left px-2.5 py-2 rounded-lg text-xs flex items-center justify-start gap-2.5">
+              <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <span class="sidebar-label truncate">Função de Comando</span>
+              <span id="chevronSubServico" class="sidebar-label ml-auto text-[10px] opacity-75">▸</span>
+            </button>
+            <div id="sidebarSubServico" class="sidebar-sub-tree hidden pl-6 pr-1 space-y-1 border-l-2 border-slate-200 ml-3">
+              <button type="button" data-sidesubsrv="alunodia" class="side-sub-srv-btn w-full text-left px-2.5 py-1.5 rounded-md text-[11px] font-bold text-[#C1262D] bg-red-50 transition block truncate">
+                1. Aluno de Dia
+              </button>
+              <button type="button" data-sidesubsrv="xerife" class="side-sub-srv-btn w-full text-left px-2.5 py-1.5 rounded-md text-[11px] font-semibold text-slate-700 hover:bg-slate-100 transition block truncate">
+                2. Xerife
+              </button>
+            </div>
+          </div>
 
           <!-- 6B. Gazeta Rubro de Luz -->
           <button type="button" id="navTabMuralDesk" data-tab="mural" title="Gazeta Rubro de Luz" class="nav-tab-btn btn-tactile w-full text-left px-2.5 py-2 rounded-lg text-xs flex items-center justify-start gap-2.5">
@@ -2804,17 +2815,17 @@
     <section id="tab-servico" class="tab-panel hidden space-y-3.5">
       <div class="bg-white border border-slate-300 rounded-xl p-3 shadow-xs flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
         <div>
-          <h2 class="text-sm sm:text-base font-extrabold text-slate-950 leading-tight">Serviço / Comando</h2>
-          <p class="text-[11px] text-slate-600">Funções de comando dos cadetes.</p>
+          <h2 class="text-sm sm:text-base font-extrabold text-slate-950 leading-tight">Função de Comando</h2>
+          <p class="text-[11px] text-slate-600">Aluno de Dia e Xerife.</p>
         </div>
         <div class="grid grid-cols-2 sm:inline-flex bg-slate-100 p-1 rounded-lg border border-slate-300 text-xs gap-1 shrink-0">
-          <button type="button" id="btnSrvSubXerife" class="px-3 py-1.5 rounded-md font-bold bg-[#C1262D] text-white cursor-pointer transition text-center">Xerife</button>
-          <button type="button" id="btnSrvSubAlunoDia" class="px-3 py-1.5 rounded-md font-semibold text-slate-700 hover:bg-white cursor-pointer transition text-center">Aluno de Dia</button>
+          <button type="button" id="btnSrvSubAlunoDia" class="px-3 py-1.5 rounded-md font-bold bg-[#C1262D] text-white cursor-pointer transition text-center">Aluno de Dia</button>
+          <button type="button" id="btnSrvSubXerife" class="px-3 py-1.5 rounded-md font-semibold text-slate-700 hover:bg-white cursor-pointer transition text-center">Xerife</button>
         </div>
       </div>
 
-      <!-- SUBMÓDULO: ALUNO DE DIA (MAPA DE FORÇA + RELATÓRIO DE ASSUNÇÃO DE SERVIÇO) -->
-      <div id="srvPanelAlunoDia" class="hidden mf-shell">
+      <!-- SUBMÓDULO: ALUNO DE DIA (MAPA DE FORÇA + RELATÓRIO DE ASSUNÇÃO + RELATÓRIO DE SERVIÇO) -->
+      <div id="srvPanelAlunoDia" class="mf-shell">
         <div class="mf-mode-bar">
           <div>
             <h3 class="text-xs sm:text-sm font-extrabold text-slate-950 uppercase tracking-wide">Mapa de Força e Assunção de Serviço</h3>
@@ -2822,8 +2833,8 @@
           </div>
           <div class="mf-mode-tabs" style="grid-template-columns: repeat(3, minmax(0, 1fr));">
             <button type="button" id="mfNavCroqui" onclick="window.SIGABM_AlunoDia.showSubTab('croqui')" class="mf-mode-btn active">Croqui Tático</button>
-            <button type="button" id="mfNavRelatorio" onclick="window.SIGABM_AlunoDia.showSubTab('relatorio')" class="mf-mode-btn">Assunção (WhatsApp)</button>
-            <button type="button" id="mfNavCompleto" onclick="window.SIGABM_AlunoDia.showSubTab('completo')" class="mf-mode-btn">Relatório Completo (A4)</button>
+            <button type="button" id="mfNavRelatorio" onclick="window.SIGABM_AlunoDia.showSubTab('relatorio')" class="mf-mode-btn">Relatório de Assunção</button>
+            <button type="button" id="mfNavCompleto" onclick="window.SIGABM_AlunoDia.showSubTab('completo')" class="mf-mode-btn">Relatório de Serviço</button>
           </div>
         </div>
 
@@ -2943,46 +2954,28 @@
                 <div class="mf-pelotoes-container">
                   <div class="mf-pelotao-block" id="mfBlkCHARLIE">
                     <div class="mf-pelotao-title"><span>Charlie</span><span class="mf-fileira-badge" id="mfFilCharlie">0 Fileiras</span></div>
-                    <div class="mf-croqui-summary">
-                      <div class="mf-c-pill cp-esp"><span class="c-lbl">PREV</span><span class="c-val mono-num">19</span></div>
-                      <div class="mf-c-pill cp-forma"><span class="c-lbl">FORMA</span><span class="c-val mono-num" id="mfCChaF">0</span></div>
-                      <div class="mf-c-pill cp-sv"><span class="c-lbl">SERV</span><span class="c-val mono-num" id="mfCChaS">0</span></div>
-                      <div class="mf-c-pill cp-alt"><span class="c-lbl">ALT</span><span class="c-val mono-num" id="mfCChaB">0</span></div>
-                    </div>
+
                     <div class="mf-xerife-box" id="mfXerifeCharlie"></div>
                     <div class="mf-grid-form" id="mfTropaCharlie"></div>
                   </div>
 
                   <div class="mf-pelotao-block" id="mfBlkBRAVO">
                     <div class="mf-pelotao-title"><span>Bravo</span><span class="mf-fileira-badge" id="mfFilBravo">0 Fileiras</span></div>
-                    <div class="mf-croqui-summary">
-                      <div class="mf-c-pill cp-esp"><span class="c-lbl">PREV</span><span class="c-val mono-num">18</span></div>
-                      <div class="mf-c-pill cp-forma"><span class="c-lbl">FORMA</span><span class="c-val mono-num" id="mfCBrvF">0</span></div>
-                      <div class="mf-c-pill cp-sv"><span class="c-lbl">SERV</span><span class="c-val mono-num" id="mfCBrvS">0</span></div>
-                      <div class="mf-c-pill cp-alt"><span class="c-lbl">ALT</span><span class="c-val mono-num" id="mfCBrvB">0</span></div>
-                    </div>
+
                     <div class="mf-xerife-box" id="mfXerifeBravo"></div>
                     <div class="mf-grid-form" id="mfTropaBravo"></div>
                   </div>
 
                   <div class="mf-pelotao-block" id="mfBlkESPADARTES">
                     <div class="mf-pelotao-title"><span>Espadartes</span><span class="mf-fileira-badge" id="mfFilEspadartes">0 Fileiras</span></div>
-                    <div class="mf-croqui-summary">
-                      <div class="mf-c-pill cp-esp"><span class="c-lbl">PREV</span><span class="c-val mono-num">29</span></div>
-                      <div class="mf-c-pill cp-forma"><span class="c-lbl">FORMA</span><span class="c-val mono-num" id="mfCEspF">0</span></div>
-                      <div class="mf-c-pill cp-sv"><span class="c-lbl">SERV</span><span class="c-val mono-num" id="mfCEspS">0</span></div>
-                      <div class="mf-c-pill cp-alt"><span class="c-lbl">ALT</span><span class="c-val mono-num" id="mfCEspB">0</span></div>
-                    </div>
+
                     <div class="mf-xerife-box" id="mfXerifeEspadartes"></div>
                     <div class="mf-grid-form" id="mfTropaEspadartes"></div>
                   </div>
 
                   <div class="mf-pelotao-block col-unica" id="mfBlkSERVICO">
                     <div class="mf-pelotao-title"><span>Serviço</span><span class="mf-fileira-badge" id="mfFilServico">0 Fil.</span></div>
-                    <div class="mf-croqui-summary sv-summary">
-                      <div class="mf-c-pill cp-sv"><span class="c-lbl">TOTAL</span><span class="c-val mono-num" id="mfCSvTot">0</span></div>
-                      <div class="mf-c-pill cp-posto"><span class="c-lbl">POSTO</span><span class="c-val mono-num" id="mfCSvPos">0</span></div>
-                    </div>
+
                     <div class="mf-xerife-box" id="mfXerifeServico"></div>
                     <div class="mf-grid-form" id="mfTropaServico"></div>
                   </div>
@@ -3629,7 +3622,7 @@
       </div>
 
       <!-- SUBMÓDULO: XERIFE -->
-      <div id="srvPanelXerife" class="space-y-3.5">
+      <div id="srvPanelXerife" class="hidden space-y-3.5">
         <div class="bg-white border border-slate-300 rounded-xl p-3 shadow-xs space-y-2.5 text-xs">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div class="flex items-center gap-2 flex-wrap">
@@ -4767,8 +4760,8 @@
       profileSearch: '',
       selectedProfileCadet: 'LINHARES',
       // H2H
-      h2hA: 'LINHARES',
-      h2hB: 'FALCÃO',
+      h2hA: '',
+      h2hB: '',
       h2hFilter: 'all',
       // Smart Entry
       entrySubjectId: 28,
@@ -6616,8 +6609,8 @@
       const selB = document.getElementById('h2hCadetB');
       if (!selA || !selB) return;
 
-      selA.innerHTML = '';
-      selB.innerHTML = '';
+      selA.innerHTML = '<option value="">— Selecionar Militar A —</option>';
+      selB.innerHTML = '<option value="">— Selecionar Militar B —</option>';
       standings.forEach(r => {
         const optA = document.createElement('option');
         optA.value = r.name;
@@ -6638,11 +6631,20 @@
       const map = {};
       standings.forEach(r => { map[r.name] = r; });
 
-      const cadA = map[state.h2hA] || standings[0];
-      const cadB = map[state.h2hB] || standings[1];
+      const cadA = state.h2hA ? map[state.h2hA] : null;
+      const cadB = state.h2hB ? map[state.h2hB] : null;
 
-      document.getElementById('h2hCadetA').value = cadA.name;
-      document.getElementById('h2hCadetB').value = cadB.name;
+      document.getElementById('h2hCadetA').value = cadA ? cadA.name : '';
+      document.getElementById('h2hCadetB').value = cadB ? cadB.name : '';
+      if (!cadA || !cadB) {
+        document.getElementById('thH2HA').textContent = 'Militar A';
+        document.getElementById('thH2HB').textContent = 'Militar B';
+        const sumCards = document.getElementById('h2hSummaryCards');
+        const tbody = document.getElementById('h2hTableBody');
+        if (sumCards) sumCards.innerHTML = '';
+        if (tbody) tbody.innerHTML = '<tr><td colspan="6" class="text-center py-8 text-slate-500 font-medium">Selecione o Militar A e o Militar B acima para iniciar a comparação.</td></tr>';
+        return;
+      }
       document.getElementById('thH2HA').textContent = cadA.name;
       document.getElementById('thH2HB').textContent = cadB.name;
 
@@ -11734,23 +11736,36 @@ Dica: Se você apenas lançou notas erradas em uma matéria oficial (como TFM 2)
       }
     }
 
-    function initServicoTabEvents() {
-      document.getElementById('btnSrvSubXerife')?.addEventListener('click', () => {
-        document.getElementById('srvPanelXerife')?.classList.remove('hidden');
-        document.getElementById('srvPanelAlunoDia')?.classList.add('hidden');
-        const b1 = document.getElementById('btnSrvSubXerife');
-        const b2 = document.getElementById('btnSrvSubAlunoDia');
-        if (b1) b1.className = 'px-3 py-1.5 rounded-md font-bold bg-[#C1262D] text-white cursor-pointer transition text-center';
-        if (b2) b2.className = 'px-3 py-1.5 rounded-md font-semibold text-slate-700 hover:bg-white cursor-pointer transition text-center';
+    function setServicoSubMode(mode) {
+      const isAlunoDia = mode !== 'xerife';
+      document.getElementById('srvPanelAlunoDia')?.classList.toggle('hidden', !isAlunoDia);
+      document.getElementById('srvPanelXerife')?.classList.toggle('hidden', isAlunoDia);
+      const bAl = document.getElementById('btnSrvSubAlunoDia');
+      const bXe = document.getElementById('btnSrvSubXerife');
+      if (bAl) bAl.className = isAlunoDia
+        ? 'px-3 py-1.5 rounded-md font-bold bg-[#C1262D] text-white cursor-pointer transition text-center'
+        : 'px-3 py-1.5 rounded-md font-semibold text-slate-700 hover:bg-white cursor-pointer transition text-center';
+      if (bXe) bXe.className = !isAlunoDia
+        ? 'px-3 py-1.5 rounded-md font-bold bg-[#C1262D] text-white cursor-pointer transition text-center'
+        : 'px-3 py-1.5 rounded-md font-semibold text-slate-700 hover:bg-white cursor-pointer transition text-center';
+      document.querySelectorAll('.side-sub-srv-btn').forEach(b => {
+        const active = b.getAttribute('data-sidesubsrv') === (isAlunoDia ? 'alunodia' : 'xerife');
+        b.className = active
+          ? 'side-sub-srv-btn w-full text-left px-2.5 py-1.5 rounded-md text-[11px] font-bold text-[#C1262D] bg-red-50 transition block truncate'
+          : 'side-sub-srv-btn w-full text-left px-2.5 py-1.5 rounded-md text-[11px] font-semibold text-slate-700 hover:bg-slate-100 transition block truncate';
       });
-      document.getElementById('btnSrvSubAlunoDia')?.addEventListener('click', () => {
-        document.getElementById('srvPanelAlunoDia')?.classList.remove('hidden');
-        document.getElementById('srvPanelXerife')?.classList.add('hidden');
-        if (window.SIGABM_AlunoDia) window.SIGABM_AlunoDia.ensureInit();
-        const b1 = document.getElementById('btnSrvSubAlunoDia');
-        const b2 = document.getElementById('btnSrvSubXerife');
-        if (b1) b1.className = 'px-3 py-1.5 rounded-md font-bold bg-[#C1262D] text-white cursor-pointer transition text-center';
-        if (b2) b2.className = 'px-3 py-1.5 rounded-md font-semibold text-slate-700 hover:bg-white cursor-pointer transition text-center';
+      if (isAlunoDia && window.SIGABM_AlunoDia) window.SIGABM_AlunoDia.ensureInit();
+    }
+
+    function initServicoTabEvents() {
+      document.getElementById('btnSrvSubAlunoDia')?.addEventListener('click', () => setServicoSubMode('alunodia'));
+      document.getElementById('btnSrvSubXerife')?.addEventListener('click', () => setServicoSubMode('xerife'));
+      document.querySelectorAll('.side-sub-srv-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const target = btn.getAttribute('data-sidesubsrv') || 'alunodia';
+          switchTab('servico');
+          setServicoSubMode(target);
+        });
       });
 
       document.getElementById('btnXerifeTabSala')?.addEventListener('click', () => {
@@ -11948,7 +11963,7 @@ Dica: Se você apenas lançou notas erradas em uma matéria oficial (como TFM 2)
       { num: "67", rel_format: "*AL OF BM* *MAKLEY* DA SILVA PEREIRA, N° 67, Mat: 92.129.092", guerra: "MAKLEY", pel: "CHARLIE" }
     ];
 
-      const STORAGE_KEY = 'sigabm_mapa_forca_v1';
+      function getMapaStorageKey() { return 'sigabm_mapa_forca_v2_' + (state.currentUser || 'ANON'); }
       let initialized = false;
       let subTab = 'croqui';
       let estado = {};
@@ -12003,21 +12018,34 @@ Dica: Se você apenas lançou notas erradas em uma matéria oficial (como TFM 2)
         if (sCm && data.cmt !== undefined) sCm.value = data.cmt;
 
         if (persistLocal) {
-          try { localStorage.setItem(STORAGE_KEY, JSON.stringify(getCompactCloudSnapshot())); } catch (e) {}
+          try { localStorage.setItem(getMapaStorageKey(), JSON.stringify(getCompactCloudSnapshot())); } catch (e) {}
         }
       }
 
-      function saveState(pushCloud = true) {
+      function saveState() {
         const snap = getCompactCloudSnapshot();
-        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(snap)); } catch (e) {}
-        if (pushCloud && typeof syncPushToCloud === 'function' && state.currentUser) {
-          syncPushToCloud(true);
-        }
+        try { localStorage.setItem(getMapaStorageKey(), JSON.stringify(snap)); } catch (e) {}
+      }
+
+      function clearMemoryState() {
+        estado = {};
+        sentinelas = [];
+        motivos = {};
+        permutas = {};
+        apecados = {};
+        xerifes = { CHARLIE: '', BRAVO: '', ESPADARTES: '' };
+        const s1 = document.getElementById('mfSelAlDia');
+        const s2 = document.getElementById('mfSelAdj');
+        const s3 = document.getElementById('mfSelCmt');
+        if (s1) s1.value = '';
+        if (s2) s2.value = '';
+        if (s3) s3.value = '';
       }
 
       function loadLocalState() {
+        clearMemoryState();
         try {
-          const raw = localStorage.getItem(STORAGE_KEY);
+          const raw = localStorage.getItem(getMapaStorageKey());
           if (raw) applySnapshotObj(JSON.parse(raw), false);
         } catch (e) {}
       }
@@ -12738,6 +12766,11 @@ ${apecadosList.length > 0 ? apecadosList.join('\n') : '- Não consta.'}`;
         exportPng,
         getCloudSnapshot: getCompactCloudSnapshot,
         getReportBridgeData: getCompactCloudSnapshot,
+        reloadForCurrentUser: () => {
+          initSelects();
+          loadLocalState();
+          if (initialized) updateCmd();
+        },
         applyCloudSnapshot: (snap) => {
           initSelects();
           applySnapshotObj(snap, true);
@@ -13155,9 +13188,7 @@ ${apecadosList.length > 0 ? apecadosList.join('\n') : '- Não consta.'}`;
           if (json.xerifeSaidas && typeof json.xerifeSaidas === 'object') {
             saveXerifeSaidasMap(json.xerifeSaidas);
           }
-          if (json.mapaForca && typeof json.mapaForca === 'object' && window.SIGABM_AlunoDia) {
-            window.SIGABM_AlunoDia.applyCloudSnapshot(json.mapaForca);
-          }
+          // Mapa de Força é isolado por conta (armazenamento local por usuário)
           if (Array.isArray(json.deletedCdfIds)) {
             const localDelCdf = getDeletedCdfIds();
             json.deletedCdfIds.forEach(id => localDelCdf.add(id));
@@ -13386,7 +13417,7 @@ ${apecadosList.length > 0 ? apecadosList.join('\n') : '- Não consta.'}`;
           xerifeSemana: getXerifeSemana(),
           xerifeEfetivo: getXerifeEfetivoMap(),
           xerifeSaidas: getXerifeSaidasMap(),
-          mapaForca: (window.SIGABM_AlunoDia && typeof window.SIGABM_AlunoDia.getCloudSnapshot === 'function') ? window.SIGABM_AlunoDia.getCloudSnapshot() : null,
+          // mapaForca mantido isolado localmente por conta
           cdfLogs: getCdfLogs().slice(0, 60),
           deletedCdfIds: Array.from(getDeletedCdfIds()),
           cadetRoles: getAllCadetRoles(),
@@ -14066,6 +14097,7 @@ ${apecadosList.length > 0 ? apecadosList.join('\n') : '- Não consta.'}`;
           const treeMap = {
             simulador: { tree: 'sidebarSubSimulador', chev: 'chevronSubSimulador' },
             taf: { tree: 'sidebarSubTaf', chev: 'chevronSubTaf' },
+            servico: { tree: 'sidebarSubServico', chev: 'chevronSubServico' },
             biblioteca: { tree: 'sidebarSubBiblioteca', chev: 'chevronSubBiblioteca' }
           };
           if (isDesktopSidebarBtn && state.activeTab === targetTab && treeMap[targetTab] && !state.sidebarCollapsed) {
@@ -14319,6 +14351,7 @@ ${apecadosList.length > 0 ? apecadosList.join('\n') : '- Não consta.'}`;
           return;
         }
         state.currentUser = user;
+        resetTransientSessionData();
         const isOfficerUser = isStaffAccount(user);
         state.pinnedCadet = isOfficerUser ? 'LINHARES' : user;
         const tafSelInit = document.getElementById('tafActiveCadetSelect');
@@ -14369,9 +14402,30 @@ ${apecadosList.length > 0 ? apecadosList.join('\n') : '- Não consta.'}`;
       });
 
       // Header Compact Logout Button ("Sair")
+      window.SIGABM_getCurrentUser = () => state.currentUser || '';
+
+      function resetTransientSessionData() {
+        state.simContenders = [];
+        state.simGrades = {};
+        state.indPendingDraft = {};
+        state.h2hA = '';
+        state.h2hB = '';
+        state.h2hFilter = 'all';
+        if (typeof populateHeadToHeadDropdowns === 'function') populateHeadToHeadDropdowns();
+        if (typeof renderHeadToHead === 'function') renderHeadToHead();
+        if (typeof renderSimulator === 'function') renderSimulator();
+        if (window.SIGABM_AlunoDia && typeof window.SIGABM_AlunoDia.reloadForCurrentUser === 'function') {
+          window.SIGABM_AlunoDia.reloadForCurrentUser();
+        }
+        if (window.SIGABM_RelatorioServico && typeof window.SIGABM_RelatorioServico.reloadForCurrentUser === 'function') {
+          window.SIGABM_RelatorioServico.reloadForCurrentUser();
+        }
+      }
+
       document.getElementById('btnHeaderQuickLogout').addEventListener('click', () => {
         state.isAdminUnlocked = false;
         state.currentUser = null;
+        resetTransientSessionData();
         document.getElementById('mandatoryAuthPortal').classList.remove('hidden');
         updateAdminUI();
         updateGazetaNotificationsUI();
