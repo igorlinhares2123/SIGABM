@@ -166,6 +166,20 @@
       border: 1.5px solid #000000;
       background: #ffffff;
     }
+    .rn-crest-cbmba {
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    .rn-crest-abm {
+      width: 56px;
+      height: 56px;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
     .rn-mivic-header-lines {
       text-align: center;
       font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -1811,18 +1825,18 @@
               <span class="sidebar-label truncate">Função de Comando</span>
               <span id="chevronSubServico" class="sidebar-label ml-auto text-[10px] opacity-75">▸</span>
             </button>
-            <div id="sidebarSubServico" class="sidebar-sub-tree hidden pl-6 pr-1 space-y-1 border-l-2 border-slate-200 ml-3">
-              <button type="button" data-sidesubsrv="alunodia" class="side-sub-srv-btn w-full text-left px-2.5 py-1.5 rounded-md text-[11px] font-bold text-[#DA291C] bg-red-50 transition block truncate">
+            <div id="sidebarSubServico" class="sidebar-sub-tree hidden pl-5 pr-1 space-y-1 border-l-2 border-slate-200 ml-3">
+              <button type="button" data-sidesubsrv="alunodia" class="side-sub-srv-btn w-full text-left px-2 py-1.5 rounded-md text-[11px] font-bold text-[#DA291C] bg-red-50 transition block whitespace-normal leading-snug">
                 1. Aluno de Dia
               </button>
-              <button type="button" data-sidesubsrv="xerife" class="side-sub-srv-btn w-full text-left px-2.5 py-1.5 rounded-md text-[11px] font-semibold text-slate-700 hover:bg-slate-100 transition block truncate">
+              <button type="button" data-sidesubsrv="xerife" class="side-sub-srv-btn w-full text-left px-2 py-1.5 rounded-md text-[11px] font-semibold text-slate-700 hover:bg-slate-100 transition block whitespace-normal leading-snug">
                 2. Xerife
               </button>
-              <button type="button" data-sidesubsrv="rancho" class="side-sub-srv-btn w-full text-left px-2.5 py-1.5 rounded-md text-[11px] font-semibold text-slate-700 hover:bg-slate-100 transition block truncate">
-                3. Gerente de Rancho
+              <button type="button" data-sidesubsrv="rancho" class="side-sub-srv-btn w-full text-left px-2 py-1.5 rounded-md text-[11px] font-semibold text-slate-700 hover:bg-slate-100 transition block whitespace-normal leading-snug">
+                3. Ger. de Rancho
               </button>
-              <button type="button" data-sidesubsrv="deslocamento" class="side-sub-srv-btn w-full text-left px-2.5 py-1.5 rounded-md text-[11px] font-semibold text-slate-700 hover:bg-slate-100 transition block truncate">
-                4. Gerente de Deslocamento
+              <button type="button" data-sidesubsrv="deslocamento" class="side-sub-srv-btn w-full text-left px-2 py-1.5 rounded-md text-[11px] font-semibold text-slate-700 hover:bg-slate-100 transition block whitespace-normal leading-snug">
+                4. Ger. de Deslocamento
               </button>
             </div>
           </div>
@@ -3101,40 +3115,40 @@
           <span class="text-[9.5px] font-bold uppercase tracking-wider text-slate-500">ABM / CFOBM</span>
         </div>
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-2">
-          <button type="button" id="btnSrvSubAlunoDia" class="p-2.5 sm:p-3 rounded-xl font-bold text-xs bg-[#DA291C] text-white border-2 border-[#991b1b] border-b-4 shadow-sm cursor-pointer transition text-left flex items-center gap-2">
-            <span class="w-8 h-8 rounded-lg bg-white/15 flex items-center justify-center shrink-0">
+          <button type="button" id="btnSrvSubAlunoDia" class="p-2 sm:p-2.5 rounded-xl font-bold text-xs bg-[#DA291C] text-white border-2 border-[#991b1b] border-b-4 shadow-sm cursor-pointer transition text-left flex items-center gap-2">
+            <span class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-white/15 flex items-center justify-center shrink-0">
               <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
             </span>
-            <span class="min-w-0">
-              <span class="block text-[11px] sm:text-xs font-bold uppercase tracking-wide leading-tight truncate">1. Aluno de Dia</span>
-              <span class="block text-[9px] font-normal opacity-90 truncate mt-0.5">Croquis e Relatórios</span>
+            <span class="min-w-0 leading-tight">
+              <span class="block text-[10.5px] sm:text-[11px] font-bold uppercase leading-tight">1. Aluno de Dia</span>
+              <span class="block text-[9px] font-normal opacity-90 leading-tight mt-0.5">Croquis e Relatórios</span>
             </span>
           </button>
-          <button type="button" id="btnSrvSubXerife" class="p-2.5 sm:p-3 rounded-xl font-bold text-xs bg-slate-50 hover:bg-slate-100 text-slate-900 border-2 border-slate-300 border-b-4 border-b-slate-400 shadow-2xs cursor-pointer transition text-left flex items-center gap-2">
-            <span class="w-8 h-8 rounded-lg bg-slate-200/80 flex items-center justify-center shrink-0">
+          <button type="button" id="btnSrvSubXerife" class="p-2 sm:p-2.5 rounded-xl font-bold text-xs bg-slate-50 hover:bg-slate-100 text-slate-900 border-2 border-slate-300 border-b-4 border-b-slate-400 shadow-2xs cursor-pointer transition text-left flex items-center gap-2">
+            <span class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-slate-200/80 flex items-center justify-center shrink-0">
               <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
             </span>
-            <span class="min-w-0">
-              <span class="block text-[11px] sm:text-xs font-bold uppercase tracking-wide leading-tight truncate">2. Xerife</span>
-              <span class="block text-[9px] font-normal opacity-80 truncate mt-0.5">Sala de Aula e CDF</span>
+            <span class="min-w-0 leading-tight">
+              <span class="block text-[10.5px] sm:text-[11px] font-bold uppercase leading-tight">2. Xerife</span>
+              <span class="block text-[9px] font-normal opacity-80 leading-tight mt-0.5">Sala de Aula e CDF</span>
             </span>
           </button>
-          <button type="button" id="btnSrvSubRancho" class="p-2.5 sm:p-3 rounded-xl font-bold text-xs bg-slate-50 hover:bg-slate-100 text-slate-900 border-2 border-slate-300 border-b-4 border-b-slate-400 shadow-2xs cursor-pointer transition text-left flex items-center gap-2">
-            <span class="w-8 h-8 rounded-lg bg-slate-200/80 flex items-center justify-center shrink-0">
+          <button type="button" id="btnSrvSubRancho" class="p-2 sm:p-2.5 rounded-xl font-bold text-xs bg-slate-50 hover:bg-slate-100 text-slate-900 border-2 border-slate-300 border-b-4 border-b-slate-400 shadow-2xs cursor-pointer transition text-left flex items-center gap-2">
+            <span class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-slate-200/80 flex items-center justify-center shrink-0">
               <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
             </span>
-            <span class="min-w-0">
-              <span class="block text-[11px] sm:text-xs font-bold uppercase tracking-wide leading-tight truncate">3. Gerente de Rancho</span>
-              <span class="block text-[9px] font-normal opacity-80 truncate mt-0.5">Grade Semanal</span>
+            <span class="min-w-0 leading-tight">
+              <span class="block text-[10.5px] sm:text-[11px] font-bold uppercase leading-tight">3. Rancho</span>
+              <span class="block text-[9px] font-normal opacity-80 leading-tight mt-0.5">Gerência Semanal</span>
             </span>
           </button>
-          <button type="button" id="btnSrvSubDeslocamento" class="p-2.5 sm:p-3 rounded-xl font-bold text-xs bg-slate-50 hover:bg-slate-100 text-slate-900 border-2 border-slate-300 border-b-4 border-b-slate-400 shadow-2xs cursor-pointer transition text-left flex items-center gap-2">
-            <span class="w-8 h-8 rounded-lg bg-slate-200/80 flex items-center justify-center shrink-0">
+          <button type="button" id="btnSrvSubDeslocamento" class="p-2 sm:p-2.5 rounded-xl font-bold text-xs bg-slate-50 hover:bg-slate-100 text-slate-900 border-2 border-slate-300 border-b-4 border-b-slate-400 shadow-2xs cursor-pointer transition text-left flex items-center gap-2">
+            <span class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-slate-200/80 flex items-center justify-center shrink-0">
               <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M3 10h18"/><circle cx="7.5" cy="19" r="1.5"/><circle cx="16.5" cy="19" r="1.5"/></svg>
             </span>
-            <span class="min-w-0">
-              <span class="block text-[11px] sm:text-xs font-bold uppercase tracking-wide leading-tight truncate">4. Gerente de Deslocamento</span>
-              <span class="block text-[9px] font-normal opacity-80 truncate mt-0.5">Viaturas e Rotas</span>
+            <span class="min-w-0 leading-tight">
+              <span class="block text-[10.5px] sm:text-[11px] font-bold uppercase leading-tight">4. Deslocamento</span>
+              <span class="block text-[9px] font-normal opacity-80 leading-tight mt-0.5">Gerência de Rotas</span>
             </span>
           </button>
         </div>
@@ -3291,7 +3305,7 @@
               <p class="text-xs font-bold uppercase text-slate-300">Mapa de Força - Curso de Formação de Oficiais</p>
               <p id="mfExportDateLabel" class="text-[11px] font-bold text-slate-400 mt-1 mono-num"></p>
             </div>
-            <img src="img/brasao_abm.png" crossOrigin="anonymous" alt="Brasão ABM" class="w-16 h-16 object-contain shrink-0" />
+            <img src="img/brasao_abm.png" crossOrigin="anonymous" alt="Brasão ABM" class="w-14 h-14 object-contain shrink-0" />
           </div>
 
           <div id="mfWrapper" class="mf-wrapper">
@@ -4384,13 +4398,24 @@
           <!-- VISTA 1: GRADE OFICIAL E EMISSÃO -->
           <div id="rnMgrViewGrade" class="space-y-3">
             <div class="bg-white border border-slate-300 rounded-xl p-3.5 shadow-xs space-y-3">
-              <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-2.5">
-                <div class="flex flex-wrap items-center gap-1.5">
-                  <button type="button" onclick="window.SIGABM_GerenteRancho.exportPdfPrint()" class="px-3 py-1.5 rounded-lg bg-[#DA291C] hover:bg-[#B01E14] text-white font-bold text-[10.5px] uppercase cursor-pointer">Imprimir / PDF</button>
-                  <button type="button" onclick="window.SIGABM_GerenteRancho.exportDocx()" class="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-white font-bold text-[10.5px] uppercase cursor-pointer">Word (.docx)</button>
-                  <button type="button" id="rnBtnArchiveDrive" onclick="window.SIGABM_GerenteRancho.archiveDocxToDrive()" class="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 border border-slate-300 text-slate-900 font-bold text-[10.5px] uppercase cursor-pointer">Salvar no Drive</button>
-                  <button type="button" onclick="window.SIGABM_GerenteRancho.exportPng()" class="px-2.5 py-1.5 rounded-lg bg-white hover:bg-slate-100 border border-slate-300 text-slate-800 font-bold text-[10.5px] uppercase cursor-pointer">PNG</button>
-                  <button type="button" onclick="window.SIGABM_GerenteRancho.copySummaryText()" class="px-2.5 py-1.5 rounded-lg bg-white hover:bg-slate-100 border border-slate-300 text-slate-800 font-bold text-[10.5px] uppercase cursor-pointer">Copiar Resumo</button>
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 pb-2.5">
+                <div class="flex flex-wrap items-center gap-2">
+                  <!-- Emissão da Grade de Rancho (Formato + Botão Único) -->
+                  <div class="flex items-center gap-1.5 flex-1 sm:flex-none">
+                    <select id="rnGradeExportFormat" aria-label="Formato de emissão da Grade de Rancho" class="h-8 flex-1 sm:w-48 px-2 rounded-lg bg-slate-50 border border-slate-300 text-slate-950 font-bold text-[11px] focus:outline-none focus:border-[#DA291C] cursor-pointer">
+                      <option value="pdf">Grade: PDF / Impressão</option>
+                      <option value="docx">Grade: Word (.docx)</option>
+                      <option value="png">Grade: Imagem (PNG)</option>
+                      <option value="drive" id="rnOptExportDrive">Grade: Salvar no Drive</option>
+                      <option value="summary">Grade: Copiar Resumo</option>
+                    </select>
+                    <button type="button" id="rnBtnExportGrade" onclick="window.SIGABM_GerenteRancho.exportSelectedGradeFormat()" class="h-8 px-3.5 rounded-lg bg-[#DA291C] hover:bg-[#B01E14] text-white font-bold text-[10.5px] uppercase cursor-pointer shrink-0">Exportar</button>
+                  </div>
+
+                  <span class="hidden sm:inline-block w-px h-5 bg-slate-300"></span>
+
+                  <!-- Relatório de Auditoria Nominal (Separado da Grade) -->
+                  <button type="button" onclick="window.SIGABM_GerenteRancho.openAuditPdfModal()" class="h-8 px-3.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-white font-bold text-[10.5px] uppercase cursor-pointer shrink-0">Auditoria (PDF)</button>
                 </div>
                 <span id="rnWeekManagerOwnerPill" class="text-[10.5px] font-bold text-slate-600">Responsável: VAZ</span>
               </div>
@@ -4430,14 +4455,14 @@
                 <div id="rnOfficialGradeSheet" class="rn-a4-portrait-sheet min-w-[640px]">
                   <!-- Cabeçalho Oficial CBMBA / ABM em Quadro Fechado (Verdana, Caixa Alta, Tamanho Uniforme) -->
                   <div class="rn-mivic-header">
-                    <img id="rnCrestCbmba" src="img/brasao_cbmba.png" crossOrigin="anonymous" alt="Brasão CBMBA" class="w-16 h-16 object-contain mx-auto" />
+                    <img id="rnCrestCbmba" src="img/brasao_cbmba.png" crossOrigin="anonymous" alt="Brasão CBMBA" class="rn-crest-cbmba" />
                     <div class="rn-mivic-header-lines">
                       <div>CORPO DE BOMBEIROS MILITAR DA BAHIA</div>
                       <div>ACADEMIA DE BOMBEIROS MILITAR</div>
                       <div>CURSO DE FORMAÇÃO DE OFICIAIS</div>
                       <div id="rnDocCursoTurmaLine">2º CFO 2025 - TURMA ESPADARTES</div>
                     </div>
-                    <img id="rnCrestAbm" src="img/brasao_abm.png" crossOrigin="anonymous" alt="Brasão ABM" class="w-15 h-15 object-contain mx-auto" />
+                    <img id="rnCrestAbm" src="img/brasao_abm.png" crossOrigin="anonymous" alt="Brasão ABM" class="rn-crest-abm" />
                   </div>
 
                   <!-- Título do Período -->
@@ -4467,9 +4492,14 @@
                   <span class="font-bold text-slate-900">Confirmados: <strong id="rnConfirmedCount" class="mono-num">0</strong>/29</span>
                   <span class="font-bold text-[#DA291C]">Pendentes: <strong id="rnPendingCount" class="mono-num">29</strong></span>
                 </div>
-                <button type="button" onclick="window.SIGABM_GerenteRancho.copyPendingCadets()" class="px-2.5 py-1 rounded bg-slate-100 hover:bg-slate-200 border border-slate-300 text-slate-900 font-bold text-[10px] uppercase cursor-pointer">
-                  Copiar Pendentes
-                </button>
+                <div class="flex flex-wrap items-center gap-1.5">
+                  <button type="button" onclick="window.SIGABM_GerenteRancho.exportAuditPdfFromFilters()" class="px-3 py-1 rounded bg-[#DA291C] hover:bg-[#B01E14] text-white font-bold text-[10px] uppercase cursor-pointer">
+                    Imprimir Auditoria (PDF)
+                  </button>
+                  <button type="button" onclick="window.SIGABM_GerenteRancho.copyPendingCadets()" class="px-2.5 py-1 rounded bg-slate-100 hover:bg-slate-200 border border-slate-300 text-slate-900 font-bold text-[10px] uppercase cursor-pointer">
+                    Copiar Pendentes
+                  </button>
+                </div>
               </div>
 
               <div class="w-full bg-slate-200 rounded-full h-1.5 overflow-hidden">
@@ -4582,7 +4612,36 @@
             </div>
             <div class="rn-modal-body space-y-2.5">
               <div id="rnCellAuditList" class="max-h-72 overflow-y-auto divide-y divide-slate-200 border border-slate-300 rounded-lg bg-white text-xs"></div>
-              <button type="button" onclick="window.SIGABM_GerenteRancho.closeCellAuditModal()" class="w-full py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-white font-bold text-[11px] uppercase cursor-pointer">Fechar</button>
+              <div class="grid grid-cols-2 gap-2">
+                <button type="button" id="rnBtnPrintCellAuditPdf" onclick="window.SIGABM_GerenteRancho.exportAuditPdfFromModal()" class="py-2 rounded-lg bg-[#DA291C] hover:bg-[#B01E14] text-white font-bold text-[11px] uppercase cursor-pointer">Imprimir PDF</button>
+                <button type="button" onclick="window.SIGABM_GerenteRancho.closeCellAuditModal()" class="py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-white font-bold text-[11px] uppercase cursor-pointer">Fechar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal: Selecionar Dia e Refeição para Relatório de Auditoria (PDF) -->
+        <div id="rnAuditPrintModal" class="mf-modal-backdrop" onclick="if(event.target.id==='rnAuditPrintModal') window.SIGABM_GerenteRancho.closeAuditPdfModal()">
+          <div class="rn-modal-box" style="max-width:390px;">
+            <div class="rn-modal-head">
+              <h4 class="text-xs font-bold uppercase">Relatório de Auditoria (PDF)</h4>
+              <button type="button" onclick="window.SIGABM_GerenteRancho.closeAuditPdfModal()" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold cursor-pointer">X</button>
+            </div>
+            <div class="rn-modal-body space-y-3 text-xs">
+              <div>
+                <label for="rnAuditPrintDaySelect" class="block font-bold text-slate-700 mb-1">Período / Dia da Semana</label>
+                <select id="rnAuditPrintDaySelect" onchange="window.SIGABM_GerenteRancho.onAuditPrintDayChange()" class="w-full h-9 px-2.5 rounded-lg border border-slate-300 bg-slate-50 font-bold text-slate-950 cursor-pointer"></select>
+              </div>
+              <div>
+                <label for="rnAuditPrintMealSelect" class="block font-bold text-slate-700 mb-1">Refeição a Analisar</label>
+                <select id="rnAuditPrintMealSelect" class="w-full h-9 px-2.5 rounded-lg border border-slate-300 bg-slate-50 font-bold text-slate-950 cursor-pointer">
+                  <option value="c">Café da Manhã</option>
+                  <option value="a" selected>Almoço</option>
+                  <option value="j">Jantar</option>
+                  <option value="all">Todas as Refeições do Dia</option>
+                </select>
+              </div>
+              <button type="button" onclick="window.SIGABM_GerenteRancho.confirmAuditPdfModal()" class="w-full py-2.5 rounded-lg bg-[#DA291C] hover:bg-[#B01E14] text-white font-bold text-xs uppercase cursor-pointer">Gerar Relatório (PDF)</button>
             </div>
           </div>
         </div>
@@ -4902,7 +4961,7 @@
           </div>
 
           <div class="shrink-0 flex items-center justify-center">
-            <img id="gazetaCrestAbm" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Brasão ABM" class="w-12 h-12 sm:w-16 sm:h-16 object-contain" />
+            <img id="gazetaCrestAbm" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Brasão ABM" class="w-10 h-10 sm:w-14 sm:h-14 object-contain" />
           </div>
         </div>
 
@@ -12712,8 +12771,8 @@ Dica: Se você apenas lançou notas erradas em uma matéria oficial (como TFM 2)
       const bXe = document.getElementById('btnSrvSubXerife');
       const bRn = document.getElementById('btnSrvSubRancho');
       const bDs = document.getElementById('btnSrvSubDeslocamento');
-      const activeCardCls = 'p-2.5 sm:p-3 rounded-xl font-bold text-xs bg-[#DA291C] text-white border-2 border-[#991b1b] border-b-4 shadow-sm cursor-pointer transition text-left flex items-center gap-2';
-      const inactiveCardCls = 'p-2.5 sm:p-3 rounded-xl font-bold text-xs bg-slate-50 hover:bg-slate-100 text-slate-900 border-2 border-slate-300 border-b-4 border-b-slate-400 shadow-2xs cursor-pointer transition text-left flex items-center gap-2';
+      const activeCardCls = 'p-2 sm:p-2.5 rounded-xl font-bold text-xs bg-[#DA291C] text-white border-2 border-[#991b1b] border-b-4 shadow-sm cursor-pointer transition text-left flex items-center gap-2';
+      const inactiveCardCls = 'p-2 sm:p-2.5 rounded-xl font-bold text-xs bg-slate-50 hover:bg-slate-100 text-slate-900 border-2 border-slate-300 border-b-4 border-b-slate-400 shadow-2xs cursor-pointer transition text-left flex items-center gap-2';
       if (bAl) bAl.className = isAlunoDia ? activeCardCls : inactiveCardCls;
       if (bXe) bXe.className = isXerife ? activeCardCls : inactiveCardCls;
       if (bRn) bRn.className = isRancho ? activeCardCls : inactiveCardCls;
@@ -12722,8 +12781,8 @@ Dica: Se você apenas lançou notas erradas em uma matéria oficial (como TFM 2)
       document.querySelectorAll('.side-sub-srv-btn').forEach(b => {
         const active = b.getAttribute('data-sidesubsrv') === m;
         b.className = active
-          ? 'side-sub-srv-btn w-full text-left px-2.5 py-1.5 rounded-md text-[11px] font-bold text-[#DA291C] bg-red-50 transition block truncate'
-          : 'side-sub-srv-btn w-full text-left px-2.5 py-1.5 rounded-md text-[11px] font-semibold text-slate-700 hover:bg-slate-100 transition block truncate';
+          ? 'side-sub-srv-btn w-full text-left px-2 py-1.5 rounded-md text-[11px] font-bold text-[#DA291C] bg-red-50 transition block whitespace-normal leading-snug'
+          : 'side-sub-srv-btn w-full text-left px-2 py-1.5 rounded-md text-[11px] font-semibold text-slate-700 hover:bg-slate-100 transition block whitespace-normal leading-snug';
       });
       if (isAlunoDia && window.SIGABM_AlunoDia) window.SIGABM_AlunoDia.ensureInit();
       if (isRancho && window.SIGABM_GerenteRancho) window.SIGABM_GerenteRancho.render();
@@ -14478,6 +14537,7 @@ ${apecadosList.length > 0 ? apecadosList.join('\n') : '- Não consta.'}`;
       let editingCadet = '';
       let managerSubView = 'grade'; // 'grade' or 'conferencia'
       let modConfigOpen = false;
+      let lastCellAudit = { dayIdx: 0, mealKey: 'a' };
 
       function pad2(n) { return String(n).padStart(2, '0'); }
       function formatBrDate(iso) {
@@ -15136,6 +15196,7 @@ ${apecadosList.length > 0 ? apecadosList.join('\n') : '- Não consta.'}`;
       }
 
       function openCellAuditModal(dayIdx, mealKey) {
+        lastCellAudit = { dayIdx: Number(dayIdx) || 0, mealKey: mealKey || 'a' };
         const w = getCurrentWeek();
         const tot = computeTotals(w);
         const mealNames = { c: 'Café da Manhã', a: 'Almoço', j: 'Jantar' };
@@ -15579,7 +15640,13 @@ ${apecadosList.length > 0 ? apecadosList.join('\n') : '- Não consta.'}`;
           document.getElementById('rnManagerWeekControls')?.classList.toggle('hidden', !isActiveMgr);
           document.getElementById('rnManagerOverrideEditorBox')?.classList.toggle('hidden', !canEditMgrWeek);
           document.getElementById('rnMetaEditorBox')?.classList.toggle('hidden', !canEditMgrWeek);
-          document.getElementById('rnBtnArchiveDrive')?.classList.toggle('hidden', !canEditMgrWeek);
+          const optDrive = document.getElementById('rnOptExportDrive');
+          if (optDrive) {
+            optDrive.disabled = !canEditMgrWeek;
+            optDrive.hidden = !canEditMgrWeek;
+            const fmtSel = document.getElementById('rnGradeExportFormat');
+            if (!canEditMgrWeek && fmtSel && fmtSel.value === 'drive') fmtSel.value = 'pdf';
+          }
 
           const wkSel = document.getElementById('rnWeekSelect');
           if (wkSel) {
@@ -15699,7 +15766,8 @@ ${apecadosList.length > 0 ? apecadosList.join('\n') : '- Não consta.'}`;
           html, body { margin: 0; padding: 0; background: #ffffff; color: #000000; font-family: Verdana, Geneva, Tahoma, sans-serif; }
           .rn-print-page { width: 210mm; min-height: 297mm; padding: 16mm 15mm; margin: 0 auto; background: #ffffff; }
           .rn-mivic-header { display: grid; grid-template-columns: 78px 1fr 78px; align-items: center; gap: 10px; padding: 10px 12px; border: 1.5px solid #000000; background: #ffffff; }
-          .rn-mivic-header img { width: 64px; height: 64px; object-fit: contain; display: block; margin: 0 auto; }
+          .rn-mivic-header img.rn-crest-cbmba { width: 72px; height: 72px; object-fit: contain; display: block; margin: 0 auto; }
+          .rn-mivic-header img.rn-crest-abm { width: 56px; height: 56px; object-fit: contain; display: block; margin: 0 auto; }
           .rn-mivic-header-lines { text-align: center; font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: 10pt; font-weight: 700; line-height: 1.44; text-transform: uppercase; color: #000000; }
           .rn-mivic-banner { margin-top: 22px; margin-bottom: 12px; text-align: center; font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: 10.5pt; font-weight: 700; text-transform: uppercase; color: #000000; }
           .rn-grade-table { width: 100%; border-collapse: collapse; margin-top: 8px; table-layout: fixed; font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: 10pt; color: #000000; }
@@ -15714,6 +15782,317 @@ ${apecadosList.length > 0 ? apecadosList.join('\n') : '- Não consta.'}`;
           #rnDocFooterResp { padding-top: 46px; text-align: center; font-size: 10pt; color: #000000; }
           .hidden { display: none !important; }
         </style></head><body><div class="rn-print-page">${cloneHtml}</div>
+        <script>
+          window.addEventListener('load', function() {
+            var imgs = Array.prototype.slice.call(document.images || []);
+            Promise.all(imgs.map(function(im) {
+              if (im.complete) return Promise.resolve();
+              return new Promise(function(res) { im.onload = res; im.onerror = res; setTimeout(res, 1500); });
+            })).then(function() { setTimeout(function() { window.focus(); window.print(); }, 200); });
+          });
+        <\/script></body></html>`);
+        win.document.close();
+      }
+
+
+      function formatFullNameWithBoldWar(fullName, warName) {
+        const fn = String(fullName || '').trim();
+        const wn = String(warName || '').trim();
+        if (!fn || !wn) return fn || wn;
+        const normFn = fn.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase();
+        const normWn = wn.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase();
+        const idx = normFn.indexOf(normWn);
+        if (idx === -1) return fn;
+        return fn.slice(0, idx) + '<strong>' + fn.slice(idx, idx + wn.length) + '</strong>' + fn.slice(idx + wn.length);
+      }
+
+      function formatAuditTimestamp(isoOrStr) {
+        if (!isoOrStr) return '';
+        const dt = new Date(isoOrStr);
+        if (isNaN(dt.getTime())) return String(isoOrStr).slice(0, 16);
+        return dt.toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
+      }
+
+      function exportSelectedGradeFormat() {
+        const fmt = document.getElementById('rnGradeExportFormat')?.value || 'pdf';
+        if (fmt === 'pdf') return exportPdfPrint();
+        if (fmt === 'docx') return exportDocx();
+        if (fmt === 'png') return exportPng();
+        if (fmt === 'drive') return archiveDocxToDrive();
+        if (fmt === 'summary') return copySummaryText();
+      }
+
+      function onAuditPrintDayChange() {
+        const dSel = document.getElementById('rnAuditPrintDaySelect');
+        const mSel = document.getElementById('rnAuditPrintMealSelect');
+        if (!dSel || !mSel) return;
+        if (dSel.value === 'week') {
+          mSel.value = 'all';
+        }
+      }
+
+      function openAuditPdfModal() {
+        const w = getCurrentWeek();
+        const dSel = document.getElementById('rnAuditPrintDaySelect');
+        if (dSel) {
+          const dayOpts = Array.from({ length: 7 }, (_, d) => {
+            const iso = addDaysIso(w.startIso, d);
+            return `<option value="${d}">${WEEKDAY_NAMES[d].toUpperCase()} - ${formatBrDate(iso)}</option>`;
+          }).join('');
+          dSel.innerHTML = `<option value="week">SEMANA COMPLETA (SEGUNDA A DOMINGO)</option>${dayOpts}`;
+          const curDayFilter = document.getElementById('rnAuditDayFilter')?.value;
+          if (curDayFilter !== undefined && curDayFilter !== '') dSel.value = curDayFilter;
+        }
+        const m = document.getElementById('rnAuditPrintModal');
+        if (m) m.style.display = 'flex';
+      }
+
+      function closeAuditPdfModal() {
+        const m = document.getElementById('rnAuditPrintModal');
+        if (m) m.style.display = 'none';
+      }
+
+      function confirmAuditPdfModal() {
+        const rawDay = document.getElementById('rnAuditPrintDaySelect')?.value || '0';
+        const mealKey = document.getElementById('rnAuditPrintMealSelect')?.value || 'a';
+        closeAuditPdfModal();
+        exportAuditPdfPrint(rawDay === 'week' ? 'week' : (parseInt(rawDay, 10) || 0), mealKey);
+      }
+
+      function exportAuditPdfFromFilters() {
+        const dayIdx = parseInt(document.getElementById('rnAuditDayFilter')?.value || '0', 10) || 0;
+        const mealKey = document.getElementById('rnAuditMealFilter')?.value || 'all';
+        exportAuditPdfPrint(dayIdx, mealKey);
+      }
+
+      function exportAuditPdfFromModal() {
+        closeCellAuditModal();
+        exportAuditPdfPrint(lastCellAudit.dayIdx, lastCellAudit.mealKey);
+      }
+
+      function buildAuditSingleDayPageHtml(w, dIdx, mKey, originBase, todayFull, sig, pageNum, totalPages) {
+        const dateIso = addDaysIso(w.startIso, dIdx);
+        const dateBr = formatBrDate(dateIso);
+        const weekdayUpper = WEEKDAY_NAMES[dIdx].toUpperCase();
+        const mealTitles = {
+          c: 'CAFÉ DA MANHÃ',
+          a: 'ALMOÇO',
+          j: 'JANTAR',
+          all: 'TODAS AS REFEIÇÕES DO DIA'
+        };
+        const cadets = state.data.cadets || [];
+        let bodyTablesHtml = '';
+        let summaryHtml = '';
+
+        if (mKey === 'all') {
+          let totC = 0, totA = 0, totJ = 0;
+          const rowsHtml = cadets.map((cad, idx) => {
+            const reg = getCadetRegistryInfo(cad);
+            const r = w.responses && w.responses[cad];
+            const dayObj = (r && Array.isArray(r.days) && r.days[dIdx]) ? r.days[dIdx] : { c: false, a: false, j: false };
+            if (dayObj.c) totC++;
+            if (dayObj.a) totA++;
+            if (dayObj.j) totJ++;
+            const ts = (r && r.confirmed) ? (formatAuditTimestamp(r.updatedAt) || 'Confirmado') : 'Não enviou';
+            return `<tr>
+              <td class="col-num">${pad2(getCadetRealNumber(idx))}</td>
+              <td class="col-name">${formatFullNameWithBoldWar(reg.fullName, cad)}</td>
+              <td class="col-mat">${reg.mat}</td>
+              <td class="${dayObj.c ? 'cell-yes' : 'cell-no'}">${dayObj.c ? 'SIM' : '-'}</td>
+              <td class="${dayObj.a ? 'cell-yes' : 'cell-no'}">${dayObj.a ? 'SIM' : '-'}</td>
+              <td class="${dayObj.j ? 'cell-yes' : 'cell-no'}">${dayObj.j ? 'SIM' : '-'}</td>
+              <td class="col-ts">${ts}</td>
+            </tr>`;
+          }).join('');
+
+          summaryHtml = `
+            <table class="rn-sum-strip">
+              <tr>
+                <td><strong>CAFÉ DA MANHÃ:</strong> ${totC}/${cadets.length}</td>
+                <td><strong>ALMOÇO:</strong> ${totA}/${cadets.length}</td>
+                <td><strong>JANTAR:</strong> ${totJ}/${cadets.length}</td>
+                <td><strong>TOTAL DO DIA:</strong> ${totC + totA + totJ}</td>
+              </tr>
+            </table>`;
+
+          bodyTablesHtml = `
+            <table class="rn-audit-table">
+              <thead>
+                <tr>
+                  <th style="width:6%;">Nº</th>
+                  <th style="width:45%;text-align:left;padding-left:6px;">NOME COMPLETO</th>
+                  <th style="width:15%;">MATRÍCULA</th>
+                  <th style="width:7%;">CAFÉ</th>
+                  <th style="width:8%;">ALMOÇO</th>
+                  <th style="width:7%;">JANTAR</th>
+                  <th style="width:12%;">ENVIO</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${rowsHtml}
+                <tr class="row-total">
+                  <td colspan="3" style="text-align:left;padding-left:6px;">TOTAL PREVISTO NO DIA</td>
+                  <td>${totC}</td>
+                  <td>${totA}</td>
+                  <td>${totJ}</td>
+                  <td>${totC + totA + totJ}</td>
+                </tr>
+              </tbody>
+            </table>`;
+        } else {
+          const previstos = [];
+          const naoPrevistos = [];
+          cadets.forEach((cad, idx) => {
+            const reg = getCadetRegistryInfo(cad);
+            const r = w.responses && w.responses[cad];
+            const confirmed = !!(r && r.confirmed);
+            const dayObj = (r && Array.isArray(r.days) && r.days[dIdx]) ? r.days[dIdx] : { c: false, a: false, j: false };
+            const ts = formatAuditTimestamp(r && r.updatedAt);
+            const item = { num: pad2(getCadetRealNumber(idx)), cad, fullName: reg.fullName, mat: reg.mat, confirmed, ts };
+            if (dayObj[mKey]) previstos.push(item);
+            else naoPrevistos.push(item);
+          });
+
+          summaryHtml = `
+            <table class="rn-sum-strip">
+              <tr>
+                <td><strong>PREVISTOS (ARRANCHADOS):</strong> ${previstos.length}</td>
+                <td><strong>NÃO PREVISTOS:</strong> ${naoPrevistos.length}</td>
+                <td><strong>EFETIVO TOTAL DA TURMA:</strong> ${cadets.length}</td>
+              </tr>
+            </table>`;
+
+          const prevRows = previstos.length
+            ? previstos.map(p => `<tr>
+                <td class="col-num">${p.num}</td>
+                <td class="col-name">${formatFullNameWithBoldWar(p.fullName, p.cad)}</td>
+                <td class="col-mat">${p.mat}</td>
+                <td class="col-ts">${p.confirmed ? (p.ts || 'Confirmado') : 'Marcado s/ confirm.'}</td>
+                <td></td>
+              </tr>`).join('')
+            : '<tr><td colspan="5" style="text-align:center;padding:8px;">Nenhum militar previsto para esta refeição.</td></tr>';
+
+          const naoPrevRows = naoPrevistos.length
+            ? naoPrevistos.map(p => `<tr>
+                <td class="col-num">${p.num}</td>
+                <td class="col-name">${formatFullNameWithBoldWar(p.fullName, p.cad)}</td>
+                <td class="col-mat">${p.mat}</td>
+                <td class="col-status">${p.confirmed ? ('Confirmou grade sem esta refeição' + (p.ts ? ' (' + p.ts + ')' : '')) : 'Não enviou previsão de rancho'}</td>
+              </tr>`).join('')
+            : '<tr><td colspan="4" style="text-align:center;padding:8px;">Todos os 29 militares estão previstos nesta refeição.</td></tr>';
+
+          bodyTablesHtml = `
+            <div class="rn-sec-title">1. MILITARES PREVISTOS NO RANCHO (${previstos.length})</div>
+            <table class="rn-audit-table">
+              <thead>
+                <tr>
+                  <th style="width:6%;">Nº</th>
+                  <th style="width:46%;text-align:left;padding-left:6px;">NOME COMPLETO</th>
+                  <th style="width:16%;">MATRÍCULA</th>
+                  <th style="width:16%;">REGISTRO</th>
+                  <th style="width:16%;">CONFERÊNCIA</th>
+                </tr>
+              </thead>
+              <tbody>${prevRows}</tbody>
+            </table>
+
+            <div class="rn-sec-title" style="margin-top:10px;">2. MILITARES NÃO PREVISTOS NESTA REFEIÇÃO (${naoPrevistos.length})</div>
+            <table class="rn-audit-table">
+              <thead>
+                <tr>
+                  <th style="width:6%;">Nº</th>
+                  <th style="width:46%;text-align:left;padding-left:6px;">NOME COMPLETO</th>
+                  <th style="width:16%;">MATRÍCULA</th>
+                  <th style="width:32%;text-align:left;padding-left:6px;">SITUAÇÃO NA GRADE</th>
+                </tr>
+              </thead>
+              <tbody>${naoPrevRows}</tbody>
+            </table>`;
+        }
+
+        const pageCounterHtml = totalPages > 1
+          ? `<div class="rn-page-num">Folha ${pageNum}/${totalPages} | Semana de ${formatBrDate(w.startIso)} a ${formatBrDate(w.endIso)}</div>`
+          : '';
+
+        return `
+        <div class="rn-print-page">
+          <div class="rn-mivic-header">
+            <img src="${originBase}img/brasao_cbmba.png" alt="Brasão CBMBA" class="rn-crest-cbmba" />
+            <div class="rn-mivic-header-lines">
+              <div>CORPO DE BOMBEIROS MILITAR DA BAHIA</div>
+              <div>ACADEMIA DE BOMBEIROS MILITAR</div>
+              <div>CURSO DE FORMAÇÃO DE OFICIAIS</div>
+              <div>${formatCursoTurmaHeader(w)}</div>
+            </div>
+            <img src="${originBase}img/brasao_abm.png" alt="Brasão ABM" class="rn-crest-abm" />
+          </div>
+
+          <div class="rn-doc-title">RELATÓRIO DE AUDITORIA NOMINAL DE RANCHO</div>
+          <div class="rn-doc-sub">DATA: ${dateBr} (${weekdayUpper}) - REFEIÇÃO: ${mealTitles[mKey]}</div>
+          ${summaryHtml}
+          ${bodyTablesHtml}
+
+          <div class="rn-sig-wrap">
+            <div class="rn-sig-date">Salvador - BA, ${todayFull}.</div>
+            <div class="rn-sig-box">
+              <div class="rn-sig-name">${sig.line1}</div>
+              <div class="rn-sig-role">${sig.line2}</div>
+            </div>
+            ${pageCounterHtml}
+          </div>
+        </div>`;
+      }
+
+      function exportAuditPdfPrint(daySel, mealKey) {
+        const w = getCurrentWeek();
+        const isFullWeek = (daySel === 'week');
+        const mKey = ['c', 'a', 'j', 'all'].includes(mealKey) ? mealKey : 'all';
+        const sig = getSignatureLines(w);
+        const todayFull = new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+        const originBase = window.location.href.replace(/[^/]*$/, '');
+
+        const dayIndexes = isFullWeek ? [0, 1, 2, 3, 4, 5, 6] : [Math.max(0, Math.min(6, Number(daySel) || 0))];
+        const pagesHtml = dayIndexes.map((dIdx, idx) =>
+          buildAuditSingleDayPageHtml(w, dIdx, mKey, originBase, todayFull, sig, idx + 1, dayIndexes.length)
+        ).join('');
+
+        const win = window.open('', '_blank');
+        if (!win) { showToast('Permita pop-ups para gerar o PDF.'); return; }
+        win.document.write(`<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title></title>
+        <style>
+          @page { size: A4 portrait; margin: 0; }
+          * { box-sizing: border-box; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+          html, body { margin: 0; padding: 0; background: #ffffff; color: #000000; font-family: Verdana, Geneva, Tahoma, sans-serif; }
+          .rn-print-page { width: 210mm; min-height: 295mm; padding: 11mm 13mm; margin: 0 auto; background: #ffffff; page-break-after: always; break-after: page; }
+          .rn-print-page:last-child { page-break-after: auto; break-after: auto; }
+          .rn-mivic-header { display: grid; grid-template-columns: 80px 1fr 80px; align-items: center; gap: 10px; padding: 8px 10px; border: 1.5px solid #000000; background: #ffffff; }
+          .rn-mivic-header img.rn-crest-cbmba { width: 70px; height: 70px; object-fit: contain; display: block; margin: 0 auto; }
+          .rn-mivic-header img.rn-crest-abm { width: 54px; height: 54px; object-fit: contain; display: block; margin: 0 auto; }
+          .rn-mivic-header-lines { text-align: center; font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: 9.8pt; font-weight: 700; line-height: 1.4; text-transform: uppercase; color: #000000; }
+          .rn-doc-title { margin-top: 10px; text-align: center; font-size: 10pt; font-weight: 700; text-transform: uppercase; line-height: 1.35; color: #000000; }
+          .rn-doc-sub { text-align: center; font-size: 8.6pt; font-weight: 700; text-transform: uppercase; margin-top: 2px; color: #000000; }
+          .rn-sum-strip { width: 100%; border-collapse: collapse; margin-top: 7px; font-size: 8pt; }
+          .rn-sum-strip td { border: 1px solid #000000; background: #f2f2f2; padding: 4px 6px; text-align: center; color: #000000; }
+          .rn-sec-title { margin-top: 7px; margin-bottom: 3px; font-size: 8.2pt; font-weight: 700; text-transform: uppercase; color: #000000; }
+          .rn-audit-table { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 7.7pt; color: #000000; }
+          .rn-audit-table th, .rn-audit-table td { border: 1px solid #000000; padding: 2.8px 4px; vertical-align: middle; line-height: 1.2; }
+          .rn-audit-table thead th { background: #e6e6e6; font-weight: 700; text-align: center; border-bottom: 1.5px solid #000000; padding: 4px 4px; font-size: 7.5pt; }
+          .rn-audit-table td.col-num { text-align: center; font-weight: 700; }
+          .rn-audit-table td.col-name { text-align: left; padding-left: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+          .rn-audit-table td.col-mat { text-align: center; }
+          .rn-audit-table td.col-ts { text-align: center; font-size: 7.2pt; }
+          .rn-audit-table td.col-status { text-align: left; padding-left: 6px; font-size: 7.2pt; }
+          .rn-audit-table td.cell-yes { text-align: center; font-weight: 700; background: #ebebeb; }
+          .rn-audit-table td.cell-no { text-align: center; background: #ffffff; }
+          .rn-audit-table tr.row-total td { background: #ebebeb; font-weight: 700; text-align: center; border-top: 1.5px solid #000000; padding: 4px; }
+          .rn-sig-wrap { margin-top: 14px; text-align: center; font-size: 8.6pt; color: #000000; page-break-inside: avoid; }
+          .rn-sig-date { margin-bottom: 22px; }
+          .rn-sig-box { display: inline-block; border-top: 1px solid #000000; padding: 4px 28px 0 28px; }
+          .rn-sig-name { font-weight: 700; text-transform: uppercase; font-size: 8.8pt; }
+          .rn-sig-role { font-size: 8pt; margin-top: 2px; }
+          .rn-page-num { margin-top: 8px; font-size: 7.4pt; color: #333333; }
+        </style></head><body>
+        ${pagesHtml}
         <script>
           window.addEventListener('load', function() {
             var imgs = Array.prototype.slice.call(document.images || []);
@@ -15797,8 +16176,8 @@ ${apecadosList.length > 0 ? apecadosList.join('\n') : '- Não consta.'}`;
         const pCenter = (txt, bold, sz, color, before = 20, after = 40) => `<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="${before}" w:after="${after}"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Verdana" w:hAnsi="Verdana"/>${bold ? '<w:b/>' : ''}<w:sz w:val="${sz || 20}"/>${color ? `<w:color w:val="${color}"/>` : ''}</w:rPr><w:t>${xmlEsc(txt)}</w:t></w:r></w:p>`;
         const mkCell = (contentXml, wDxa, shd, borders = true, padTop = 140, padBot = 140) => `<w:tc><w:tcPr><w:tcW w:w="${wDxa}" w:type="dxa"/>${shd ? `<w:shd w:val="clear" w:color="auto" w:fill="${shd}"/>` : ''}${borders ? '' : '<w:tcBorders><w:top w:val="none"/><w:left w:val="none"/><w:bottom w:val="none"/><w:right w:val="none"/></w:tcBorders>'}<w:tcMar><w:top w:w="${padTop}" w:type="dxa"/><w:bottom w:w="${padBot}" w:type="dxa"/><w:left w:w="70" w:type="dxa"/><w:right w:w="70" w:type="dxa"/></w:tcMar><w:vAlign w:val="center"/></w:tcPr>${contentXml}</w:tc>`;
 
-        const leftCrestXml = cbmbaPng ? `<w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r>${buildDrawingXml('rId1', 1, 680000, 680000)}</w:r></w:p>` : pCenter('CBMBA', true, 18, '000000');
-        const rightCrestXml = abmPng ? `<w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r>${buildDrawingXml('rId2', 2, 650000, 650000)}</w:r></w:p>` : pCenter('ABM', true, 18, '000000');
+        const leftCrestXml = cbmbaPng ? `<w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r>${buildDrawingXml('rId1', 1, 760000, 760000)}</w:r></w:p>` : pCenter('CBMBA', true, 18, '000000');
+        const rightCrestXml = abmPng ? `<w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r>${buildDrawingXml('rId2', 2, 600000, 600000)}</w:r></w:p>` : pCenter('ABM', true, 18, '000000');
 
         const headerCenterXml = [
           pCenter('CORPO DE BOMBEIROS MILITAR DA BAHIA', true, 20, '000000', 0, 30),
@@ -15901,7 +16280,7 @@ ${apecadosList.length > 0 ? apecadosList.join('\n') : '- Não consta.'}`;
         const w = weeks.find(x => x.id === selectedWeekId) || weeks[0];
         if (!w || !canUserEditWeekInManagerPanel(w)) return;
         if (typeof uploadArquivoToSigabmDrive !== 'function') { showToast('Integração com Drive indisponível.'); return; }
-        const btn = document.getElementById('rnBtnArchiveDrive');
+        const btn = document.getElementById('rnBtnExportGrade');
         const prevTxt = btn ? btn.textContent : '';
         if (btn) { btn.disabled = true; btn.textContent = 'Salvando...'; }
         try {
@@ -15932,7 +16311,7 @@ ${apecadosList.length > 0 ? apecadosList.join('\n') : '- Não consta.'}`;
         } catch (err) {
           showToast('Erro ao salvar no Drive.');
         } finally {
-          if (btn) { btn.disabled = false; btn.textContent = prevTxt || 'Salvar no Drive'; }
+          if (btn) { btn.disabled = false; btn.textContent = prevTxt || 'Exportar'; }
         }
       }
 
@@ -15976,6 +16355,14 @@ ${apecadosList.length > 0 ? apecadosList.join('\n') : '- Não consta.'}`;
         closeCellAuditModal,
         copySummaryText,
         exportPng,
+        exportSelectedGradeFormat,
+        onAuditPrintDayChange,
+        openAuditPdfModal,
+        closeAuditPdfModal,
+        confirmAuditPdfModal,
+        exportAuditPdfFromFilters,
+        exportAuditPdfFromModal,
+        exportAuditPdfPrint,
         exportPdfPrint,
         exportDocx,
         archiveDocxToDrive
