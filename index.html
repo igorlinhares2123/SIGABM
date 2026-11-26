@@ -24,12 +24,245 @@
     }
   </script>
   <style>
+    html, body {
+      overscroll-behavior-y: contain;
+    }
     body {
       font-family: Verdana, Geneva, Tahoma, sans-serif;
       background-color: #f8fafc;
       color: #0f172a;
       font-size: 12px;
       -webkit-tap-highlight-color: transparent;
+    }
+    /* ===================================================================== */
+    /* RANCHO: CARTELA 3D SÓBRIA + GRADE OFICIAL A4 RETRATO (PADRÃO MIVIC)   */
+    /* ===================================================================== */
+    .rn-day-card {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-bottom: 4px solid #64748b;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 3px 6px -1px rgba(15, 23, 42, 0.08), inset 0 1px 0 #ffffff;
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+    .rn-day-card:hover {
+      box-shadow: 0 5px 10px -2px rgba(15, 23, 42, 0.12);
+    }
+    .rn-day-head {
+      background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+      color: #ffffff;
+      padding: 6px 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid #DA291C;
+      cursor: pointer;
+      user-select: none;
+    }
+    .rn-day-card.is-weekend .rn-day-head {
+      background: linear-gradient(180deg, #991b1b 0%, #7f1d1d 100%);
+      border-bottom-color: #0f172a;
+    }
+    .rn-day-body {
+      padding: 8px;
+      background: #f8fafc;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+    }
+    @media (min-width: 1024px) {
+      .rn-day-body {
+        grid-template-columns: 1fr;
+      }
+    }
+    .rn-meal-btn {
+      width: 100%;
+      padding: 7px 6px;
+      border-radius: 8px;
+      background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%);
+      color: #334155;
+      border: 1.5px solid #cbd5e1;
+      border-bottom: 3px solid #94a3b8;
+      font-size: 11px;
+      font-weight: 700;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.12s ease;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+    .rn-meal-btn:hover:not(:disabled) {
+      border-color: #64748b;
+      color: #0f172a;
+    }
+    .rn-meal-btn.is-selected {
+      background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+      color: #ffffff;
+      border-color: #0f172a;
+      border-bottom: 3px solid #DA291C;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.25);
+      transform: translateY(1px);
+    }
+    .rn-meal-btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.72;
+    }
+
+    /* Modais próprios do Rancho (fundo branco explícito e alto contraste) */
+    .rn-modal-box {
+      background: #ffffff;
+      color: #0f172a;
+      border: 1.5px solid #334155;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 460px;
+      max-height: 88vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+      text-align: left;
+    }
+    .rn-modal-head {
+      background: #0f172a;
+      color: #ffffff;
+      padding: 11px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      border-bottom: 2px solid #DA291C;
+    }
+    .rn-modal-body {
+      padding: 14px;
+      background: #ffffff;
+      color: #0f172a;
+      overflow-y: auto;
+    }
+
+    /* Grade Oficial Padrão Militar CBMBA (A4 Retrato, Quadro Institucional Limpo) */
+    .rn-a4-portrait-sheet {
+      width: 100%;
+      max-width: 794px;
+      margin: 0 auto;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 24px 26px;
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.06);
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      color: #000000;
+    }
+    .rn-mivic-header {
+      display: grid;
+      grid-template-columns: 82px 1fr 82px;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border: 1.5px solid #000000;
+      background: #ffffff;
+    }
+    .rn-mivic-header-lines {
+      text-align: center;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.48;
+      text-transform: uppercase;
+      color: #000000;
+    }
+    .rn-mivic-banner {
+      margin-top: 16px;
+      margin-bottom: 10px;
+      text-align: center;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #000000;
+    }
+    .rn-grade-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      font-size: 10.5px;
+      color: #000000;
+      background: #ffffff;
+      margin-top: 6px;
+      table-layout: fixed;
+    }
+    .rn-grade-table th, .rn-grade-table td {
+      border: 1px solid #000000;
+      padding: 10px 4px;
+      text-align: center;
+      vertical-align: middle;
+    }
+    .rn-grade-table thead th {
+      background: #e6e6e6;
+      color: #000000;
+      font-weight: 700;
+      font-size: 9.8px;
+      line-height: 1.32;
+      padding: 9px 3px;
+      border-bottom: 1.5px solid #000000;
+    }
+    .rn-grade-table td.rn-meal-lbl {
+      text-align: left;
+      font-weight: 700;
+      padding-left: 9px;
+      background: #f5f5f5;
+      color: #000000;
+      font-size: 10.2px;
+    }
+    .rn-grade-table td.rn-cell-click {
+      cursor: pointer;
+      font-weight: 400;
+      font-size: 11px;
+      background: #ffffff;
+      color: #000000;
+      transition: background-color 0.12s ease;
+    }
+    .rn-grade-table td.rn-cell-click:hover {
+      background: #f1f5f9;
+      font-weight: 700;
+    }
+    .rn-grade-table td.rn-sum-col {
+      background: #ebebeb;
+      font-weight: 700;
+      font-size: 11px;
+      color: #000000;
+    }
+    .rn-grade-table tr.rn-total-row td {
+      background: #ebebeb;
+      font-weight: 700;
+      font-size: 11px;
+      color: #000000;
+      border-top: 1.5px solid #000000;
+    }
+    .rn-grade-table tr.rn-total-row td.rn-grand-total {
+      background: #ebebeb;
+      color: #000000;
+      font-weight: 700;
+      font-size: 11px;
+    }
+    .sidebar-section-hdr {
+      font-size: 9px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #64748b;
+      padding: 6px 6px 2px;
+      margin-top: 4px;
+      border-top: 1px solid #e2e8f0;
+    }
+    .sidebar-section-hdr.first-sec {
+      border-top: 0;
+      margin-top: 0;
+      padding-top: 2px;
     }
     .mono-num {
       font-family: 'JetBrains Mono', monospace;
@@ -1165,7 +1398,7 @@
             </span>
           </div>
           <p class="text-[10px] sm:text-xs italic text-white/95 mt-0.5 truncate">
-            Academia de Bombeiros Militar — “Berço de líderes”
+            Academia de Bombeiros Militar
           </p>
         </div>
         <img id="portalCrestAbm" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Brasão ABM" class="w-11 h-11 sm:w-14 sm:h-14 object-contain shrink-0 drop-shadow" title="Academia de Bombeiros Militar - ABM" />
@@ -1282,7 +1515,7 @@
             </div>
             <p class="text-[9.5px] sm:text-[10.5px] italic text-white/95 truncate mt-0.5 leading-tight">
               <span class="sm:hidden">CBMBA • ABM</span>
-              <span class="hidden sm:inline">Academia de Bombeiros Militar — “Berço de líderes”</span>
+              <span class="hidden sm:inline">Academia de Bombeiros Militar</span>
             </p>
           </div>
         </div>
@@ -1429,6 +1662,8 @@
     <button type="button" id="navTabSimuladorMob" data-tab="simulador" class="hidden"></button>
     <button type="button" id="navTabSimIndMob" data-tab="simindividual" class="hidden"></button>
     <button type="button" id="navTabCoordenacaoMob" data-tab="coordenacao" class="hidden"></button>
+    <button type="button" id="navTabRanchoMob" data-tab="rancho" class="hidden"></button>
+    <button type="button" id="navTabDeslocamentoMob" data-tab="deslocamento" class="hidden"></button>
     <button type="button" id="navTabServicoMob" data-tab="servico" class="hidden"></button>
     <button type="button" id="navTabBibliotecaMob" data-tab="biblioteca" class="hidden"></button>
     <button type="button" id="navTabLancamentoMob" data-tab="lancamento" class="hidden"></button>
@@ -1450,26 +1685,25 @@
           </button>
         </div>
 
-        <div class="flex flex-col gap-1.5">
-          <!-- 1. Perfil do Militar (Início em ambos os modos) -->
+        <div class="flex flex-col gap-1">
+          <!-- ÁREA 1: ACADÊMICO -->
+          <div class="sidebar-label sidebar-section-hdr first-sec">Acadêmico</div>
+
           <button type="button" id="navTabPerfisDesk" data-tab="perfis" title="Perfil do Militar" class="nav-tab-btn w-full text-left px-2.5 py-2 rounded-lg text-xs font-bold bg-[#DA291C] text-white border border-[#DA291C] shadow-xs transition flex items-center justify-start gap-2.5">
             <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
             <span class="sidebar-label truncate">Perfil do Militar</span>
           </button>
 
-          <!-- 2. Disciplinas -->
           <button type="button" id="navTabDisciplinasDesk" data-tab="estatisticas" title="Disciplinas" class="nav-tab-btn btn-tactile w-full text-left px-2.5 py-2 rounded-lg text-xs flex items-center justify-start gap-2.5">
             <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><path d="M9 12h6"/><path d="M9 16h6"/></svg>
             <span class="sidebar-label truncate">Disciplinas</span>
           </button>
 
-          <!-- 3. Classificação Geral (Modo Padrão) -->
           <button type="button" id="navTabRankingDesk" data-tab="ranking" title="Classificação" class="nav-tab-btn btn-tactile w-full text-left px-2.5 py-2 rounded-lg text-xs flex items-center justify-start gap-2.5">
             <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
             <span class="sidebar-label truncate">Classificação</span>
           </button>
 
-          <!-- 4A. Simulador / Projeção e Análise (Modo Padrão) -->
           <div class="space-y-1" id="sidebarGroupSimulador">
             <button type="button" id="navTabSimuladorDesk" data-tab="simulador" title="Simulador e Projeção" class="nav-tab-btn btn-tactile w-full text-left px-2.5 py-2 rounded-lg text-xs flex items-center justify-start gap-2.5">
               <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
@@ -1486,13 +1720,11 @@
             </div>
           </div>
 
-          <!-- 4B. Simulador Individual (Modo Individual) -->
           <button type="button" id="navTabSimIndDesk" data-tab="simindividual" title="Simulador" class="nav-tab-btn btn-tactile w-full text-left px-2.5 py-2 rounded-lg text-xs hidden items-center justify-start gap-2.5">
             <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg>
             <span class="sidebar-label truncate">Simulador</span>
           </button>
 
-          <!-- 5. Teste Físico + 5 Sub-Abas (incluindo Hall da Fama) -->
           <div class="space-y-1" id="sidebarGroupTaf">
             <button type="button" id="navTabTafDesk" data-tab="taf" title="Teste Físico" class="nav-tab-btn btn-tactile w-full text-left px-2.5 py-2 rounded-lg text-xs flex items-center justify-start gap-2.5">
               <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M5 3 2 6"/><path d="m22 6-3-3"/><path d="M6.38 18.7 4 21"/><path d="M17.64 18.67 20 21"/></svg>
@@ -1518,36 +1750,33 @@
             </div>
           </div>
 
-          <!-- 6A. Coordenação e Ordens Oficiais (Direção, CE e CD) -->
+          <!-- ÁREA 2: ROTINA DA ABM -->
+          <div class="sidebar-label sidebar-section-hdr">Rotina da ABM</div>
+
+          <button type="button" id="navTabRanchoDesk" data-tab="rancho" title="Rancho" class="nav-tab-btn btn-tactile w-full text-left px-2.5 py-2 rounded-lg text-xs flex items-center justify-start gap-2.5">
+            <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
+            <span class="sidebar-label truncate flex-1">Rancho</span>
+            <span id="navRanchoBadgeDesk" class="hidden px-1.5 py-0.5 rounded-full bg-[#DA291C] text-white text-[10px] font-black mono-num">!</span>
+          </button>
+
+          <button type="button" id="navTabDeslocamentoDesk" data-tab="deslocamento" title="Deslocamento" class="nav-tab-btn btn-tactile w-full text-left px-2.5 py-2 rounded-lg text-xs flex items-center justify-start gap-2.5">
+            <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M3 10h18"/><circle cx="7.5" cy="19" r="1.5"/><circle cx="16.5" cy="19" r="1.5"/><path d="M5 16v2"/><path d="M19 16v2"/></svg>
+            <span class="sidebar-label truncate flex-1">Deslocamento</span>
+          </button>
+
+          <!-- ÁREA 3: INSTITUCIONAL -->
+          <div class="sidebar-label sidebar-section-hdr">Institucional</div>
+
           <button type="button" id="navTabCoordenacaoDesk" data-tab="coordenacao" title="Coordenação e Ordens" class="nav-tab-btn btn-tactile w-full text-left px-2.5 py-2 rounded-lg text-xs flex items-center justify-start gap-2.5">
             <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
             <span class="sidebar-label truncate flex-1">Coordenação e Ordens</span><span id="navCoordBadgeDesk" class="hidden px-1.5 py-0.5 rounded-full bg-[#DA291C] text-white text-[10px] font-black mono-num">0</span>
           </button>
 
-          <!-- 6A-2. Função de Comando (Aluno de Dia e Xerife) -->
-          <div class="space-y-1" id="sidebarGroupServico">
-            <button type="button" id="navTabServicoDesk" data-tab="servico" title="Função de Comando" class="nav-tab-btn btn-tactile w-full text-left px-2.5 py-2 rounded-lg text-xs flex items-center justify-start gap-2.5">
-              <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <span class="sidebar-label truncate">Função de Comando</span>
-              <span id="chevronSubServico" class="sidebar-label ml-auto text-[10px] opacity-75">▸</span>
-            </button>
-            <div id="sidebarSubServico" class="sidebar-sub-tree hidden pl-6 pr-1 space-y-1 border-l-2 border-slate-200 ml-3">
-              <button type="button" data-sidesubsrv="alunodia" class="side-sub-srv-btn w-full text-left px-2.5 py-1.5 rounded-md text-[11px] font-bold text-[#DA291C] bg-red-50 transition block truncate">
-                1. Aluno de Dia
-              </button>
-              <button type="button" data-sidesubsrv="xerife" class="side-sub-srv-btn w-full text-left px-2.5 py-1.5 rounded-md text-[11px] font-semibold text-slate-700 hover:bg-slate-100 transition block truncate">
-                2. Xerife
-              </button>
-            </div>
-          </div>
-
-          <!-- 6B. Gazeta Rubro de Luz -->
           <button type="button" id="navTabMuralDesk" data-tab="mural" title="Gazeta Rubro de Luz" class="nav-tab-btn btn-tactile w-full text-left px-2.5 py-2 rounded-lg text-xs flex items-center justify-start gap-2.5">
             <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
             <span class="sidebar-label truncate flex-1">Gazeta Rubro de Luz</span><span id="navGazetaBadgeDesk" class="hidden px-1.5 py-0.5 rounded-full bg-[#DA291C] text-white text-[10px] font-black mono-num">0</span>
           </button>
 
-          <!-- 7. Biblioteca + 5 Subpastas (Estantes do Acervo) -->
           <div class="space-y-1" id="sidebarGroupBiblioteca">
             <button type="button" id="navTabBibliotecaDesk" data-tab="biblioteca" title="Biblioteca" class="nav-tab-btn btn-tactile w-full text-left px-2.5 py-2 rounded-lg text-xs flex items-center justify-start gap-2.5">
               <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
@@ -1573,7 +1802,31 @@
             </div>
           </div>
 
-          <!-- 8. Lançamento de Notas (Moderadores) -->
+          <!-- ÁREA 4: COMANDO E GESTÃO -->
+          <div class="sidebar-label sidebar-section-hdr">Comando e Gestão</div>
+
+          <div class="space-y-1" id="sidebarGroupServico">
+            <button type="button" id="navTabServicoDesk" data-tab="servico" title="Função de Comando" class="nav-tab-btn btn-tactile w-full text-left px-2.5 py-2 rounded-lg text-xs flex items-center justify-start gap-2.5">
+              <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <span class="sidebar-label truncate">Função de Comando</span>
+              <span id="chevronSubServico" class="sidebar-label ml-auto text-[10px] opacity-75">▸</span>
+            </button>
+            <div id="sidebarSubServico" class="sidebar-sub-tree hidden pl-6 pr-1 space-y-1 border-l-2 border-slate-200 ml-3">
+              <button type="button" data-sidesubsrv="alunodia" class="side-sub-srv-btn w-full text-left px-2.5 py-1.5 rounded-md text-[11px] font-bold text-[#DA291C] bg-red-50 transition block truncate">
+                1. Aluno de Dia
+              </button>
+              <button type="button" data-sidesubsrv="xerife" class="side-sub-srv-btn w-full text-left px-2.5 py-1.5 rounded-md text-[11px] font-semibold text-slate-700 hover:bg-slate-100 transition block truncate">
+                2. Xerife
+              </button>
+              <button type="button" data-sidesubsrv="rancho" class="side-sub-srv-btn w-full text-left px-2.5 py-1.5 rounded-md text-[11px] font-semibold text-slate-700 hover:bg-slate-100 transition block truncate">
+                3. Gerente de Rancho
+              </button>
+              <button type="button" data-sidesubsrv="deslocamento" class="side-sub-srv-btn w-full text-left px-2.5 py-1.5 rounded-md text-[11px] font-semibold text-slate-700 hover:bg-slate-100 transition block truncate">
+                4. Gerente de Deslocamento
+              </button>
+            </div>
+          </div>
+
           <button type="button" id="navTabLancamentoDesk" data-tab="lancamento" title="Lançamento de Notas" class="nav-tab-btn btn-tactile w-full text-left px-2.5 py-2 rounded-lg text-xs hidden items-center justify-start gap-2.5">
             <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
             <span class="sidebar-label truncate">Lançamento de Notas</span>
@@ -2843,27 +3096,45 @@
         <div class="flex items-center justify-between gap-2 border-b border-slate-200 pb-2">
           <div class="flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#DA291C]"></span>
-            <h2 class="text-xs sm:text-sm font-bold uppercase tracking-wide text-slate-950">Funções de Comando — Escolha o Módulo</h2>
+            <h2 class="text-xs sm:text-sm font-bold uppercase tracking-wide text-slate-950">Funções de Comando</h2>
           </div>
-          <span class="text-[9.5px] font-bold uppercase tracking-wider text-slate-500">ABM • CFOBM</span>
+          <span class="text-[9.5px] font-bold uppercase tracking-wider text-slate-500">ABM / CFOBM</span>
         </div>
-        <div class="grid grid-cols-2 gap-2.5">
-          <button type="button" id="btnSrvSubAlunoDia" class="p-2.5 sm:p-3 rounded-xl font-bold text-xs bg-[#DA291C] text-white border-2 border-[#991b1b] border-b-4 shadow-sm cursor-pointer transition text-left flex items-center gap-2.5">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-2">
+          <button type="button" id="btnSrvSubAlunoDia" class="p-2.5 sm:p-3 rounded-xl font-bold text-xs bg-[#DA291C] text-white border-2 border-[#991b1b] border-b-4 shadow-sm cursor-pointer transition text-left flex items-center gap-2">
             <span class="w-8 h-8 rounded-lg bg-white/15 flex items-center justify-center shrink-0">
               <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
             </span>
             <span class="min-w-0">
               <span class="block text-[11px] sm:text-xs font-bold uppercase tracking-wide leading-tight truncate">1. Aluno de Dia</span>
-              <span class="block text-[9.5px] font-normal opacity-90 truncate mt-0.5">Croquis, Parada e Relatórios</span>
+              <span class="block text-[9px] font-normal opacity-90 truncate mt-0.5">Croquis e Relatórios</span>
             </span>
           </button>
-          <button type="button" id="btnSrvSubXerife" class="p-2.5 sm:p-3 rounded-xl font-bold text-xs bg-slate-50 hover:bg-slate-100 text-slate-900 border-2 border-slate-300 border-b-4 border-b-slate-400 shadow-2xs cursor-pointer transition text-left flex items-center gap-2.5">
+          <button type="button" id="btnSrvSubXerife" class="p-2.5 sm:p-3 rounded-xl font-bold text-xs bg-slate-50 hover:bg-slate-100 text-slate-900 border-2 border-slate-300 border-b-4 border-b-slate-400 shadow-2xs cursor-pointer transition text-left flex items-center gap-2">
             <span class="w-8 h-8 rounded-lg bg-slate-200/80 flex items-center justify-center shrink-0">
               <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
             </span>
             <span class="min-w-0">
               <span class="block text-[11px] sm:text-xs font-bold uppercase tracking-wide leading-tight truncate">2. Xerife</span>
-              <span class="block text-[9.5px] font-normal opacity-80 truncate mt-0.5">Controle em Sala e CDF</span>
+              <span class="block text-[9px] font-normal opacity-80 truncate mt-0.5">Sala de Aula e CDF</span>
+            </span>
+          </button>
+          <button type="button" id="btnSrvSubRancho" class="p-2.5 sm:p-3 rounded-xl font-bold text-xs bg-slate-50 hover:bg-slate-100 text-slate-900 border-2 border-slate-300 border-b-4 border-b-slate-400 shadow-2xs cursor-pointer transition text-left flex items-center gap-2">
+            <span class="w-8 h-8 rounded-lg bg-slate-200/80 flex items-center justify-center shrink-0">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
+            </span>
+            <span class="min-w-0">
+              <span class="block text-[11px] sm:text-xs font-bold uppercase tracking-wide leading-tight truncate">3. Gerente de Rancho</span>
+              <span class="block text-[9px] font-normal opacity-80 truncate mt-0.5">Grade Semanal</span>
+            </span>
+          </button>
+          <button type="button" id="btnSrvSubDeslocamento" class="p-2.5 sm:p-3 rounded-xl font-bold text-xs bg-slate-50 hover:bg-slate-100 text-slate-900 border-2 border-slate-300 border-b-4 border-b-slate-400 shadow-2xs cursor-pointer transition text-left flex items-center gap-2">
+            <span class="w-8 h-8 rounded-lg bg-slate-200/80 flex items-center justify-center shrink-0">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M3 10h18"/><circle cx="7.5" cy="19" r="1.5"/><circle cx="16.5" cy="19" r="1.5"/></svg>
+            </span>
+            <span class="min-w-0">
+              <span class="block text-[11px] sm:text-xs font-bold uppercase tracking-wide leading-tight truncate">4. Gerente de Deslocamento</span>
+              <span class="block text-[9px] font-normal opacity-80 truncate mt-0.5">Viaturas e Rotas</span>
             </span>
           </button>
         </div>
@@ -2874,7 +3145,7 @@
         <div class="mf-mode-bar" style="flex-direction: column; align-items: stretch; gap: 8px;">
           <div class="flex items-center justify-between gap-2">
             <div>
-              <h3 class="text-xs sm:text-sm font-bold text-slate-950 uppercase tracking-wide">Serviço de Aluno de Dia — Ferramentas Operacionais</h3>
+              <h3 class="text-xs sm:text-sm font-bold text-slate-950 uppercase tracking-wide">Serviço de Aluno de Dia</h3>
               <p class="text-[10.5px] text-slate-600">Selecione abaixo o croqui ou relatório desejado:</p>
             </div>
           </div>
@@ -2888,8 +3159,8 @@
               <span class="mf-sub-hint">Missões e pelotões mistos</span>
             </button>
             <button type="button" id="mfNavRelatorio" onclick="window.SIGABM_AlunoDia.showSubTab('relatorio')" class="mf-mode-btn">
-              <span>Assunção (Zap)</span>
-              <span class="mf-sub-hint">Parte rápida e PNG</span>
+              <span>Relatório de Assunção</span>
+              <span class="mf-sub-hint">Parte diária e PNG</span>
             </button>
             <button type="button" id="mfNavCompleto" onclick="window.SIGABM_AlunoDia.showSubTab('completo')" class="mf-mode-btn">
               <span>Relat. Serviço</span>
@@ -3113,12 +3384,12 @@
             <div class="mf-cmd-strip">
               <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-1.5 border-b border-slate-200">
                 <div>
-                  <h4 class="text-xs sm:text-sm font-bold uppercase text-slate-950">Croqui Livre — Missões Externas e Pelotões Mistos</h4>
+                  <h4 class="text-xs sm:text-sm font-bold uppercase text-slate-950">Croqui Livre - Missões Externas e Pelotões Mistos</h4>
                   <p class="text-[10.5px] text-slate-600">Precedência hierárquica automática por fileira (Oficiais / Subtenentes / Sargentos / Cabos / Soldados à frente).</p>
                 </div>
                 <div class="flex flex-wrap items-center gap-1.5 shrink-0">
                   <button type="button" onclick="window.SIGABM_CroquiLivre.addPlatoon()" class="px-3 py-1.5 rounded-lg bg-[#DA291C] hover:bg-[#B01E14] text-white font-bold text-[10.5px] uppercase cursor-pointer">+ Novo Pelotão</button>
-                  <button type="button" onclick="window.SIGABM_CroquiLivre.copyWhatsapp()" class="px-3 py-1.5 rounded-lg bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-[10.5px] uppercase cursor-pointer">Copiar Zap</button>
+                  <button type="button" onclick="window.SIGABM_CroquiLivre.copyWhatsapp()" class="px-3 py-1.5 rounded-lg bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-[10.5px] uppercase cursor-pointer">Copiar Texto</button>
                   <button type="button" onclick="window.SIGABM_CroquiLivre.exportPng()" class="px-3 py-1.5 rounded-lg bg-[#1d4ed8] hover:bg-blue-800 text-white font-bold text-[10.5px] uppercase cursor-pointer">Baixar PNG</button>
                 </div>
               </div>
@@ -3129,7 +3400,7 @@
                   <input id="clTitleInput" type="text" style="text-transform:uppercase;" oninput="this.value=this.value.toUpperCase(); window.SIGABM_CroquiLivre.updateMeta();" placeholder="EX: DESFILE 2 DE JULHO / OPERAÇÃO EXTERNA" class="w-full h-8 bg-slate-50 border border-slate-300 rounded-md px-2.5 font-bold text-slate-900" />
                 </div>
                 <div>
-                  <label class="block text-[9px] font-bold uppercase text-slate-600 mb-0.5">Comando à Frente (Opcional — Caixa Alta Automática)</label>
+                  <label class="block text-[9px] font-bold uppercase text-slate-600 mb-0.5">Comando à Frente (Opcional)</label>
                   <input id="clCmdInput" type="text" style="text-transform:uppercase;" oninput="this.value=this.value.toUpperCase(); window.SIGABM_CroquiLivre.updateMeta();" placeholder="EX: CAP BM GILVÃ / AL OF LINHARES" class="w-full h-8 bg-slate-50 border border-slate-300 rounded-md px-2.5 font-bold text-slate-900" />
                 </div>
               </div>
@@ -3158,8 +3429,8 @@
               <img src="img/brasao_cbmba.png" crossOrigin="anonymous" alt="CBMBA" class="w-11 h-11 object-contain shrink-0" />
               <div class="text-center flex-1 min-w-0">
                 <p class="text-[9px] font-bold uppercase tracking-wider text-slate-300 truncate">Corpo de Bombeiros Militar da Bahia</p>
-                <h5 id="clHeaderTitle" class="text-xs sm:text-sm font-bold uppercase tracking-wide truncate">DISPOSITIVO DE TROPA — MISSÃO EXTERNA</h5>
-                <p id="clHeaderSub" class="text-[9.5px] italic text-slate-300 truncate">Academia de Bombeiros Militar — “Berço de líderes”</p>
+                <h5 id="clHeaderTitle" class="text-xs sm:text-sm font-bold uppercase tracking-wide truncate">DISPOSITIVO DE TROPA - MISSÃO EXTERNA</h5>
+                <p id="clHeaderSub" class="text-[9.5px] italic text-slate-300 truncate">Academia de Bombeiros Militar</p>
               </div>
               <img src="img/brasao_abm.png" crossOrigin="anonymous" alt="ABM" class="w-10 h-10 object-contain shrink-0" />
             </div>
@@ -3279,7 +3550,7 @@
 
         <div id="mfRelatorioArea" class="hidden bg-white border border-slate-300 border-t-4 border-t-[#DA291C] rounded-xl p-4 shadow-xs space-y-3">
           <div class="flex items-center justify-between border-b border-slate-200 pb-2">
-            <h4 class="text-xs sm:text-sm font-extrabold uppercase text-slate-950">Relatório de Assunção de Serviço — Padrão WhatsApp</h4>
+            <h4 class="text-xs sm:text-sm font-extrabold uppercase text-slate-950">Relatório de Assunção de Serviço</h4>
           </div>
           <textarea id="mfTextoParte" rows="18" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-3 font-mono text-xs text-slate-900 leading-relaxed focus:outline-none focus:border-[#DA291C]"></textarea>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -3296,8 +3567,7 @@
         <div id="rsAppRoot" class="hidden">
           <div class="rs-topbar">
             <div>
-              <span class="rs-topbar-title">Relatório Completo de Serviço — Aluno de Dia (A4 / Word / PDF)</span>
-              <span class="rs-topbar-sub">Preenchimento oficial com prévia interativa, importação do relatório anterior e integração com o Mapa de Força.</span>
+              <span class="rs-topbar-title">Relatório de Serviço - Aluno de Dia</span>
             </div>
             <div class="view-mode-bar" id="viewModeBar" title="Alternar proporção entre formulário e prévia">
               <button type="button" class="vm-btn" data-mode="write-full" onclick="setAppViewMode('write-full')">100% Escrita</button>
@@ -3328,20 +3598,20 @@
   </div>
  </div>
  <div class="panelbody">
-  <div style="margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid #d5e4f3;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
-   <div style="display:flex;align-items:center;flex-wrap:wrap;gap:14px">
-    <label style="display:inline-flex;align-items:center;gap:6px;margin:0;cursor:pointer;font-size:12px;color:#102d4f;font-weight:700">
-     <input type="checkbox" id="autoPunctuationToggle" checked style="width:15px;height:15px;accent-color:#102d4f;cursor:pointer">
-     <span>Pontuação automática (<code>;</code> e <code>.</code>)</span>
+  <div style="margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid #d5e4f3;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px">
+   <div style="display:flex;align-items:center;flex-wrap:nowrap;gap:10px">
+    <label style="display:inline-flex;align-items:center;gap:4px;margin:0;cursor:pointer;font-size:11px;color:#102d4f;font-weight:700;white-space:nowrap">
+     <input type="checkbox" id="autoPunctuationToggle" checked style="width:14px;height:14px;accent-color:#102d4f;cursor:pointer">
+     <span>Pontuação (; / .)</span>
     </label>
-    <label style="display:inline-flex;align-items:center;gap:6px;margin:0;cursor:pointer;font-size:12px;color:#102d4f;font-weight:700">
-     <input type="checkbox" id="autoBoldRanksToggle" checked style="width:15px;height:15px;accent-color:#102d4f;cursor:pointer">
-     <span>Negrito automático em Postos/Graduações</span>
+    <label style="display:inline-flex;align-items:center;gap:4px;margin:0;cursor:pointer;font-size:11px;color:#102d4f;font-weight:700;white-space:nowrap">
+     <input type="checkbox" id="autoBoldRanksToggle" checked style="width:14px;height:14px;accent-color:#102d4f;cursor:pointer">
+     <span>Negrito (Postos)</span>
     </label>
    </div>
-   <div style="display:inline-flex;gap:5px">
-    <button type="button" class="secondary small" onclick="toggleAllMainDrawers(true)" style="font-size:11px;padding:3px 8px">Expandir seções</button>
-    <button type="button" class="secondary small" onclick="toggleAllMainDrawers(false)" style="font-size:11px;padding:3px 8px">Recolher seções</button>
+   <div style="display:inline-flex;gap:4px">
+    <button type="button" class="secondary small" onclick="toggleAllMainDrawers(true)" style="font-size:10.5px;padding:3px 7px">Expandir</button>
+    <button type="button" class="secondary small" onclick="toggleAllMainDrawers(false)" style="font-size:10.5px;padding:3px 7px">Recolher</button>
    </div>
   </div>
 
@@ -3708,9 +3978,8 @@
 </section>
 
 <section class="panel">
- <div class="panelhead"><h2>2. Prévia Interativa e Exportação</h2><span class="pill">Clique em qualquer tópico da folha para editar</span></div>
+ <div class="panelhead"><h2>2. Prévia e Exportação</h2></div>
  <div class="previewtools" style="justify-content: space-between; align-items: center; gap: 12px; padding: 10px 16px; background: #f4f8fc;">
-  <span style="font-size:11.5px;color:var(--muted);font-weight:600">Clique sobre qualquer seção na folha A4 abaixo para editar o texto ou abrir o controle correspondente.</span>
   <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-left:auto">
    <select id="exportFormat" style="width: auto; padding: 8px 12px; font-size: 13px; font-weight: 600; cursor: pointer; border: 1px solid #cbd6e2; border-radius: 8px; color: #102d4f; background: #fff; outline: none;">
     <option value="pdf">Documento PDF / Impressão (A4)</option>
@@ -3726,14 +3995,14 @@
   <div class="pde-head">
    <div class="pde-title">
     <span id="pdeSectionLabel">Editando Seção</span>
-    <span style="font-size:11px;font-weight:600;color:var(--muted)">(Atalhos @militar, /frases e Ctrl+B ativos)</span>
+    <span style="font-size:10.5px;font-weight:600;color:var(--muted)">(@militar • /frases • Ctrl+B)</span>
    </div>
    <div class="pde-actions">
     <button type="button" class="secondary small" id="pdeFocusFormBtn" title="Ir para o campo no formulário lateral">Ver no Painel Esquerdo</button>
     <button type="button" class="primary small" id="pdeCloseBtn">Concluir (Esc)</button>
    </div>
   </div>
-  <textarea id="previewDirectTextarea" class="bullet-input" placeholder="• Digite aqui (atualiza a folha A4 abaixo em tempo real)..."></textarea>
+  <textarea id="previewDirectTextarea" class="bullet-input" placeholder="• Digite aqui..."></textarea>
  </div>
  <div id="toastMsg" class="toast-msg"></div>
  <article id="preview"></article>
@@ -3744,7 +4013,7 @@
   <div class="modal-header">
    <div>
     <h3>Importar Dados do Relatório Anterior</h3>
-    <div id="prevReportStatusText" style="font-size:12px;color:#d9e8f5;margin-top:2px">Anexe o arquivo .pdf ou .docx do relatório anterior ou cole o texto abaixo.</div>
+    <div id="prevReportStatusText" style="font-size:12px;color:#d9e8f5;margin-top:2px">Anexe .pdf/.docx ou cole o texto.</div>
    </div>
    <button type="button" class="secondary small" id="closePrevReportModalBtn">Fechar</button>
   </div>
@@ -3752,7 +4021,7 @@
    <div class="grid2" style="gap:12px;margin-bottom:12px;align-items:stretch">
     <div style="border:2px dashed #1e4f7d;background:#f0f6fc;border-radius:10px;padding:12px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:6px">
      <div style="font-weight:800;font-size:13px;color:var(--navy)">Opção 1: Anexar PDF ou Word</div>
-     <div style="font-size:11.5px;color:var(--muted)">Leitura direta de arquivos <b>.pdf</b> ou <b>.docx</b></div>
+     <div style="font-size:11.5px;color:var(--muted)">Arquivos .pdf ou .docx</div>
      <button type="button" class="primary small" id="selectPrevReportFileBtn" style="margin-top:4px;padding:9px 16px;font-size:13px">Escolher Arquivo (.pdf ou .docx)</button>
      <input type="file" id="prevReportFileInput" accept=".pdf,.docx,.doc,.html,.htm,.txt" style="display:none">
     </div>
@@ -3783,7 +4052,7 @@
 
    <div id="prevReportItemsContainer" style="max-height:330px;overflow-y:auto;padding-right:2px;border:1px solid var(--line);border-radius:10px;padding:8px;background:#fcfdff">
     <div class="hint" style="text-align:center;padding:22px 12px;font-size:12.5px">
-     Selecione um arquivo <b>.pdf ou .docx</b> ou cole o texto na caixa ao lado para listar os tópicos.
+     Anexe um arquivo ou cole o texto para listar os tópicos.
     </div>
    </div>
 
@@ -4036,6 +4305,385 @@
             </div>
           </div>
         </div>
+      </div>
+
+      <!-- SUBMÓDULO: GERENTE DE RANCHO -->
+      <div id="srvPanelRancho" class="hidden space-y-3">
+
+        <!-- Aviso para quem não é gerente nem ex-gerente -->
+        <div id="rnNonManagerGateBox" class="hidden bg-white border border-slate-300 rounded-xl p-5 text-center space-y-3 shadow-xs text-xs">
+          <div class="space-y-1">
+            <h3 class="text-sm font-bold text-slate-950 uppercase">Acesso do Gerente de Rancho</h3>
+            <p id="rnNonManagerGateDesc" class="text-slate-600 max-w-md mx-auto">Gerente atual: VAZ.</p>
+          </div>
+          <button type="button" onclick="switchTab('rancho')" class="px-4 py-2 rounded-lg bg-[#DA291C] hover:bg-[#B01E14] text-white font-bold text-xs uppercase cursor-pointer">
+            Abrir Minha Previsão
+          </button>
+        </div>
+
+        <!-- Painel Executivo do Gerente de Rancho -->
+        <div id="rnManagerFullWorkspace" class="space-y-3">
+
+          <!-- Barra Superior Enxuta (1 bloco limpo, sem textos longos) -->
+          <div class="bg-white border border-slate-300 rounded-xl p-3 shadow-xs space-y-2.5 text-xs">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-2">
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="px-2 py-0.5 rounded bg-slate-900 text-white text-[10px] font-bold uppercase">Gerente</span>
+                <strong id="lblGerenteRanchoAtual" class="text-slate-950 font-bold text-xs">VAZ</strong>
+                <span id="lblGerenteRanchoNextLine" class="text-[10.5px] text-slate-600">(Próximo: LAVINIA em 30/11 às 07h)</span>
+              </div>
+              <div class="flex flex-wrap items-center gap-1.5">
+                <button type="button" id="btnToggleRanchoModConfig" onclick="window.SIGABM_GerenteRancho.toggleModConfig()" class="hidden h-7 px-2.5 rounded bg-slate-100 hover:bg-slate-200 border border-slate-300 text-slate-800 font-bold text-[10px] uppercase cursor-pointer">Alterar Gerente</button>
+                <a href="https://drive.google.com/drive/folders/1I4-aFdxVQCi9oYGjl_px70d9D9nt8oMq" target="_blank" rel="noopener noreferrer" class="h-7 px-2.5 rounded bg-slate-100 hover:bg-slate-200 border border-slate-300 text-slate-800 font-bold text-[10px] uppercase inline-flex items-center">Drive</a>
+              </div>
+            </div>
+
+            <!-- Painel Retrátil de Alteração de Gerente (apenas Moderadores, fechado por padrão) -->
+            <div id="boxDesignarRancho" class="hidden p-2.5 rounded-lg bg-slate-50 border border-slate-300 flex flex-wrap items-center justify-between gap-2">
+              <div class="flex items-center gap-2 flex-wrap">
+                <label for="selGerenteRancho" class="text-[10.5px] font-bold text-slate-700">Militar:</label>
+                <select id="selGerenteRancho" class="h-8 bg-white border border-slate-300 rounded px-2 text-xs font-bold text-slate-900 cursor-pointer"></select>
+              </div>
+              <div class="flex flex-wrap items-center gap-1.5">
+                <button type="button" id="btnSalvarGerenteRancho" class="h-8 px-2.5 rounded bg-slate-900 hover:bg-slate-800 text-white font-bold text-[10px] uppercase cursor-pointer">Apenas esta semana</button>
+                <button type="button" id="btnRecalibrarRodizioRancho" class="h-8 px-2.5 rounded bg-white hover:bg-slate-100 border border-slate-300 text-slate-900 font-bold text-[10px] uppercase cursor-pointer">Definir na escala</button>
+                <button type="button" id="btnLimparOverrideRancho" class="hidden h-8 px-2.5 rounded bg-red-50 hover:bg-red-100 border border-red-200 text-[#DA291C] font-bold text-[10px] uppercase cursor-pointer">Voltar automático</button>
+              </div>
+            </div>
+
+            <!-- Linha da Semana + Sub-Abas Internas (Grade Oficial | Conferência Nominal) -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div class="flex items-center gap-1.5 flex-1 min-w-0">
+                <select id="rnWeekSelect" onchange="window.SIGABM_GerenteRancho.selectWeek(this.value)" class="h-8 flex-1 sm:max-w-[230px] bg-slate-50 border border-slate-300 rounded-lg px-2 text-xs font-bold text-slate-950 focus:border-[#DA291C] cursor-pointer"></select>
+                <span id="rnWeekLockBadge" class="px-2 py-1 rounded text-[10px] font-bold uppercase bg-emerald-100 text-emerald-900 border border-emerald-300 shrink-0">Aberta</span>
+                <span id="rnProgressPill" class="px-2 py-1 rounded bg-slate-100 border border-slate-300 text-slate-900 text-[10px] font-bold mono-num shrink-0">0/29</span>
+              </div>
+              <div id="rnManagerWeekControls" class="hidden flex items-center gap-1.5 shrink-0">
+                <button type="button" onclick="window.SIGABM_GerenteRancho.openNewWeekModal()" class="h-8 px-2.5 rounded-lg bg-[#DA291C] hover:bg-[#B01E14] text-white font-bold text-[10px] uppercase cursor-pointer">+ Semana</button>
+                <button type="button" id="rnBtnToggleLock" onclick="window.SIGABM_GerenteRancho.toggleLockWeek()" class="h-8 px-2.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-white font-bold text-[10px] uppercase cursor-pointer">Travar</button>
+                <button type="button" onclick="window.SIGABM_GerenteRancho.deleteCurrentWeek()" class="h-8 px-2 rounded-lg bg-white hover:bg-red-50 border border-slate-300 text-[#DA291C] font-bold text-[10px] uppercase cursor-pointer">Excluir</button>
+              </div>
+            </div>
+
+            <!-- Navegação Limpa de 2 Vistas (evita poluição visual) -->
+            <div class="grid grid-cols-2 gap-1.5 pt-1">
+              <button type="button" id="rnBtnViewGrade" onclick="window.SIGABM_GerenteRancho.setManagerSubView('grade')" class="py-2 px-3 rounded-lg font-bold uppercase tracking-wide text-[11px] bg-slate-900 text-white border-b-2 border-[#DA291C] cursor-pointer transition text-center">
+                1. Grade Oficial e Emissão
+              </button>
+              <button type="button" id="rnBtnViewConf" onclick="window.SIGABM_GerenteRancho.setManagerSubView('conferencia')" class="py-2 px-3 rounded-lg font-bold uppercase tracking-wide text-[11px] bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-300 cursor-pointer transition text-center">
+                2. Conferência Nominal
+              </button>
+            </div>
+          </div>
+
+          <!-- Aviso de Somente Leitura para Ex-Gerente -->
+          <div id="rnExManagerReadOnlyBanner" class="hidden px-3 py-2 rounded-lg bg-amber-50 border border-amber-300 text-amber-950 text-xs font-semibold">
+            Histórico da sua gestão (somente consulta e reemissão).
+          </div>
+
+          <!-- VISTA 1: GRADE OFICIAL E EMISSÃO -->
+          <div id="rnMgrViewGrade" class="space-y-3">
+            <div class="bg-white border border-slate-300 rounded-xl p-3.5 shadow-xs space-y-3">
+              <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-2.5">
+                <div class="flex flex-wrap items-center gap-1.5">
+                  <button type="button" onclick="window.SIGABM_GerenteRancho.exportPdfPrint()" class="px-3 py-1.5 rounded-lg bg-[#DA291C] hover:bg-[#B01E14] text-white font-bold text-[10.5px] uppercase cursor-pointer">Imprimir / PDF</button>
+                  <button type="button" onclick="window.SIGABM_GerenteRancho.exportDocx()" class="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-white font-bold text-[10.5px] uppercase cursor-pointer">Word (.docx)</button>
+                  <button type="button" id="rnBtnArchiveDrive" onclick="window.SIGABM_GerenteRancho.archiveDocxToDrive()" class="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 border border-slate-300 text-slate-900 font-bold text-[10.5px] uppercase cursor-pointer">Salvar no Drive</button>
+                  <button type="button" onclick="window.SIGABM_GerenteRancho.exportPng()" class="px-2.5 py-1.5 rounded-lg bg-white hover:bg-slate-100 border border-slate-300 text-slate-800 font-bold text-[10.5px] uppercase cursor-pointer">PNG</button>
+                  <button type="button" onclick="window.SIGABM_GerenteRancho.copySummaryText()" class="px-2.5 py-1.5 rounded-lg bg-white hover:bg-slate-100 border border-slate-300 text-slate-800 font-bold text-[10.5px] uppercase cursor-pointer">Copiar Resumo</button>
+                </div>
+                <span id="rnWeekManagerOwnerPill" class="text-[10.5px] font-bold text-slate-600">Responsável: VAZ</span>
+              </div>
+
+              <div id="rnDriveArchiveLinkBar" class="hidden px-3 py-2 rounded-lg bg-slate-50 border border-slate-300 flex flex-wrap items-center justify-between gap-2 text-xs">
+                <span class="font-semibold text-slate-800">Documento salvo no Drive (10_Grades_de_Rancho).</span>
+                <a id="rnDriveArchiveAnchor" href="#" target="_blank" rel="noopener noreferrer" class="font-bold text-[#DA291C] hover:underline">Abrir arquivo</a>
+              </div>
+
+              <!-- Ajuste de Cabeçalho, Assinatura e Observação (recolhido por padrão) -->
+              <details id="rnMetaEditorBox" class="bg-slate-50 border border-slate-200 rounded-lg overflow-hidden text-xs">
+                <summary class="px-3 py-2 font-bold text-slate-700 hover:bg-slate-100 cursor-pointer select-none">
+                  Editar cabeçalho, assinatura ou observação
+                </summary>
+                <div class="p-3 border-t border-slate-200 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 bg-white">
+                  <div>
+                    <label class="block text-[9.5px] font-bold text-slate-600 mb-0.5">Curso / Ano</label>
+                    <input id="rnHeaderCursoInput" type="text" oninput="window.SIGABM_GerenteRancho.updateWeekMeta()" class="w-full h-8 px-2 rounded border border-slate-300 bg-white text-xs font-bold text-slate-900" />
+                  </div>
+                  <div>
+                    <label class="block text-[9.5px] font-bold text-slate-600 mb-0.5">Turma</label>
+                    <input id="rnHeaderTurmaInput" type="text" oninput="window.SIGABM_GerenteRancho.updateWeekMeta()" class="w-full h-8 px-2 rounded border border-slate-300 bg-white text-xs font-bold text-slate-900" />
+                  </div>
+                  <div>
+                    <label class="block text-[9.5px] font-bold text-slate-600 mb-0.5">Nome na Assinatura</label>
+                    <input id="rnHeaderRespInput" type="text" oninput="window.SIGABM_GerenteRancho.updateWeekMeta()" class="w-full h-8 px-2 rounded border border-slate-300 bg-white text-xs font-bold text-slate-900" />
+                  </div>
+                  <div>
+                    <label class="block text-[9.5px] font-bold text-slate-600 mb-0.5">Observação (opcional)</label>
+                    <input id="rnHeaderObsInput" type="text" oninput="window.SIGABM_GerenteRancho.updateWeekMeta()" class="w-full h-8 px-2 rounded border border-slate-300 bg-white text-xs font-semibold text-slate-900" />
+                  </div>
+                </div>
+              </details>
+
+              <!-- Folha Oficial A4 Retrato -->
+              <div class="overflow-x-auto pb-1">
+                <div id="rnOfficialGradeSheet" class="rn-a4-portrait-sheet min-w-[640px]">
+                  <!-- Cabeçalho Oficial CBMBA / ABM em Quadro Fechado (Verdana, Caixa Alta, Tamanho Uniforme) -->
+                  <div class="rn-mivic-header">
+                    <img id="rnCrestCbmba" src="img/brasao_cbmba.png" crossOrigin="anonymous" alt="Brasão CBMBA" class="w-16 h-16 object-contain mx-auto" />
+                    <div class="rn-mivic-header-lines">
+                      <div>CORPO DE BOMBEIROS MILITAR DA BAHIA</div>
+                      <div>ACADEMIA DE BOMBEIROS MILITAR</div>
+                      <div>CURSO DE FORMAÇÃO DE OFICIAIS</div>
+                      <div id="rnDocCursoTurmaLine">2º CFO 2025 - TURMA ESPADARTES</div>
+                    </div>
+                    <img id="rnCrestAbm" src="img/brasao_abm.png" crossOrigin="anonymous" alt="Brasão ABM" class="w-15 h-15 object-contain mx-auto" />
+                  </div>
+
+                  <!-- Título do Período -->
+                  <div class="rn-mivic-banner">
+                    <div id="rnDocPeriodoLine">PREVISÃO DE REFEIÇÕES DE --/--/---- A --/--/----</div>
+                  </div>
+
+                  <!-- Tabela Principal Consolidada -->
+                  <div id="rnOfficialTableWrap"></div>
+
+                  <!-- Observações (somente se preenchida) -->
+                  <div id="rnDocObsLine" class="hidden mt-4 text-[10.5px] text-black"></div>
+
+                  <!-- Assinatura Institucional (Padrão Relatório de Serviço) -->
+                  <div id="rnDocFooterResp" class="pt-9 text-center text-[11px] text-black"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- VISTA 2: CONFERÊNCIA NOMINAL E AJUSTE DO EFETIVO -->
+          <div id="rnMgrViewConf" class="hidden space-y-3">
+            <!-- Barra de Progresso e Filtros de Conferência -->
+            <div class="bg-white border border-slate-300 rounded-xl p-3.5 shadow-xs space-y-3 text-xs">
+              <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-2">
+                <div class="flex items-center gap-3">
+                  <span class="font-bold text-slate-900">Confirmados: <strong id="rnConfirmedCount" class="mono-num">0</strong>/29</span>
+                  <span class="font-bold text-[#DA291C]">Pendentes: <strong id="rnPendingCount" class="mono-num">29</strong></span>
+                </div>
+                <button type="button" onclick="window.SIGABM_GerenteRancho.copyPendingCadets()" class="px-2.5 py-1 rounded bg-slate-100 hover:bg-slate-200 border border-slate-300 text-slate-900 font-bold text-[10px] uppercase cursor-pointer">
+                  Copiar Pendentes
+                </button>
+              </div>
+
+              <div class="w-full bg-slate-200 rounded-full h-1.5 overflow-hidden">
+                <div id="rnProgressBarFill" class="bg-slate-900 h-1.5 transition-all duration-200" style="width: 0%"></div>
+              </div>
+
+              <!-- Filtros de Auditoria Nominal (Dia + Refeição + Situação) -->
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <div>
+                  <label for="rnAuditDayFilter" class="block text-[10px] font-bold uppercase text-slate-600 mb-0.5">Dia da Semana</label>
+                  <select id="rnAuditDayFilter" onchange="window.SIGABM_GerenteRancho.renderAuditRoster()" class="w-full h-8 bg-slate-50 border border-slate-300 rounded-lg px-2 text-xs font-bold text-slate-900 cursor-pointer"></select>
+                </div>
+                <div>
+                  <label for="rnAuditMealFilter" class="block text-[10px] font-bold uppercase text-slate-600 mb-0.5">Filtrar Refeição</label>
+                  <select id="rnAuditMealFilter" onchange="window.SIGABM_GerenteRancho.renderAuditRoster()" class="w-full h-8 bg-slate-50 border border-slate-300 rounded-lg px-2 text-xs font-bold text-slate-900 cursor-pointer">
+                    <option value="all">Todas as refeições</option>
+                    <option value="c">Marcou Café</option>
+                    <option value="a">Marcou Almoço</option>
+                    <option value="j">Marcou Jantar</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="rnAuditStatusFilter" class="block text-[10px] font-bold uppercase text-slate-600 mb-0.5">Situação</label>
+                  <select id="rnAuditStatusFilter" onchange="window.SIGABM_GerenteRancho.renderAuditRoster()" class="w-full h-8 bg-slate-50 border border-slate-300 rounded-lg px-2 text-xs font-bold text-slate-900 cursor-pointer">
+                    <option value="all">Todos (29)</option>
+                    <option value="pending">Apenas Pendentes</option>
+                    <option value="confirmed">Apenas Confirmados</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Tabela Nominal Limpa de Conferência (clique em Café/Almoço/Jantar ou em Editar) -->
+              <div class="border border-slate-300 rounded-lg overflow-hidden">
+                <div class="max-h-80 overflow-y-auto">
+                  <table class="w-full text-left border-collapse clean-table">
+                    <thead class="sticky top-0 z-10">
+                      <tr>
+                        <th class="w-12 text-center">Nº</th>
+                        <th>Militar</th>
+                        <th class="w-16 text-center">Café</th>
+                        <th class="w-16 text-center">Almoço</th>
+                        <th class="w-16 text-center">Jantar</th>
+                        <th class="w-24 text-center">Situação</th>
+                      </tr>
+                    </thead>
+                    <tbody id="rnAuditRosterBody" class="divide-y divide-slate-200 text-xs"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- Cartela Completa da Semana para Ajuste Individual -->
+            <div id="rnManagerOverrideEditorBox" class="bg-white border border-slate-300 rounded-xl p-3.5 shadow-xs space-y-2.5 text-xs">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 pb-2">
+                <div class="flex items-center gap-2 flex-wrap">
+                  <label for="rnOverrideCadetSelect" class="text-[10.5px] font-bold uppercase text-slate-800 whitespace-nowrap">Preencher por:</label>
+                  <select id="rnOverrideCadetSelect" onchange="window.SIGABM_GerenteRancho.setEditingCadet(this.value)" class="h-8 bg-slate-50 border border-slate-300 rounded-lg px-2 text-xs font-bold text-slate-950 focus:border-[#DA291C] cursor-pointer"></select>
+                  <span id="rnMgrEditStatusBadge" class="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-amber-100 text-amber-900 border border-amber-300">Pendente</span>
+                </div>
+                <div class="flex flex-wrap items-center gap-1">
+                  <button type="button" onclick="window.SIGABM_GerenteRancho.applyPreset('seg_qui', true)" class="px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 border border-slate-300 text-[10px] font-bold text-slate-800 cursor-pointer">Seg a Qui</button>
+                  <button type="button" onclick="window.SIGABM_GerenteRancho.applyPreset('seg_sex', true)" class="px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 border border-slate-300 text-[10px] font-bold text-slate-800 cursor-pointer">Seg a Sex</button>
+                  <button type="button" onclick="window.SIGABM_GerenteRancho.applyPreset('semana_toda', true)" class="px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 border border-slate-300 text-[10px] font-bold text-slate-800 cursor-pointer">Tudo</button>
+                  <button type="button" onclick="window.SIGABM_GerenteRancho.applyPreset('limpar', true)" class="px-2 py-1 rounded bg-red-50 hover:bg-red-100 border border-red-200 text-[10px] font-bold text-[#DA291C] cursor-pointer">Limpar</button>
+                </div>
+              </div>
+              <div id="rnMgrDaysGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-2"></div>
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-1">
+                <span id="rnMgrSummaryLine" class="text-[11px] font-bold text-slate-700 mono-num">0 refeições</span>
+                <button type="button" id="rnMgrBtnConfirm" onclick="window.SIGABM_GerenteRancho.confirmEditingCadet(true)" class="px-4 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-white font-bold text-[11px] uppercase cursor-pointer">
+                  Confirmar Militar
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Modal: Nova Semana de Rancho -->
+        <div id="rnNewWeekModal" class="mf-modal-backdrop" onclick="if(event.target.id==='rnNewWeekModal') window.SIGABM_GerenteRancho.closeNewWeekModal()">
+          <div class="rn-modal-box" style="max-width:390px;">
+            <div class="rn-modal-head">
+              <h4 class="text-xs font-bold uppercase">Nova Semana de Rancho</h4>
+              <button type="button" onclick="window.SIGABM_GerenteRancho.closeNewWeekModal()" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold cursor-pointer">X</button>
+            </div>
+            <div class="rn-modal-body space-y-2.5 text-xs">
+              <div>
+                <label for="rnNewWeekStartDate" class="block font-bold text-slate-700 mb-1">Segunda-feira de Início</label>
+                <input id="rnNewWeekStartDate" type="date" class="w-full h-9 px-2.5 rounded-lg border border-slate-300 bg-slate-50 font-bold text-slate-950" />
+              </div>
+              <div>
+                <label for="rnNewWeekCurso" class="block font-bold text-slate-700 mb-1">Curso</label>
+                <input id="rnNewWeekCurso" type="text" value="2º CFO 2025" class="w-full h-9 px-2.5 rounded-lg border border-slate-300 bg-slate-50 font-bold text-slate-950" />
+              </div>
+              <div>
+                <label for="rnNewWeekTurma" class="block font-bold text-slate-700 mb-1">Turma</label>
+                <input id="rnNewWeekTurma" type="text" value="TURMA ESPADARTES" class="w-full h-9 px-2.5 rounded-lg border border-slate-300 bg-slate-50 font-bold text-slate-950" />
+              </div>
+              <button type="button" onclick="window.SIGABM_GerenteRancho.createNewWeek()" class="w-full py-2.5 rounded-lg bg-[#DA291C] hover:bg-[#B01E14] text-white font-bold text-xs uppercase cursor-pointer">Criar Semana</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal: Lista Nominal de uma Célula da Grade (Fundo Branco e Alto Contraste) -->
+        <div id="rnCellAuditModal" class="mf-modal-backdrop" onclick="if(event.target.id==='rnCellAuditModal') window.SIGABM_GerenteRancho.closeCellAuditModal()">
+          <div class="rn-modal-box">
+            <div class="rn-modal-head">
+              <h4 id="rnCellAuditTitle" class="text-xs font-bold uppercase">Efetivo Arranchado</h4>
+              <button type="button" onclick="window.SIGABM_GerenteRancho.closeCellAuditModal()" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold cursor-pointer">X</button>
+            </div>
+            <div class="rn-modal-body space-y-2.5">
+              <div id="rnCellAuditList" class="max-h-72 overflow-y-auto divide-y divide-slate-200 border border-slate-300 rounded-lg bg-white text-xs"></div>
+              <button type="button" onclick="window.SIGABM_GerenteRancho.closeCellAuditModal()" class="w-full py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-white font-bold text-[11px] uppercase cursor-pointer">Fechar</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- SUBMÓDULO: GERENTE DE DESLOCAMENTO (ESTRUTURA RESERVADA) -->
+      <div id="srvPanelDeslocamento" class="hidden space-y-3">
+        <div class="bg-white border border-slate-300 rounded-xl p-6 text-center space-y-2 shadow-xs text-xs">
+          <span class="px-2.5 py-0.5 rounded bg-slate-100 border border-slate-300 text-slate-700 font-bold text-[10px] uppercase">Em desenvolvimento</span>
+          <h3 class="text-sm font-bold text-slate-950 uppercase">Gerente de Deslocamento</h3>
+          <p class="text-slate-600 max-w-md mx-auto">Painel de controle de deslocamento, viaturas e embarque do Corpo de Alunos. Espaço reservado para implantação na próxima etapa.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- TAB RANCHO (ROTINA DA ABM - PREVISÃO INDIVIDUAL DO CADETE)            -->
+    <!-- ===================================================================== -->
+    <section id="tab-rancho" class="tab-panel hidden space-y-3.5">
+
+      <!-- Cabeçalho Enxuto -->
+      <div class="bg-white border border-slate-300 rounded-xl p-3.5 shadow-xs space-y-2.5 text-xs">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 pb-2">
+          <div>
+            <h2 class="text-sm sm:text-base font-extrabold text-slate-950">Rancho</h2>
+            <p id="rnCadetDeadlineLine" class="text-[11px] text-slate-600">Gerente: <strong id="rnCadetViewGerenteLbl" class="text-slate-900">VAZ</strong> | Fechamento: quinta-feira às 20h</p>
+          </div>
+          <div class="flex flex-wrap items-center gap-1.5 shrink-0">
+            <button type="button" id="rnBtnShortcutToManager" onclick="switchTab('servico'); setServicoSubMode('rancho');" class="hidden px-3 py-1.5 rounded-lg bg-[#DA291C] hover:bg-[#B01E14] text-white font-bold text-[10.5px] uppercase cursor-pointer">
+              Painel do Gerente
+            </button>
+            <button type="button" id="rnBtnShortcutToExManager" onclick="switchTab('servico'); setServicoSubMode('rancho');" class="hidden px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-white font-bold text-[10.5px] uppercase cursor-pointer">
+              Histórico da Minha Gestão
+            </button>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div class="flex items-center gap-2 flex-1 min-w-0">
+            <label for="rnCadetWeekSelect" class="font-bold text-slate-700 shrink-0">Semana:</label>
+            <select id="rnCadetWeekSelect" onchange="window.SIGABM_GerenteRancho.selectWeek(this.value)" class="h-9 flex-1 sm:max-w-xs bg-slate-50 border border-slate-300 rounded-lg px-2.5 text-xs font-bold text-slate-950 focus:border-[#DA291C] cursor-pointer"></select>
+            <span id="rnCadetWeekLockBadge" class="px-2 py-1 rounded text-[10px] font-bold uppercase bg-emerald-100 text-emerald-900 border border-emerald-300 shrink-0">Aberta</span>
+          </div>
+          <span id="rnCadetProgressPill" class="px-2.5 py-1 rounded-lg bg-slate-100 border border-slate-300 font-bold text-slate-800 mono-num text-[11px]">0/29 confirmados</span>
+        </div>
+      </div>
+
+      <!-- Alerta de Prazo / Reta Final -->
+      <div id="rnCadetUrgencyAlert" class="hidden p-3 rounded-xl bg-red-50 border border-[#DA291C] text-xs text-[#991b1b] font-bold">
+        <span id="rnCadetUrgencyText"></span>
+      </div>
+
+      <!-- Cartela Semanal 3D Sóbria do Cadete Logado -->
+      <div class="bg-white border-2 border-slate-300 rounded-xl p-3.5 shadow-xs space-y-3 text-xs">
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-2">
+          <div class="flex items-center gap-2 flex-wrap">
+            <h3 class="text-xs sm:text-sm font-bold uppercase text-slate-950">Minhas Refeições</h3>
+            <span id="rnEditingCadetBadge" class="px-2 py-0.5 rounded bg-slate-900 text-white text-[10px] font-bold uppercase">CAD BM</span>
+            <span id="rnMyConfirmStatusBadge" class="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-amber-100 text-amber-900 border border-amber-300">Pendente</span>
+          </div>
+          <span class="text-[10.5px] text-slate-500">Toque no topo do dia para marcar ou desmarcar tudo.</span>
+        </div>
+
+        <div id="rnQuickPresetsRow" class="flex flex-wrap items-center gap-1.5">
+          <button type="button" onclick="window.SIGABM_GerenteRancho.applyPreset('seg_qui', false)" class="px-2.5 py-1 rounded-md bg-slate-100 hover:bg-slate-200 border border-slate-300 text-[10.5px] font-bold text-slate-800 cursor-pointer">Seg a Qui</button>
+          <button type="button" onclick="window.SIGABM_GerenteRancho.applyPreset('seg_sex', false)" class="px-2.5 py-1 rounded-md bg-slate-100 hover:bg-slate-200 border border-slate-300 text-[10.5px] font-bold text-slate-800 cursor-pointer">Seg a Sex</button>
+          <button type="button" onclick="window.SIGABM_GerenteRancho.applyPreset('semana_toda', false)" class="px-2.5 py-1 rounded-md bg-slate-100 hover:bg-slate-200 border border-slate-300 text-[10.5px] font-bold text-slate-800 cursor-pointer">Semana Toda</button>
+          <button type="button" onclick="window.SIGABM_GerenteRancho.applyPreset('repetir', false)" class="px-2.5 py-1 rounded-md bg-slate-100 hover:bg-slate-200 border border-slate-300 text-[10.5px] font-bold text-slate-900 cursor-pointer">Repetir Anterior</button>
+          <button type="button" onclick="window.SIGABM_GerenteRancho.applyPreset('limpar', false)" class="px-2.5 py-1 rounded-md bg-red-50 hover:bg-red-100 border border-red-200 text-[10.5px] font-bold text-[#DA291C] cursor-pointer">Limpar</button>
+        </div>
+
+        <div id="rnCadetDaysGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-2.5"></div>
+
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-2 border-t border-slate-200">
+          <span id="rnMySummaryLine" class="text-[11px] font-bold text-slate-700 mono-num">0 refeições marcadas</span>
+          <button type="button" id="rnBtnConfirmMyMeals" onclick="window.SIGABM_GerenteRancho.confirmEditingCadet(false)" class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-[#DA291C] hover:bg-[#B01E14] text-white font-bold text-xs uppercase tracking-wide shadow-xs cursor-pointer transition">
+            Confirmar Previsão
+          </button>
+        </div>
+      </div>
+
+      <!-- Resumo Consolidado da Semana -->
+      <div class="bg-white border border-slate-300 rounded-xl p-3.5 shadow-xs space-y-2.5 text-xs">
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-2">
+          <h3 class="text-xs font-bold uppercase text-slate-950">Resumo da Semana</h3>
+          <a id="rnCadetDriveArchiveLink" href="#" target="_blank" rel="noopener noreferrer" class="hidden text-[11px] font-bold text-[#DA291C] hover:underline">Abrir Grade Arquivada</a>
+        </div>
+        <div id="rnCadetSummaryTableWrap" class="overflow-x-auto"></div>
+      </div>
+
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- TAB DESLOCAMENTO (ROTINA DA ABM - ESTRUTURA RESERVADA)                -->
+    <!-- ===================================================================== -->
+    <section id="tab-deslocamento" class="tab-panel hidden space-y-3.5">
+      <div class="bg-white border border-slate-300 rounded-xl p-6 text-center space-y-2.5 shadow-xs text-xs">
+        <span class="px-2.5 py-0.5 rounded bg-slate-100 border border-slate-300 text-slate-700 font-bold text-[10px] uppercase">Em desenvolvimento</span>
+        <h2 class="text-base font-extrabold text-slate-950 uppercase">Deslocamento</h2>
+        <p class="text-slate-600 max-w-md mx-auto">Módulo reservado para marcação e organização dos deslocamentos da turma na ABM.</p>
       </div>
     </section>
 
@@ -5019,6 +5667,9 @@
       historyStepIdx: 'latest', // 'latest' or index into chronological subjects
       pinnedCadet: '',
       activeTab: 'perfis',
+      srvSubMode: 'alunodia',
+      alunoDiaSubTab: 'croqui',
+      xerifeSubTab: 'sala',
       rankFilter: 'all',
       rankSearch: '',
       // 29 Cadet Accounts + View Mode ('focus' vs 'standard')
@@ -8956,6 +9607,7 @@ Dica: Se você apenas lançou notas erradas em uma matéria oficial (como TFM 2)
 
     function setTafSubMode(subMode) {
       state.tafSubMode = subMode;
+      if (typeof savePersistentSession === 'function') savePersistentSession();
       const tafSel = document.getElementById('tafSubModeSelect');
       if (tafSel) tafSel.value = subMode;
       const mapViews = {
@@ -10186,7 +10838,10 @@ Dica: Se você apenas lançou notas erradas em uma matéria oficial (como TFM 2)
       const taggedSub = dynamicSubNotifs.map((s, idx) => ({ ...s, _seq: 300 - idx }));
       const taggedBase = baseEvents.map((b, idx) => ({ ...b, _seq: 100 - idx }));
 
-      const combined = [...taggedCustom, ...coordOrdersNotifs, ...taggedLib, ...taggedSub, ...taggedBase];
+      const ranchoDynamicNotifs = (window.SIGABM_GerenteRancho && typeof window.SIGABM_GerenteRancho.getDynamicRanchoNotifications === 'function')
+        ? window.SIGABM_GerenteRancho.getDynamicRanchoNotifications()
+        : [];
+      const combined = [...ranchoDynamicNotifs, ...taggedCustom, ...coordOrdersNotifs, ...taggedLib, ...taggedSub, ...taggedBase];
       const deduped = combined.filter(item => {
         if (!item || !item.id || seenIds.has(item.id)) return false;
         seenIds.add(item.id);
@@ -10361,6 +11016,9 @@ Dica: Se você apenas lançou notas erradas em uma matéria oficial (como TFM 2)
     }
 
     function updateGazetaNotificationsUI() {
+      if (window.SIGABM_GerenteRancho && typeof window.SIGABM_GerenteRancho.updateRanchoSidebarBadge === 'function') {
+        window.SIGABM_GerenteRancho.updateRanchoSidebarBadge();
+      }
       const deleted = getDeletedNotificationIds();
       const allNotifs = getGlobalSystemNotifications().filter(n => !deleted.has(n.id));
       const seen = getSeenPublicationIds();
@@ -10394,7 +11052,9 @@ Dica: Se você apenas lançou notas erradas em uma matéria oficial (como TFM 2)
           'NOTA LANÇADA': 'bg-emerald-100 text-emerald-900 border-emerald-300',
           'TESTE FÍSICO (TAF)': 'bg-amber-100 text-amber-900 border-amber-300',
           'BIBLIOTECA ABM': 'bg-purple-100 text-purple-900 border-purple-300',
-          'GAZETA RUBRO DE LUZ': 'bg-red-100 text-[#DA291C] border-red-300'
+          'GAZETA RUBRO DE LUZ': 'bg-red-100 text-[#DA291C] border-red-300',
+          'RANCHO': 'bg-red-100 text-[#DA291C] border-red-300',
+          'GERENTE DE RANCHO': 'bg-slate-900 text-white border-slate-900'
         };
         listEl.innerHTML = allNotifs.map(n => {
           const isUnread = !seen.has(n.id);
@@ -10434,6 +11094,9 @@ Dica: Se você apenas lançou notas erradas em uma matéria oficial (como TFM 2)
             } else if (tTab === 'taf') {
               switchTab('taf');
               if (tSub) setTafSubMode(tSub);
+            } else if (tTab === 'servico') {
+              switchTab('servico');
+              if (tSub) setServicoSubMode(tSub);
             } else {
               switchTab(tTab);
             }
@@ -12034,27 +12697,58 @@ Dica: Se você apenas lançou notas erradas em uma matéria oficial (como TFM 2)
     }
 
     function setServicoSubMode(mode) {
-      const isAlunoDia = mode !== 'xerife';
+      const m = ['alunodia', 'xerife', 'rancho', 'deslocamento'].includes(mode) ? mode : 'alunodia';
+      state.srvSubMode = m;
+      const isAlunoDia = m === 'alunodia';
+      const isXerife = m === 'xerife';
+      const isRancho = m === 'rancho';
+      const isDesloc = m === 'deslocamento';
       document.getElementById('srvPanelAlunoDia')?.classList.toggle('hidden', !isAlunoDia);
-      document.getElementById('srvPanelXerife')?.classList.toggle('hidden', isAlunoDia);
+      document.getElementById('srvPanelXerife')?.classList.toggle('hidden', !isXerife);
+      document.getElementById('srvPanelRancho')?.classList.toggle('hidden', !isRancho);
+      document.getElementById('srvPanelDeslocamento')?.classList.toggle('hidden', !isDesloc);
+
       const bAl = document.getElementById('btnSrvSubAlunoDia');
       const bXe = document.getElementById('btnSrvSubXerife');
-      const activeCardCls = 'p-2.5 sm:p-3 rounded-xl font-bold text-xs bg-[#DA291C] text-white border-2 border-[#991b1b] border-b-4 shadow-sm cursor-pointer transition text-left flex items-center gap-2.5';
-      const inactiveCardCls = 'p-2.5 sm:p-3 rounded-xl font-bold text-xs bg-slate-50 hover:bg-slate-100 text-slate-900 border-2 border-slate-300 border-b-4 border-b-slate-400 shadow-2xs cursor-pointer transition text-left flex items-center gap-2.5';
+      const bRn = document.getElementById('btnSrvSubRancho');
+      const bDs = document.getElementById('btnSrvSubDeslocamento');
+      const activeCardCls = 'p-2.5 sm:p-3 rounded-xl font-bold text-xs bg-[#DA291C] text-white border-2 border-[#991b1b] border-b-4 shadow-sm cursor-pointer transition text-left flex items-center gap-2';
+      const inactiveCardCls = 'p-2.5 sm:p-3 rounded-xl font-bold text-xs bg-slate-50 hover:bg-slate-100 text-slate-900 border-2 border-slate-300 border-b-4 border-b-slate-400 shadow-2xs cursor-pointer transition text-left flex items-center gap-2';
       if (bAl) bAl.className = isAlunoDia ? activeCardCls : inactiveCardCls;
-      if (bXe) bXe.className = !isAlunoDia ? activeCardCls : inactiveCardCls;
+      if (bXe) bXe.className = isXerife ? activeCardCls : inactiveCardCls;
+      if (bRn) bRn.className = isRancho ? activeCardCls : inactiveCardCls;
+      if (bDs) bDs.className = isDesloc ? activeCardCls : inactiveCardCls;
+
       document.querySelectorAll('.side-sub-srv-btn').forEach(b => {
-        const active = b.getAttribute('data-sidesubsrv') === (isAlunoDia ? 'alunodia' : 'xerife');
+        const active = b.getAttribute('data-sidesubsrv') === m;
         b.className = active
           ? 'side-sub-srv-btn w-full text-left px-2.5 py-1.5 rounded-md text-[11px] font-bold text-[#DA291C] bg-red-50 transition block truncate'
           : 'side-sub-srv-btn w-full text-left px-2.5 py-1.5 rounded-md text-[11px] font-semibold text-slate-700 hover:bg-slate-100 transition block truncate';
       });
       if (isAlunoDia && window.SIGABM_AlunoDia) window.SIGABM_AlunoDia.ensureInit();
+      if (isRancho && window.SIGABM_GerenteRancho) window.SIGABM_GerenteRancho.render();
+      if (typeof savePersistentSession === 'function') savePersistentSession();
     }
 
     function initServicoTabEvents() {
       document.getElementById('btnSrvSubAlunoDia')?.addEventListener('click', () => setServicoSubMode('alunodia'));
       document.getElementById('btnSrvSubXerife')?.addEventListener('click', () => setServicoSubMode('xerife'));
+      document.getElementById('btnSrvSubRancho')?.addEventListener('click', () => setServicoSubMode('rancho'));
+      document.getElementById('btnSrvSubDeslocamento')?.addEventListener('click', () => setServicoSubMode('deslocamento'));
+      document.getElementById('btnSalvarGerenteRancho')?.addEventListener('click', () => {
+        if (!isCurrentUserModerator()) return;
+        const val = document.getElementById('selGerenteRancho')?.value || '';
+        if (window.SIGABM_GerenteRancho) window.SIGABM_GerenteRancho.setTemporaryOverride(val);
+      });
+      document.getElementById('btnRecalibrarRodizioRancho')?.addEventListener('click', () => {
+        if (!isCurrentUserModerator()) return;
+        const val = document.getElementById('selGerenteRancho')?.value || '';
+        if (window.SIGABM_GerenteRancho) window.SIGABM_GerenteRancho.recalibrateRotationAnchor(val);
+      });
+      document.getElementById('btnLimparOverrideRancho')?.addEventListener('click', () => {
+        if (!isCurrentUserModerator()) return;
+        if (window.SIGABM_GerenteRancho) window.SIGABM_GerenteRancho.setTemporaryOverride('');
+      });
       document.querySelectorAll('.side-sub-srv-btn').forEach(btn => {
         btn.addEventListener('click', () => {
           const target = btn.getAttribute('data-sidesubsrv') || 'alunodia';
@@ -12064,6 +12758,8 @@ Dica: Se você apenas lançou notas erradas em uma matéria oficial (como TFM 2)
       });
 
       document.getElementById('btnXerifeTabSala')?.addEventListener('click', () => {
+        state.xerifeSubTab = 'sala';
+        savePersistentSession();
         document.getElementById('xerifeSubPanelSala')?.classList.remove('hidden');
         document.getElementById('xerifeSubPanelCdf')?.classList.add('hidden');
         const b1 = document.getElementById('btnXerifeTabSala');
@@ -12072,6 +12768,8 @@ Dica: Se você apenas lançou notas erradas em uma matéria oficial (como TFM 2)
         if (b2) b2.className = 'py-2.5 px-3 rounded-lg font-bold uppercase tracking-wide text-xs bg-white hover:bg-slate-100 text-slate-900 border-2 border-slate-300 border-b-4 border-b-slate-400 shadow-2xs cursor-pointer transition text-center';
       });
       document.getElementById('btnXerifeTabCdf')?.addEventListener('click', () => {
+        state.xerifeSubTab = 'cdf';
+        savePersistentSession();
         document.getElementById('xerifeSubPanelCdf')?.classList.remove('hidden');
         document.getElementById('xerifeSubPanelSala')?.classList.add('hidden');
         const b1 = document.getElementById('btnXerifeTabCdf');
@@ -12493,6 +13191,8 @@ Dica: Se você apenas lançou notas erradas em uma matéria oficial (como TFM 2)
 
       function showSubTab(target) {
         subTab = target || 'croqui';
+        state.alunoDiaSubTab = subTab;
+        if (typeof savePersistentSession === 'function') savePersistentSession();
         const isCroqui = subTab === 'croqui';
         const isLivre = subTab === 'livre';
         const isWhats = subTab === 'relatorio';
@@ -13226,7 +13926,7 @@ ${apecadosList.length > 0 ? apecadosList.join('\n') : '- Não consta.'}`;
     window.SIGABM_CroquiLivre = (() => {
       const STORAGE_KEY = 'sigabm_croqui_livre_v2';
       let clState = {
-        title: 'DISPOSITIVO DE TROPA — MISSÃO EXTERNA',
+        title: 'DISPOSITIVO DE TROPA - MISSÃO EXTERNA',
         cmd: '',
         platoons: [
           { id: 'pl_1', name: '1º PELOTÃO', cols: 3, xerifeId: null, members: [] }
@@ -13692,7 +14392,7 @@ ${apecadosList.length > 0 ? apecadosList.join('\n') : '- Não consta.'}`;
           });
         });
         txt += `\n*EFETIVO TOTAL:* ${tot} militares`;
-        if (navigator.clipboard) navigator.clipboard.writeText(txt).then(() => showToast('Dispositivo copiado para o WhatsApp!'));
+        if (navigator.clipboard) navigator.clipboard.writeText(txt).then(() => showToast('Dispositivo copiado.'));
       }
 
       function exportPng() {
@@ -13710,7 +14410,7 @@ ${apecadosList.length > 0 ? apecadosList.join('\n') : '- Não consta.'}`;
       function resetAll() {
         if (!confirm('Limpar todos os pelotões do Croqui Livre?')) return;
         clState = {
-          title: 'DISPOSITIVO DE TROPA — MISSÃO EXTERNA',
+          title: 'DISPOSITIVO DE TROPA - MISSÃO EXTERNA',
           cmd: '',
           platoons: [{ id: 'pl_1', name: '1º PELOTÃO', cols: 3, xerifeId: null, members: [] }]
         };
@@ -13725,6 +14425,1560 @@ ${apecadosList.length > 0 ? apecadosList.join('\n') : '- Não consta.'}`;
         openAddModal, closeAddModal, setQuickRank, renderAddModalList, toggleAbmMember, addExternalMember,
         openActionModal, closeActionModal, setQuickMotivo, saveMotivoDraft, toggleXerife, setMemberStatus, removeMemberFromAction,
         copyWhatsapp, exportPng, resetAll
+      };
+    })();
+
+
+    window.SIGABM_GerenteRancho = (() => {
+      const OVERRIDE_KEY = 'sigabm_rancho_override_v2';
+      const ANCHOR_KEY = 'sigabm_rancho_anchor_v2';
+      const WEEKS_KEY = 'sigabm_rancho_weeks_v1';
+      const DELETED_WEEKS_KEY = 'sigabm_rancho_del_weeks_v1';
+      const LEGACY_GERENTE_KEY = 'sigabm_gerente_rancho_v1';
+      const DEFAULT_ANCHOR_MS = Date.parse('2026-11-23T07:00:00-03:00');
+      const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
+      const WEEKDAY_NAMES = ['segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado', 'domingo'];
+      const WEEKDAY_SHORT = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'];
+      const WEEKDAY_CARD = ['SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SÁB', 'DOM'];
+
+      // Cadastro oficial dos 29 Cadetes (Nome Completo, Nº e Matrícula formatada)
+      const ESPADARTES_REGISTRY = {
+        'VAZ': { num: '01', fullName: 'ARTHUR AUGUSTO BONFIM VAZ', mat: '92.163.557' },
+        'PATRÍCIA': { num: '02', fullName: 'PATRÍCIA ARAUJO DAS MERCÊS', mat: '92.163.558' },
+        'RIEPER': { num: '03', fullName: 'RYAN LAGO ARAÚJO RIEPER', mat: '92.163.571' },
+        'RUBEM': { num: '04', fullName: 'RUBEM PEREIRA ARAUJO', mat: '30.583.372' },
+        'BEATRIZ': { num: '05', fullName: 'ANA BEATRIZ SANTOS SAMPAIO', mat: '92.049.836' },
+        'JULIANA': { num: '06', fullName: 'JULIANA MATOS LOPES MOTA', mat: '92.163.595' },
+        'LINHARES': { num: '07', fullName: 'IGOR ALVES LINHARES', mat: '92.114.097' },
+        'ALBUQUERQUE': { num: '08', fullName: 'LUÍS HENRIQUE SANTIAGO MONTE ALBUQUERQUE', mat: '92.114.050' },
+        'FERNANDA': { num: '10', fullName: 'FERNANDA LEAL SOUZA', mat: '92.163.589' },
+        'JULIO CESAR': { num: '11', fullName: 'JÚLIO CESAR FERREIRA DOS SANTOS JUNIOR', mat: '92.163.563' },
+        'EMILY': { num: '12', fullName: 'EMILY JULIANE RODRIGUES ALVES DE MOURA', mat: '92.163.566' },
+        'RANIERY': { num: '13', fullName: 'YGOR RANIERY NASCIMENTO COSTA', mat: '92.052.157' },
+        'REGINALDO': { num: '14', fullName: 'REGINALDO OLIVEIRA CRUZ NETO', mat: '92.114.261' },
+        'FALCÃO': { num: '15', fullName: 'VINICIUS DOS SANTOS FALCÃO', mat: '92.129.056' },
+        'PORTO': { num: '16', fullName: 'RYAN PABLO BASTOS PORTO', mat: '92.163.577' },
+        'ADRIELE': { num: '17', fullName: 'ADRIELE MOTA DE OLIVEIRA SANTOS', mat: '92.163.550' },
+        'GABRIELA': { num: '18', fullName: 'GABRIELA SILVA LIMA', mat: '92.069.086' },
+        'ESDRAS': { num: '19', fullName: 'ESDRAS FERREIRA DE ALCANTARA', mat: '92.163.584' },
+        'FRANCLIN': { num: '20', fullName: 'FRANCLIN FAGUNDES DE OLIVEIRA', mat: '89.646.378-1' },
+        'SATURNINO': { num: '21', fullName: 'RAFAEL SATURNINO DOURADO', mat: '92.069.327' },
+        'GESSÉ': { num: '22', fullName: 'GESSÉ DE CRISTO ALMEIDA', mat: '92.069.130' },
+        'LOPES': { num: '23', fullName: 'ADAN CERQUEIRA LOPES', mat: '89.642.669-0' },
+        'CAIQUE': { num: '24', fullName: 'CAÍQUE CERQUEIRA SANTANA', mat: '92.051.807' },
+        'SILVA E SILVA': { num: '25', fullName: 'PABLO MIGUEL DA SILVA E SILVA', mat: '92.163.567' },
+        'EDUARDO': { num: '26', fullName: 'ARTHUR EDUARDO DOS SANTOS SOUZA', mat: '92.138.801' },
+        'GABRIEL': { num: '27', fullName: 'GABRIEL FIGUEIREDO GOES', mat: '92.163.593' },
+        'CRISTIANE': { num: '28', fullName: 'CRISTIANE FIGUEIREDO BARRETO PEREIRA', mat: '30.397.710-2' },
+        'BRENO': { num: '29', fullName: 'BRENO LOPES SOUZA', mat: '89.645.574-6' },
+        'LAVINIA': { num: '30', fullName: 'LAVÍNIA DA SILVA SOUZA', mat: '92.163.552' }
+      };
+
+      let selectedWeekId = '';
+      let editingCadet = '';
+      let managerSubView = 'grade'; // 'grade' or 'conferencia'
+      let modConfigOpen = false;
+
+      function pad2(n) { return String(n).padStart(2, '0'); }
+      function formatBrDate(iso) {
+        const parts = String(iso || '').split('-');
+        return parts.length === 3 ? `${parts[2]}/${parts[1]}/${parts[0]}` : String(iso || '');
+      }
+      function formatDdMm(iso) {
+        const parts = String(iso || '').split('-');
+        return parts.length === 3 ? `${parts[2]}/${parts[1]}` : String(iso || '');
+      }
+      function addDaysIso(iso, offset) {
+        const [y, m, d] = String(iso).split('-').map(Number);
+        const dt = new Date(Date.UTC(y, m - 1, d + offset));
+        return `${dt.getUTCFullYear()}-${pad2(dt.getUTCMonth() + 1)}-${pad2(dt.getUTCDate())}`;
+      }
+      function getBahiaNowDate() {
+        return new Date(Date.now() - 3 * 3600 * 1000);
+      }
+      function getBahiaTodayIso() {
+        const d = getBahiaNowDate();
+        return `${d.getUTCFullYear()}-${pad2(d.getUTCMonth() + 1)}-${pad2(d.getUTCDate())}`;
+      }
+      function getCadetRegistryInfo(warName) {
+        const key = String(warName || '').trim().toUpperCase();
+        if (ESPADARTES_REGISTRY[key]) return ESPADARTES_REGISTRY[key];
+        const normKey = key.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        const found = Object.keys(ESPADARTES_REGISTRY).find(k => k.normalize('NFD').replace(/[\u0300-\u036f]/g, '') === normKey);
+        if (found) return ESPADARTES_REGISTRY[found];
+        return { num: '00', fullName: key || 'MILITAR', mat: '-' };
+      }
+      function getSignatureLines(w) {
+        const mgrWar = w.managedBy || getGerente();
+        const info = getCadetRegistryInfo(mgrWar);
+        const customName = (w.responsavel || '').trim();
+        const isLegacyShort = !customName || /^AL OF BM\s+/i.test(customName);
+        const line1 = isLegacyShort
+          ? `${info.fullName} - AL OF QOBM`
+          : (customName.toUpperCase().includes('AL OF') ? customName.toUpperCase() : `${customName.toUpperCase()} - AL OF QOBM`);
+        const line2 = `Gerente de Rancho - Nº ${info.num} | Mat.: ${info.mat}`;
+        return { line1, line2, defaultFullName: info.fullName };
+      }
+
+      function getRotationQueue() {
+        const cadets = (state.data && Array.isArray(state.data.cadets)) ? state.data.cadets : [];
+        if (cadets.length === 0) return ['VAZ'];
+        return [cadets[0], ...cadets.slice(1).reverse()];
+      }
+      function getRotationAnchor() {
+        try {
+          const obj = JSON.parse(localStorage.getItem(ANCHOR_KEY) || 'null');
+          if (obj && obj.cadet && Number(obj.anchorMs) > 0) return obj;
+        } catch (e) {}
+        return { cadet: 'VAZ', anchorMs: DEFAULT_ANCHOR_MS };
+      }
+      function saveRotationAnchorLocal(obj) {
+        try {
+          if (obj && obj.cadet && Number(obj.anchorMs) > 0) {
+            localStorage.setItem(ANCHOR_KEY, JSON.stringify({ cadet: String(obj.cadet), anchorMs: Number(obj.anchorMs) }));
+          }
+        } catch (e) {}
+      }
+      function getManualOverride() {
+        try {
+          const obj = JSON.parse(localStorage.getItem(OVERRIDE_KEY) || 'null');
+          if (obj && obj.cadet && Number(obj.expiresAtMs) > Date.now()) return obj;
+        } catch (e) {}
+        return null;
+      }
+      function saveManualOverrideLocal(obj) {
+        try {
+          if (obj && obj.cadet && Number(obj.expiresAtMs) > 0) {
+            localStorage.setItem(OVERRIDE_KEY, JSON.stringify({ cadet: String(obj.cadet), expiresAtMs: Number(obj.expiresAtMs) }));
+          } else {
+            localStorage.removeItem(OVERRIDE_KEY);
+          }
+        } catch (e) {}
+      }
+      function getCurrentCycleMonday0700Ms(nowMs = Date.now()) {
+        const diff = nowMs - DEFAULT_ANCHOR_MS;
+        const steps = Math.floor(diff / WEEK_MS);
+        return DEFAULT_ANCHOR_MS + steps * WEEK_MS;
+      }
+      function getRotationStatus(nowMs = Date.now()) {
+        const queue = getRotationQueue();
+        const anchor = getRotationAnchor();
+        const anchorIdx = Math.max(0, queue.indexOf(anchor.cadet));
+        const steps = Math.floor((nowMs - anchor.anchorMs) / WEEK_MS);
+        const autoIdx = ((anchorIdx + steps) % queue.length + queue.length) % queue.length;
+        const nextIdx = (autoIdx + 1) % queue.length;
+        const cycleStartMs = anchor.anchorMs + steps * WEEK_MS;
+        const nextSwitchMs = cycleStartMs + WEEK_MS;
+        const ov = getManualOverride();
+        const activeCadet = (ov && ov.expiresAtMs > nowMs) ? ov.cadet : queue[autoIdx];
+        const isOverride = !!(ov && ov.expiresAtMs > nowMs);
+        const nextMonBahia = new Date(nextSwitchMs - 3 * 3600 * 1000);
+        const managedStartIso = `${nextMonBahia.getUTCFullYear()}-${pad2(nextMonBahia.getUTCMonth() + 1)}-${pad2(nextMonBahia.getUTCDate())}`;
+
+        return {
+          queue,
+          activeCadet,
+          autoCadet: queue[autoIdx],
+          nextCadet: queue[nextIdx],
+          isOverride,
+          cycleStartMs,
+          nextSwitchMs,
+          nextSwitchLabel: `${formatDdMm(managedStartIso)} às 07h`,
+          managedStartIso
+        };
+      }
+
+      function getGerente() { return getRotationStatus().activeCadet; }
+      function saveGerenteLocal(val) {
+        try { localStorage.setItem(LEGACY_GERENTE_KEY, String(val || '')); } catch (e) {}
+      }
+      function getDeletedWeekIds() {
+        try {
+          const arr = JSON.parse(localStorage.getItem(DELETED_WEEKS_KEY) || '[]');
+          return new Set(Array.isArray(arr) ? arr : []);
+        } catch (e) { return new Set(); }
+      }
+      function saveDeletedWeekIds(setObj) {
+        try { localStorage.setItem(DELETED_WEEKS_KEY, JSON.stringify(Array.from(setObj || []))); } catch (e) {}
+      }
+      function encodeDaysMask(days) {
+        if (!Array.isArray(days)) return '0000000';
+        return Array.from({ length: 7 }, (_, i) => {
+          const d = days[i] || {};
+          return String((d.c ? 1 : 0) + (d.a ? 2 : 0) + (d.j ? 4 : 0));
+        }).join('');
+      }
+      function decodeDaysMask(maskOrDays) {
+        if (Array.isArray(maskOrDays) && maskOrDays.length === 7) {
+          return maskOrDays.map(d => ({ c: !!(d && d.c), a: !!(d && d.a), j: !!(d && d.j) }));
+        }
+        const s = String(maskOrDays || '0000000').padEnd(7, '0');
+        return Array.from({ length: 7 }, (_, i) => {
+          const v = parseInt(s[i], 10) || 0;
+          return { c: !!(v & 1), a: !!(v & 2), j: !!(v & 4) };
+        });
+      }
+      function normalizeWeekObj(w) {
+        if (!w || !w.id) return null;
+        const normResp = {};
+        Object.keys(w.responses || {}).forEach(cad => {
+          const r = w.responses[cad];
+          if (!r) return;
+          normResp[cad] = {
+            days: decodeDaysMask(r.m !== undefined ? r.m : r.days),
+            confirmed: !!(r.ok !== undefined ? r.ok : r.confirmed),
+            updatedAt: r.t !== undefined ? String(r.t || '') : String(r.updatedAt || '')
+          };
+        });
+        const managedBy = w.managedBy || (w.responsavel ? String(w.responsavel).replace(/^AL OF BM\s+/i, '').trim() : '') || getGerente();
+        const info = getCadetRegistryInfo(managedBy);
+        const rawResp = w.responsavel !== undefined ? String(w.responsavel) : '';
+        const cleanResp = (!rawResp || /^AL OF BM\s+/i.test(rawResp)) ? info.fullName : rawResp;
+        return {
+          id: w.id,
+          startIso: w.startIso,
+          endIso: w.endIso || addDaysIso(w.startIso, 6),
+          curso: w.curso || '2º CFO 2025',
+          turma: (w.turma && w.turma !== 'TURMA 2º CFO ESPADARTES') ? w.turma : 'TURMA ESPADARTES',
+          responsavel: cleanResp,
+          obs: w.obs || '',
+          managedBy,
+          driveUrl: w.driveUrl || '',
+          locked: !!w.locked,
+          responses: normResp,
+          updatedAt: w.updatedAt || new Date().toISOString()
+        };
+      }
+      function compactWeekForCloud(w) {
+        const norm = normalizeWeekObj(w);
+        if (!norm) return null;
+        const compactResp = {};
+        Object.keys(norm.responses || {}).forEach(cad => {
+          const r = norm.responses[cad];
+          const mask = encodeDaysMask(r.days);
+          if (r.confirmed || mask !== '0000000') {
+            compactResp[cad] = {
+              m: mask,
+              ok: r.confirmed ? 1 : 0,
+              t: r.updatedAt ? String(r.updatedAt).slice(0, 16) : ''
+            };
+          }
+        });
+        return {
+          id: norm.id,
+          startIso: norm.startIso,
+          endIso: norm.endIso,
+          curso: norm.curso,
+          turma: norm.turma,
+          responsavel: norm.responsavel,
+          obs: norm.obs,
+          managedBy: norm.managedBy,
+          driveUrl: norm.driveUrl,
+          locked: norm.locked ? 1 : 0,
+          responses: compactResp,
+          updatedAt: norm.updatedAt
+        };
+      }
+      function buildDefaultWeek(startIso, curso, turma, managerName) {
+        const rot = getRotationStatus();
+        const sIso = startIso || rot.managedStartIso;
+        const eIso = addDaysIso(sIso, 6);
+        const ger = managerName || rot.activeCadet;
+        const info = getCadetRegistryInfo(ger);
+        return {
+          id: 'wk_' + sIso,
+          startIso: sIso,
+          endIso: eIso,
+          curso: (curso || '2º CFO 2025').trim(),
+          turma: (turma || 'TURMA ESPADARTES').trim(),
+          responsavel: info.fullName,
+          obs: '',
+          managedBy: ger,
+          driveUrl: '',
+          locked: false,
+          responses: {},
+          updatedAt: new Date().toISOString()
+        };
+      }
+      function getWeeks() {
+        const del = getDeletedWeekIds();
+        const rot = getRotationStatus();
+        let clean = [];
+        try {
+          const arr = JSON.parse(localStorage.getItem(WEEKS_KEY) || '[]');
+          clean = (Array.isArray(arr) ? arr : []).map(normalizeWeekObj).filter(w => w && w.id && !del.has(w.id));
+        } catch (e) {}
+
+        const currentWkId = 'wk_' + rot.managedStartIso;
+        if (!del.has(currentWkId) && !clean.some(w => w.id === currentWkId)) {
+          clean.unshift(buildDefaultWeek(rot.managedStartIso, '2º CFO 2025', 'TURMA ESPADARTES', rot.activeCadet));
+          saveWeeksLocal(clean);
+        }
+        if (clean.length === 0) {
+          clean = [buildDefaultWeek(rot.managedStartIso, '2º CFO 2025', 'TURMA ESPADARTES', rot.activeCadet)];
+          saveWeeksLocal(clean);
+        }
+        clean.sort((a, b) => String(b.startIso || '').localeCompare(String(a.startIso || '')));
+        return clean;
+      }
+      function saveWeeksLocal(weeks) {
+        try {
+          const del = getDeletedWeekIds();
+          const clean = (Array.isArray(weeks) ? weeks : []).map(normalizeWeekObj).filter(w => w && w.id && !del.has(w.id));
+          clean.sort((a, b) => String(b.startIso || '').localeCompare(String(a.startIso || '')));
+          localStorage.setItem(WEEKS_KEY, JSON.stringify(clean.slice(0, 16)));
+        } catch (e) {}
+      }
+      function getCloudPayloadData() {
+        return {
+          gerenteRancho: getGerente(),
+          ranchoRotationAnchor: getRotationAnchor(),
+          ranchoManualOverride: getManualOverride(),
+          ranchoWeeks: getWeeks().slice(0, 8).map(compactWeekForCloud).filter(Boolean),
+          deletedRanchoWeekIds: Array.from(getDeletedWeekIds())
+        };
+      }
+      function mergeWeeksFromCloud(remoteWeeks) {
+        if (!Array.isArray(remoteWeeks) || remoteWeeks.length === 0) return;
+        const del = getDeletedWeekIds();
+        const local = getWeeks();
+        const byId = {};
+        local.forEach(w => { if (w && w.id && !del.has(w.id)) byId[w.id] = w; });
+        remoteWeeks.forEach(rawRw => {
+          const rw = normalizeWeekObj(rawRw);
+          if (!rw || !rw.id || del.has(rw.id)) return;
+          const lw = byId[rw.id];
+          if (!lw) {
+            byId[rw.id] = rw;
+          } else {
+            const mergedResp = { ...(lw.responses || {}) };
+            Object.keys(rw.responses || {}).forEach(cad => {
+              const lr = mergedResp[cad];
+              const rr = rw.responses[cad];
+              if (!lr || (rr && String(rr.updatedAt || '') >= String(lr.updatedAt || ''))) {
+                mergedResp[cad] = rr;
+              }
+            });
+            const useRemoteMeta = String(rw.updatedAt || '') >= String(lw.updatedAt || '');
+            byId[rw.id] = {
+              ...(useRemoteMeta ? rw : lw),
+              driveUrl: (useRemoteMeta ? rw.driveUrl : lw.driveUrl) || rw.driveUrl || lw.driveUrl || '',
+              responses: mergedResp
+            };
+          }
+        });
+        saveWeeksLocal(Object.values(byId));
+      }
+
+      function isCurrentManagerOrMod() {
+        if (!state.currentUser) return false;
+        if (typeof isCurrentUserModerator === 'function' && isCurrentUserModerator()) return true;
+        return state.currentUser === getGerente();
+      }
+      function getWeeksManagedByUser(user) {
+        if (!user) return [];
+        return getWeeks().filter(w => w.managedBy === user);
+      }
+      function canUserEditWeekInManagerPanel(w) {
+        if (!w || !state.currentUser) return false;
+        if (typeof isCurrentUserModerator === 'function' && isCurrentUserModerator()) return true;
+        return state.currentUser === getGerente();
+      }
+      function getCurrentWeek() {
+        const weeks = getWeeks();
+        let w = weeks.find(x => x.id === selectedWeekId);
+        if (!w) {
+          w = weeks[0];
+          selectedWeekId = w.id;
+        }
+        return w;
+      }
+      function getWeekDeadlineInfo(w) {
+        const thuIso = addDaysIso(w.startIso, -4);
+        const wedIso = addDaysIso(w.startIso, -5);
+        const todayIso = getBahiaTodayIso();
+        return {
+          thuIso,
+          wedIso,
+          thuLabel: `quinta-feira (${formatDdMm(thuIso)}) às 20h`,
+          isWed: todayIso === wedIso,
+          isThu: todayIso === thuIso,
+          isPastThu: todayIso > thuIso
+        };
+      }
+      function ensureCadetResp(week, cadet) {
+        if (!week.responses) week.responses = {};
+        if (!week.responses[cadet]) {
+          week.responses[cadet] = {
+            days: Array.from({ length: 7 }, () => ({ c: false, a: false, j: false })),
+            confirmed: false,
+            updatedAt: ''
+          };
+        }
+        week.responses[cadet].days = decodeDaysMask(week.responses[cadet].days);
+        return week.responses[cadet];
+      }
+      function computeTotals(week) {
+        const cadets = state.data.cadets || [];
+        const cafe = [0, 0, 0, 0, 0, 0, 0];
+        const almoco = [0, 0, 0, 0, 0, 0, 0];
+        const jantar = [0, 0, 0, 0, 0, 0, 0];
+        const byCell = { c: [[],[],[],[],[],[],[]], a: [[],[],[],[],[],[],[]], j: [[],[],[],[],[],[],[]] };
+        const confirmed = [];
+        const pending = [];
+
+        cadets.forEach((cad, idx) => {
+          const r = week.responses && week.responses[cad];
+          if (r && r.confirmed) confirmed.push({ cad, idx, r });
+          else pending.push({ cad, idx });
+          if (r && Array.isArray(r.days)) {
+            for (let d = 0; d < 7; d++) {
+              const dayObj = r.days[d] || {};
+              if (dayObj.c) { cafe[d]++; byCell.c[d].push({ cad, idx }); }
+              if (dayObj.a) { almoco[d]++; byCell.a[d].push({ cad, idx }); }
+              if (dayObj.j) { jantar[d]++; byCell.j[d].push({ cad, idx }); }
+            }
+          }
+        });
+
+        const dayTotals = Array.from({ length: 7 }, (_, d) => cafe[d] + almoco[d] + jantar[d]);
+        const sumC = cafe.reduce((s, v) => s + v, 0);
+        const sumA = almoco.reduce((s, v) => s + v, 0);
+        const sumJ = jantar.reduce((s, v) => s + v, 0);
+        return { cafe, almoco, jantar, dayTotals, sumC, sumA, sumJ, grandTotal: sumC + sumA + sumJ, byCell, confirmed, pending };
+      }
+
+      function resetEditingCadetToCurrentUser() {
+        const cadets = state.data.cadets || [];
+        editingCadet = (state.currentUser && cadets.includes(state.currentUser)) ? state.currentUser : (cadets[0] || 'LINHARES');
+      }
+      function setManagerSubView(view) {
+        managerSubView = view === 'conferencia' ? 'conferencia' : 'grade';
+        const vG = document.getElementById('rnMgrViewGrade');
+        const vC = document.getElementById('rnMgrViewConf');
+        const bG = document.getElementById('rnBtnViewGrade');
+        const bC = document.getElementById('rnBtnViewConf');
+        const act = 'py-2 px-3 rounded-lg font-bold uppercase tracking-wide text-[11px] bg-slate-900 text-white border-b-2 border-[#DA291C] cursor-pointer transition text-center';
+        const ina = 'py-2 px-3 rounded-lg font-bold uppercase tracking-wide text-[11px] bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-300 cursor-pointer transition text-center';
+        if (vG) vG.classList.toggle('hidden', managerSubView !== 'grade');
+        if (vC) vC.classList.toggle('hidden', managerSubView !== 'conferencia');
+        if (bG) bG.className = managerSubView === 'grade' ? act : ina;
+        if (bC) bC.className = managerSubView === 'conferencia' ? act : ina;
+        if (managerSubView === 'conferencia') renderAuditRoster();
+      }
+      function toggleModConfig() {
+        modConfigOpen = !modConfigOpen;
+        document.getElementById('boxDesignarRancho')?.classList.toggle('hidden', !modConfigOpen);
+      }
+
+      function setTemporaryOverride(val) {
+        if (!isCurrentUserModerator()) return;
+        const rot = getRotationStatus();
+        if (!val) {
+          saveManualOverrideLocal(null);
+          modConfigOpen = false;
+          render();
+          syncPushToCloud(true);
+          showToast('Escala automática restaurada.');
+          return;
+        }
+        saveManualOverrideLocal({ cadet: val, expiresAtMs: rot.nextSwitchMs });
+        saveGerenteLocal(val);
+        const weeks = getWeeks();
+        const cw = weeks.find(x => x.id === 'wk_' + rot.managedStartIso);
+        if (cw && !cw.locked) {
+          cw.managedBy = val;
+          cw.responsavel = getCadetRegistryInfo(val).fullName;
+          cw.updatedAt = new Date().toISOString();
+          saveWeeksLocal(weeks);
+        }
+        modConfigOpen = false;
+        render();
+        if (typeof updateGazetaNotificationsUI === 'function') updateGazetaNotificationsUI();
+        syncPushToCloud(true);
+        showToast(`${val} definido como gerente desta semana.`);
+      }
+      function recalibrateRotationAnchor(val) {
+        if (!isCurrentUserModerator() || !val) return;
+        const cycleStartMs = getCurrentCycleMonday0700Ms();
+        saveRotationAnchorLocal({ cadet: val, anchorMs: cycleStartMs });
+        saveManualOverrideLocal(null);
+        saveGerenteLocal(val);
+        const rot = getRotationStatus();
+        const weeks = getWeeks();
+        const cw = weeks.find(x => x.id === 'wk_' + rot.managedStartIso);
+        if (cw && !cw.locked) {
+          cw.managedBy = val;
+          cw.responsavel = getCadetRegistryInfo(val).fullName;
+          cw.updatedAt = new Date().toISOString();
+          saveWeeksLocal(weeks);
+        }
+        modConfigOpen = false;
+        render();
+        if (typeof updateGazetaNotificationsUI === 'function') updateGazetaNotificationsUI();
+        syncPushToCloud(true);
+        showToast(`Escala atualizada: ${val} (próximo: ${rot.nextCadet}).`);
+      }
+
+      function selectWeek(wid) { selectedWeekId = wid; render(); }
+      function setEditingCadet(cad) { editingCadet = cad; render(); }
+      function resolveTargetCadet(isFromManagerPanel) {
+        const cadets = state.data.cadets || [];
+        if (!isFromManagerPanel) {
+          return (state.currentUser && cadets.includes(state.currentUser)) ? state.currentUser : (editingCadet || cadets[0] || 'LINHARES');
+        }
+        return editingCadet || ((state.currentUser && cadets.includes(state.currentUser)) ? state.currentUser : (cadets[0] || 'LINHARES'));
+      }
+
+      function toggleMeal(dayIdx, mealKey, isFromManagerPanel = false) {
+        const weeks = getWeeks();
+        const w = weeks.find(x => x.id === selectedWeekId) || weeks[0];
+        if (!w) return;
+        const mgr = canUserEditWeekInManagerPanel(w);
+        if (w.locked && !mgr) { showToast('Grade fechada.'); return; }
+        const targetCad = resolveTargetCadet(isFromManagerPanel);
+        if (!mgr && targetCad !== state.currentUser) return;
+        const resp = ensureCadetResp(w, targetCad);
+        resp.days[dayIdx][mealKey] = !resp.days[dayIdx][mealKey];
+        resp.updatedAt = new Date().toISOString();
+        saveWeeksLocal(weeks);
+        render();
+      }
+      function toggleWholeDay(dayIdx, isFromManagerPanel = false) {
+        const weeks = getWeeks();
+        const w = weeks.find(x => x.id === selectedWeekId) || weeks[0];
+        if (!w) return;
+        const mgr = canUserEditWeekInManagerPanel(w);
+        if (w.locked && !mgr) { showToast('Grade fechada.'); return; }
+        const targetCad = resolveTargetCadet(isFromManagerPanel);
+        if (!mgr && targetCad !== state.currentUser) return;
+        const resp = ensureCadetResp(w, targetCad);
+        const cur = resp.days[dayIdx] || { c: false, a: false, j: false };
+        const turnOn = !(cur.c && cur.a && cur.j);
+        resp.days[dayIdx] = { c: turnOn, a: turnOn, j: turnOn };
+        resp.updatedAt = new Date().toISOString();
+        saveWeeksLocal(weeks);
+        render();
+      }
+      function quickToggleFromAuditRoster(cad, dayIdx, mealKey) {
+        const weeks = getWeeks();
+        const w = weeks.find(x => x.id === selectedWeekId) || weeks[0];
+        if (!w || !canUserEditWeekInManagerPanel(w)) return;
+        const resp = ensureCadetResp(w, cad);
+        resp.days[dayIdx][mealKey] = !resp.days[dayIdx][mealKey];
+        resp.confirmed = true;
+        resp.updatedAt = new Date().toISOString();
+        w.updatedAt = new Date().toISOString();
+        saveWeeksLocal(weeks);
+        render();
+        syncPushToCloud(true);
+      }
+      function applyPreset(preset, isFromManagerPanel = false) {
+        const weeks = getWeeks();
+        const w = weeks.find(x => x.id === selectedWeekId) || weeks[0];
+        if (!w) return;
+        const mgr = canUserEditWeekInManagerPanel(w);
+        if (w.locked && !mgr) { showToast('Grade fechada.'); return; }
+        const targetCad = resolveTargetCadet(isFromManagerPanel);
+        const resp = ensureCadetResp(w, targetCad);
+        if (preset === 'seg_qui') {
+          resp.days = Array.from({ length: 7 }, (_, i) => i < 4 ? { c: true, a: true, j: true } : { c: false, a: false, j: false });
+        } else if (preset === 'seg_sex') {
+          resp.days = Array.from({ length: 7 }, (_, i) => i < 5 ? { c: true, a: true, j: true } : { c: false, a: false, j: false });
+        } else if (preset === 'semana_toda') {
+          resp.days = Array.from({ length: 7 }, () => ({ c: true, a: true, j: true }));
+        } else if (preset === 'limpar') {
+          resp.days = Array.from({ length: 7 }, () => ({ c: false, a: false, j: false }));
+        } else if (preset === 'repetir') {
+          const prevW = weeks.find(x => x.id !== w.id && x.responses && x.responses[targetCad]);
+          if (!prevW) { showToast('Sem semana anterior registrada.'); return; }
+          resp.days = prevW.responses[targetCad].days.map(d => ({ c: !!d.c, a: !!d.a, j: !!d.j }));
+        }
+        resp.updatedAt = new Date().toISOString();
+        saveWeeksLocal(weeks);
+        render();
+      }
+      function confirmEditingCadet(isFromManagerPanel = false) {
+        const weeks = getWeeks();
+        const w = weeks.find(x => x.id === selectedWeekId) || weeks[0];
+        if (!w) return;
+        const mgr = canUserEditWeekInManagerPanel(w);
+        if (w.locked && !mgr) { showToast('Grade fechada.'); return; }
+        const targetCad = resolveTargetCadet(isFromManagerPanel);
+        const resp = ensureCadetResp(w, targetCad);
+        resp.confirmed = true;
+        resp.updatedAt = new Date().toISOString();
+        w.updatedAt = new Date().toISOString();
+        saveWeeksLocal(weeks);
+        render();
+        if (typeof updateGazetaNotificationsUI === 'function') updateGazetaNotificationsUI();
+        syncPushToCloud(true);
+        showToast(`Confirmado para ${targetCad}.`);
+      }
+      function updateWeekMeta() {
+        const weeks = getWeeks();
+        const w = weeks.find(x => x.id === selectedWeekId) || weeks[0];
+        if (!w || !canUserEditWeekInManagerPanel(w)) return;
+        const cInp = document.getElementById('rnHeaderCursoInput');
+        const tInp = document.getElementById('rnHeaderTurmaInput');
+        const rInp = document.getElementById('rnHeaderRespInput');
+        const oInp = document.getElementById('rnHeaderObsInput');
+        if (cInp) w.curso = cInp.value.trim();
+        if (tInp) w.turma = tInp.value.trim();
+        if (rInp) w.responsavel = rInp.value.trim();
+        if (oInp) w.obs = oInp.value.trim();
+        w.updatedAt = new Date().toISOString();
+        saveWeeksLocal(weeks);
+        renderOfficialGradeOnly(w);
+        syncPushToCloud(true);
+      }
+      function toggleLockWeek() {
+        const weeks = getWeeks();
+        const w = weeks.find(x => x.id === selectedWeekId) || weeks[0];
+        if (!w || !canUserEditWeekInManagerPanel(w)) return;
+        w.locked = !w.locked;
+        w.updatedAt = new Date().toISOString();
+        saveWeeksLocal(weeks);
+        render();
+        if (typeof updateGazetaNotificationsUI === 'function') updateGazetaNotificationsUI();
+        syncPushToCloud(true);
+        showToast(w.locked ? 'Grade travada.' : 'Grade reaberta.');
+      }
+      function openNewWeekModal() {
+        if (!isCurrentManagerOrMod()) return;
+        const dInp = document.getElementById('rnNewWeekStartDate');
+        if (dInp && !dInp.value) dInp.value = getRotationStatus().managedStartIso;
+        const m = document.getElementById('rnNewWeekModal');
+        if (m) m.style.display = 'flex';
+      }
+      function closeNewWeekModal() {
+        const m = document.getElementById('rnNewWeekModal');
+        if (m) m.style.display = 'none';
+      }
+      function createNewWeek() {
+        if (!isCurrentManagerOrMod()) return;
+        const rot = getRotationStatus();
+        const startIso = document.getElementById('rnNewWeekStartDate')?.value || rot.managedStartIso;
+        const curso = (document.getElementById('rnNewWeekCurso')?.value || '2º CFO 2025').trim();
+        const turma = (document.getElementById('rnNewWeekTurma')?.value || 'TURMA ESPADARTES').trim();
+        const weeks = getWeeks();
+        const newW = buildDefaultWeek(startIso, curso, turma, rot.activeCadet);
+        if (weeks.some(x => x.id === newW.id)) {
+          selectedWeekId = newW.id;
+          closeNewWeekModal();
+          render();
+          showToast('Semana já existente selecionada.');
+          return;
+        }
+        const del = getDeletedWeekIds();
+        del.delete(newW.id);
+        saveDeletedWeekIds(del);
+        weeks.unshift(newW);
+        saveWeeksLocal(weeks);
+        selectedWeekId = newW.id;
+        closeNewWeekModal();
+        render();
+        if (typeof pushSystemNotification === 'function') {
+          pushSystemNotification(
+            'RANCHO',
+            `Grade de Rancho aberta (${formatDdMm(newW.startIso)} a ${formatDdMm(newW.endIso)})`,
+            `Fechamento: quinta-feira (${formatDdMm(addDaysIso(newW.startIso, -4))}) às 20h.`,
+            'rancho',
+            ''
+          );
+        }
+        if (typeof updateGazetaNotificationsUI === 'function') updateGazetaNotificationsUI();
+        syncPushToCloud(true);
+        showToast(`Semana ${formatDdMm(newW.startIso)} a ${formatDdMm(newW.endIso)} criada.`);
+      }
+      function deleteCurrentWeek() {
+        if (!isCurrentManagerOrMod()) return;
+        const weeks = getWeeks();
+        if (weeks.length <= 1) { showToast('Mantenha ao menos uma semana.'); return; }
+        const w = getCurrentWeek();
+        if (!confirm(`Excluir a grade de ${formatBrDate(w.startIso)} a ${formatBrDate(w.endIso)}?`)) return;
+        const del = getDeletedWeekIds();
+        del.add(w.id);
+        saveDeletedWeekIds(del);
+        const remaining = weeks.filter(x => x.id !== w.id);
+        saveWeeksLocal(remaining);
+        selectedWeekId = remaining[0].id;
+        render();
+        if (typeof updateGazetaNotificationsUI === 'function') updateGazetaNotificationsUI();
+        syncPushToCloud(true);
+        showToast('Semana excluída.');
+      }
+
+      function copyTextReliable(txt, msg) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(txt).then(() => showToast(msg)).catch(() => {
+            const ta = document.createElement('textarea'); ta.value = txt; document.body.appendChild(ta); ta.select();
+            try { document.execCommand('copy'); showToast(msg); } catch (e) {}
+            document.body.removeChild(ta);
+          });
+        } else {
+          const ta = document.createElement('textarea'); ta.value = txt; document.body.appendChild(ta); ta.select();
+          try { document.execCommand('copy'); showToast(msg); } catch (e) {}
+          document.body.removeChild(ta);
+        }
+      }
+      function copyPendingCadets() {
+        const w = getCurrentWeek();
+        const tot = computeTotals(w);
+        if (tot.pending.length === 0) { showToast('Todos os 29 militares já confirmaram.'); return; }
+        const dl = getWeekDeadlineInfo(w);
+        const lines = [
+          `*PENDENTES - GRADE DE RANCHO (${formatDdMm(w.startIso)} a ${formatDdMm(w.endIso)})*`,
+          `Prazo: ${dl.thuLabel}`,
+          ...tot.pending.map(p => `- Nº ${pad2(getCadetRealNumber(p.idx))} ${p.cad}`)
+        ];
+        copyTextReliable(lines.join('\n'), 'Lista de pendentes copiada.');
+      }
+
+      function openCellAuditModal(dayIdx, mealKey) {
+        const w = getCurrentWeek();
+        const tot = computeTotals(w);
+        const mealNames = { c: 'Café da Manhã', a: 'Almoço', j: 'Jantar' };
+        const dateIso = addDaysIso(w.startIso, dayIdx);
+        const list = tot.byCell[mealKey][dayIdx] || [];
+        const canEdit = canUserEditWeekInManagerPanel(w);
+        const ttl = document.getElementById('rnCellAuditTitle');
+        const box = document.getElementById('rnCellAuditList');
+        if (ttl) ttl.textContent = `${mealNames[mealKey]} - ${formatDdMm(dateIso)} (${WEEKDAY_SHORT[dayIdx]}) | Total: ${list.length}`;
+        if (box) {
+          if (list.length === 0) {
+            box.innerHTML = '<div class="py-5 text-center text-slate-600 font-semibold bg-white">Nenhum militar marcou esta refeição.</div>';
+          } else {
+            box.innerHTML = list.map((item, i) => `
+              <div class="py-2 px-3 flex items-center justify-between ${i % 2 === 0 ? 'bg-white' : 'bg-slate-50'}">
+                <span class="font-bold text-slate-900"><span class="mono-num text-slate-600 mr-1.5">Nº ${pad2(getCadetRealNumber(item.idx))}</span>${item.cad}</span>
+                ${canEdit ? `<button type="button" onclick="window.SIGABM_GerenteRancho.quickUnmarkFromAudit('${item.cad}', ${dayIdx}, '${mealKey}')" class="px-2 py-0.5 rounded bg-red-50 hover:bg-red-100 border border-red-300 text-[#DA291C] text-[10px] font-bold cursor-pointer">Remover</button>` : ''}
+              </div>
+            `).join('');
+          }
+        }
+        const m = document.getElementById('rnCellAuditModal');
+        if (m) m.style.display = 'flex';
+      }
+      function quickUnmarkFromAudit(cad, dayIdx, mealKey) {
+        const weeks = getWeeks();
+        const w = weeks.find(x => x.id === selectedWeekId) || weeks[0];
+        if (!w || !canUserEditWeekInManagerPanel(w)) return;
+        const r = ensureCadetResp(w, cad);
+        r.days[dayIdx][mealKey] = false;
+        r.updatedAt = new Date().toISOString();
+        saveWeeksLocal(weeks);
+        render();
+        syncPushToCloud(true);
+        openCellAuditModal(dayIdx, mealKey);
+      }
+      function closeCellAuditModal() {
+        const m = document.getElementById('rnCellAuditModal');
+        if (m) m.style.display = 'none';
+      }
+
+      function renderAuditRoster() {
+        const tbody = document.getElementById('rnAuditRosterBody');
+        if (!tbody) return;
+        const w = getCurrentWeek();
+        const canEdit = canUserEditWeekInManagerPanel(w);
+        const cadets = state.data.cadets || [];
+        const daySel = document.getElementById('rnAuditDayFilter');
+        let dayIdx = daySel ? parseInt(daySel.value, 10) : 0;
+        if (isNaN(dayIdx) || dayIdx < 0 || dayIdx > 6) dayIdx = 0;
+
+        if (daySel) {
+          const prevVal = daySel.value;
+          daySel.innerHTML = Array.from({ length: 7 }, (_, d) => {
+            const iso = addDaysIso(w.startIso, d);
+            return `<option value="${d}" ${String(d) === String(prevVal || '0') ? 'selected' : ''}>${WEEKDAY_SHORT[d]} (${formatDdMm(iso)})</option>`;
+          }).join('');
+          dayIdx = parseInt(daySel.value, 10) || 0;
+        }
+
+        const mealFilter = document.getElementById('rnAuditMealFilter')?.value || 'all';
+        const statusFilter = document.getElementById('rnAuditStatusFilter')?.value || 'all';
+
+        const rows = [];
+        cadets.forEach((cad, idx) => {
+          const r = w.responses && w.responses[cad];
+          const confirmed = !!(r && r.confirmed);
+          const dayObj = (r && Array.isArray(r.days) && r.days[dayIdx]) ? r.days[dayIdx] : { c: false, a: false, j: false };
+
+          if (statusFilter === 'pending' && confirmed) return;
+          if (statusFilter === 'confirmed' && !confirmed) return;
+          if (mealFilter === 'c' && !dayObj.c) return;
+          if (mealFilter === 'a' && !dayObj.a) return;
+          if (mealFilter === 'j' && !dayObj.j) return;
+
+          const mkCellBtn = (key, on) => {
+            const cls = on
+              ? 'px-2 py-0.5 rounded bg-slate-900 text-white font-bold text-[10px]'
+              : 'px-2 py-0.5 rounded bg-slate-100 text-slate-500 border border-slate-300 font-semibold text-[10px]';
+            if (canEdit) {
+              return `<button type="button" onclick="window.SIGABM_GerenteRancho.quickToggleFromAuditRoster('${cad}', ${dayIdx}, '${key}')" class="${cls} cursor-pointer">${on ? 'Sim' : 'Não'}</button>`;
+            }
+            return `<span class="${cls}">${on ? 'Sim' : 'Não'}</span>`;
+          };
+
+          const stBadge = confirmed
+            ? '<span class="px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-900 border border-emerald-300 text-[9.5px] font-bold">OK</span>'
+            : '<span class="px-1.5 py-0.5 rounded bg-red-50 text-[#DA291C] border border-red-200 text-[9.5px] font-bold">Pendente</span>';
+
+          rows.push(`
+            <tr>
+              <td class="text-center mono-num font-bold text-slate-600">${pad2(getCadetRealNumber(idx))}</td>
+              <td class="font-bold text-slate-900">
+                ${canEdit ? `<button type="button" onclick="window.SIGABM_GerenteRancho.setEditingCadet('${cad}')" class="hover:underline text-left cursor-pointer">${cad}</button>` : cad}
+              </td>
+              <td class="text-center">${mkCellBtn('c', !!dayObj.c)}</td>
+              <td class="text-center">${mkCellBtn('a', !!dayObj.a)}</td>
+              <td class="text-center">${mkCellBtn('j', !!dayObj.j)}</td>
+              <td class="text-center">${stBadge}</td>
+            </tr>
+          `);
+        });
+
+        tbody.innerHTML = rows.length
+          ? rows.join('')
+          : '<tr><td colspan="6" class="py-5 text-center text-slate-500 font-semibold">Nenhum militar neste filtro.</td></tr>';
+      }
+
+      function buildDayCardsHtml(w, resp, canEditCard, isFromManagerPanel) {
+        let count = 0;
+        const flagArg = isFromManagerPanel ? 'true' : 'false';
+        const cards = Array.from({ length: 7 }, (_, d) => {
+          const iso = addDaysIso(w.startIso, d);
+          const dayObj = resp.days[d] || { c: false, a: false, j: false };
+          if (dayObj.c) count++;
+          if (dayObj.a) count++;
+          if (dayObj.j) count++;
+          const isWknd = d >= 5;
+          const mkBtn = (key, label) => {
+            const on = !!dayObj[key];
+            return `<button type="button" ${canEditCard ? '' : 'disabled'} onclick="window.SIGABM_GerenteRancho.toggleMeal(${d}, '${key}', ${flagArg})" class="rn-meal-btn ${on ? 'is-selected' : ''}"><span>${label}</span></button>`;
+          };
+          return `<div class="rn-day-card ${isWknd ? 'is-weekend' : ''}">
+            <div class="rn-day-head" ${canEditCard ? `onclick="window.SIGABM_GerenteRancho.toggleWholeDay(${d}, ${flagArg})"` : ''} title="Marcar ou desmarcar dia inteiro">
+              <span class="text-[11px] font-extrabold uppercase tracking-wider">${WEEKDAY_CARD[d]}</span>
+              <span class="text-[10.5px] font-bold mono-num opacity-95">${formatDdMm(iso)}</span>
+            </div>
+            <div class="rn-day-body">
+              ${mkBtn('c', 'Café')}
+              ${mkBtn('a', 'Almoço')}
+              ${mkBtn('j', 'Jantar')}
+            </div>
+          </div>`;
+        }).join('');
+        return { cards, count };
+      }
+
+      function formatCursoTurmaHeader(w) {
+        const cursoStr = (w.curso || '2º CFO 2025').trim().toUpperCase();
+        const rawTurma = (w.turma || 'TURMA ESPADARTES').trim().toUpperCase();
+        const turmaClean = rawTurma === 'TURMA 2º CFO ESPADARTES' ? 'TURMA ESPADARTES' : rawTurma;
+        return `${cursoStr} - ${turmaClean}`;
+      }
+
+      function buildOfficialTableHtml(w, tot, interactive = true) {
+        const dates = Array.from({ length: 7 }, (_, i) => addDaysIso(w.startIso, i));
+        const thDays = dates.map((iso, i) => {
+          return `<th style="width:9.1%;">${formatDdMm(iso)}<br><span style="font-weight:400;font-size:8.5px;">(${WEEKDAY_SHORT[i]})</span></th>`;
+        }).join('');
+
+        const makeRow = (label, arr, sum, mealKey) => `
+          <tr>
+            <td class="rn-meal-lbl">${label}</td>
+            ${arr.map((v, d) => {
+              const clickAttr = interactive ? `onclick="window.SIGABM_GerenteRancho.openCellAuditModal(${d}, '${mealKey}')" title="Ver lista nominal"` : '';
+              return `<td class="${interactive ? 'rn-cell-click' : ''}" ${clickAttr}>${v}</td>`;
+            }).join('')}
+            <td class="rn-sum-col">${sum}</td>
+          </tr>
+        `;
+
+        return `
+          <table class="rn-grade-table">
+            <thead>
+              <tr>
+                <th style="width:22%;text-align:left;padding-left:9px;">REFEIÇÃO</th>
+                ${thDays}
+                <th style="width:14.3%;">TOTAL<br><span style="font-weight:400;font-size:8px;">SEMANAL</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              ${makeRow('Café da Manhã', tot.cafe, tot.sumC, 'c')}
+              ${makeRow('Almoço', tot.almoco, tot.sumA, 'a')}
+              ${makeRow('Jantar', tot.jantar, tot.sumJ, 'j')}
+              <tr class="rn-total-row">
+                <td style="text-align:left;padding-left:9px;">Total Diário</td>
+                ${tot.dayTotals.map(v => `<td>${v}</td>`).join('')}
+                <td class="rn-grand-total">${tot.grandTotal}</td>
+              </tr>
+            </tbody>
+          </table>
+        `;
+      }
+
+      function renderOfficialGradeOnly(w) {
+        const tot = computeTotals(w);
+        const ctEl = document.getElementById('rnDocCursoTurmaLine');
+        const perEl = document.getElementById('rnDocPeriodoLine');
+        const obsEl = document.getElementById('rnDocObsLine');
+        const respEl = document.getElementById('rnDocFooterResp');
+
+        if (ctEl) ctEl.textContent = formatCursoTurmaHeader(w);
+        if (perEl) perEl.textContent = `PREVISÃO DE REFEIÇÕES DE ${formatBrDate(w.startIso)} A ${formatBrDate(w.endIso)}`;
+
+        const tblWrap = document.getElementById('rnOfficialTableWrap');
+        if (tblWrap) tblWrap.innerHTML = buildOfficialTableHtml(w, tot, true);
+
+        const cadSummaryWrap = document.getElementById('rnCadetSummaryTableWrap');
+        if (cadSummaryWrap) cadSummaryWrap.innerHTML = buildOfficialTableHtml(w, tot, false);
+
+        if (obsEl) {
+          if (w.obs && w.obs.trim()) {
+            obsEl.classList.remove('hidden');
+            obsEl.innerHTML = `<strong>Observações:</strong> ${w.obs.trim()}`;
+          } else {
+            obsEl.classList.add('hidden');
+          }
+        }
+        if (respEl) {
+          const sig = getSignatureLines(w);
+          const todayFull = new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+          respEl.innerHTML = `
+            <div style="font-size:10px;color:#000000;margin-bottom:34px;">Salvador - BA, ${todayFull}.</div>
+            <div style="display:inline-block;border-top:1px solid #000000;padding:6px 32px 0 32px;">
+              <div style="font-weight:700;text-transform:uppercase;font-size:10.5px;color:#000000;">${sig.line1}</div>
+              <div style="font-size:9.5px;color:#000000;margin-top:2px;">${sig.line2}</div>
+            </div>
+          `;
+        }
+
+        const drvBar = document.getElementById('rnDriveArchiveLinkBar');
+        const drvAnc = document.getElementById('rnDriveArchiveAnchor');
+        const cadDrvAnc = document.getElementById('rnCadetDriveArchiveLink');
+        if (w.driveUrl) {
+          drvBar?.classList.remove('hidden');
+          if (drvAnc) drvAnc.href = w.driveUrl;
+          cadDrvAnc?.classList.remove('hidden');
+          if (cadDrvAnc) cadDrvAnc.href = w.driveUrl;
+        } else {
+          drvBar?.classList.add('hidden');
+          cadDrvAnc?.classList.add('hidden');
+        }
+      }
+
+      function getDynamicRanchoNotifications() {
+        const notifs = [];
+        const user = state.currentUser;
+        const cadets = state.data.cadets || [];
+        if (!user || !cadets.includes(user)) return notifs;
+
+        const rot = getRotationStatus();
+        const weeks = getWeeks();
+        const openWeek = weeks.find(w => !w.locked) || weeks[0];
+        const todayStr = formatBrDate(getBahiaTodayIso());
+
+        if (openWeek && !openWeek.locked) {
+          const tot = computeTotals(openWeek);
+          const myResp = openWeek.responses && openWeek.responses[user];
+          const isPending = !(myResp && myResp.confirmed);
+          const dl = getWeekDeadlineInfo(openWeek);
+          const periodLbl = `${formatDdMm(openWeek.startIso)} a ${formatDdMm(openWeek.endIso)}`;
+
+          if (isPending) {
+            const left = tot.pending.length;
+            let title = `Rancho aberto (${periodLbl}) - confirme suas refeições`;
+            let subtitle = `Fechamento: ${dl.thuLabel}. Restam ${left} cadetes.`;
+
+            if (left === 1) {
+              title = `Falta apenas você para finalizar a Grade de Rancho (${periodLbl})!`;
+              subtitle = `Prazo: ${dl.thuLabel}.`;
+            } else if (left <= 5) {
+              title = `Faltam você e apenas mais ${left - 1} cadetes na Grade de Rancho (${periodLbl})!`;
+              subtitle = `Prazo: ${dl.thuLabel}.`;
+            } else if (dl.isThu) {
+              title = `Hoje às 20h fecha a Grade de Rancho (${periodLbl})!`;
+              subtitle = `Restam ${left} cadetes.`;
+            } else if (dl.isWed) {
+              title = `Falta apenas 1 dia para o Gerente finalizar a Grade de Rancho (${periodLbl})!`;
+              subtitle = `Fechamento amanhã, ${dl.thuLabel}.`;
+            }
+
+            notifs.push({
+              id: `sys-rancho-pend-${openWeek.id}-${left <= 5 ? 'urg' : (dl.isThu ? 'thu' : (dl.isWed ? 'wed' : 'open'))}`,
+              createdAt: Date.now() - 1000,
+              _seq: 950,
+              category: 'RANCHO',
+              title,
+              subtitle,
+              date: todayStr,
+              targetTab: 'rancho',
+              targetSub: ''
+            });
+          }
+        }
+
+        if (rot.activeCadet === user) {
+          notifs.push({
+            id: `sys-rancho-mgr-${rot.managedStartIso}`,
+            createdAt: rot.cycleStartMs,
+            _seq: 900,
+            category: 'GERENTE DE RANCHO',
+            title: `Você está na Gerência de Rancho (${formatDdMm(rot.managedStartIso)} a ${formatDdMm(addDaysIso(rot.managedStartIso, 6))})`,
+            subtitle: `Fechamento quinta às 20h. Passagem automática na segunda às 07h para ${rot.nextCadet}.`,
+            date: todayStr,
+            targetTab: 'servico',
+            targetSub: 'rancho'
+          });
+        }
+
+        return notifs;
+      }
+
+      function updateRanchoSidebarBadge() {
+        const badge = document.getElementById('navRanchoBadgeDesk');
+        if (!badge) return;
+        const user = state.currentUser;
+        const cadets = state.data.cadets || [];
+        if (!user || !cadets.includes(user)) { badge.classList.add('hidden'); return; }
+        const openWeek = getWeeks().find(w => !w.locked);
+        if (!openWeek) { badge.classList.add('hidden'); return; }
+        const myResp = openWeek.responses && openWeek.responses[user];
+        const pendingMe = !(myResp && myResp.confirmed);
+        badge.classList.toggle('hidden', !pendingMe);
+        if (pendingMe) badge.textContent = '1';
+      }
+
+      function render() {
+        const cadets = state.data.cadets || [];
+        const rot = getRotationStatus();
+        const isMod = typeof isCurrentUserModerator === 'function' && isCurrentUserModerator();
+        const isActiveMgr = isCurrentManagerOrMod();
+        const exWeeks = getWeeksManagedByUser(state.currentUser);
+        const isExMgr = !isActiveMgr && exWeeks.length > 0;
+
+        if (!editingCadet || !cadets.includes(editingCadet)) resetEditingCadetToCurrentUser();
+
+        const allWeeks = getWeeks();
+        const mgrWeeks = isActiveMgr ? allWeeks : exWeeks;
+        const w = getCurrentWeek();
+        const tot = computeTotals(w);
+        const dl = getWeekDeadlineInfo(w);
+
+        // A. CADET TAB (#tab-rancho)
+        const cadGerLbl = document.getElementById('rnCadetViewGerenteLbl');
+        if (cadGerLbl) cadGerLbl.textContent = rot.activeCadet;
+        document.getElementById('rnBtnShortcutToManager')?.classList.toggle('hidden', !isActiveMgr);
+        document.getElementById('rnBtnShortcutToExManager')?.classList.toggle('hidden', !isExMgr);
+
+        const cadWkSel = document.getElementById('rnCadetWeekSelect');
+        if (cadWkSel) {
+          cadWkSel.innerHTML = allWeeks.map(x =>
+            `<option value="${x.id}" ${x.id === w.id ? 'selected' : ''}>${formatBrDate(x.startIso)} a ${formatBrDate(x.endIso)}${x.locked ? ' (Fechada)' : ''}</option>`
+          ).join('');
+        }
+        const cadLockBadge = document.getElementById('rnCadetWeekLockBadge');
+        if (cadLockBadge) {
+          cadLockBadge.textContent = w.locked ? 'Fechada' : 'Aberta';
+          cadLockBadge.className = w.locked
+            ? 'px-2 py-1 rounded text-[10px] font-bold uppercase bg-red-100 text-[#DA291C] border border-red-300 shrink-0'
+            : 'px-2 py-1 rounded text-[10px] font-bold uppercase bg-emerald-100 text-emerald-900 border border-emerald-300 shrink-0';
+        }
+        const cadProgPill = document.getElementById('rnCadetProgressPill');
+        if (cadProgPill) cadProgPill.textContent = `${tot.confirmed.length}/${cadets.length} confirmados`;
+
+        const myCad = (state.currentUser && cadets.includes(state.currentUser)) ? state.currentUser : (cadets[0] || 'LINHARES');
+        const myResp = ensureCadetResp(w, myCad);
+        const myEdBadge = document.getElementById('rnEditingCadetBadge');
+        if (myEdBadge) myEdBadge.textContent = `CAD BM ${myCad}`;
+
+        const myConfBadge = document.getElementById('rnMyConfirmStatusBadge');
+        if (myConfBadge) {
+          if (myResp.confirmed) {
+            const dtStr = myResp.updatedAt ? new Date(myResp.updatedAt).toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) : '';
+            myConfBadge.textContent = dtStr ? `Confirmado (${dtStr})` : 'Confirmado';
+            myConfBadge.className = 'px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-emerald-100 text-emerald-900 border border-emerald-300';
+          } else {
+            myConfBadge.textContent = 'Pendente';
+            myConfBadge.className = 'px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-amber-100 text-amber-900 border border-amber-300';
+          }
+        }
+
+        const urgBox = document.getElementById('rnCadetUrgencyAlert');
+        const urgTxt = document.getElementById('rnCadetUrgencyText');
+        if (urgBox && urgTxt) {
+          if (!w.locked && !myResp.confirmed) {
+            const left = tot.pending.length;
+            let msg = '';
+            if (left === 1) msg = `Falta apenas você para finalizar a Grade de Rancho. Prazo: ${dl.thuLabel}.`;
+            else if (left <= 5) msg = `Faltam você e apenas mais ${left - 1} cadetes para finalizar a Grade de Rancho. Prazo: ${dl.thuLabel}.`;
+            else if (dl.isThu) msg = `A Grade de Rancho fecha hoje (${dl.thuLabel}).`;
+            else if (dl.isWed) msg = `Falta apenas 1 dia para o fechamento da Grade de Rancho (${dl.thuLabel}).`;
+            urgBox.classList.toggle('hidden', !msg);
+            if (msg) urgTxt.textContent = msg;
+          } else {
+            urgBox.classList.add('hidden');
+          }
+        }
+
+        const canCadEdit = !w.locked;
+        document.getElementById('rnQuickPresetsRow')?.classList.toggle('hidden', !canCadEdit);
+        const btnMyConf = document.getElementById('rnBtnConfirmMyMeals');
+        if (btnMyConf) {
+          btnMyConf.disabled = !canCadEdit;
+          btnMyConf.classList.toggle('opacity-50', !canCadEdit);
+          btnMyConf.textContent = !canCadEdit ? 'Grade Fechada' : (myResp.confirmed ? 'Atualizar Confirmação' : 'Confirmar Previsão');
+        }
+        const cadGrid = document.getElementById('rnCadetDaysGrid');
+        if (cadGrid) {
+          const built = buildDayCardsHtml(w, myResp, canCadEdit, false);
+          cadGrid.innerHTML = built.cards;
+          const mySum = document.getElementById('rnMySummaryLine');
+          if (mySum) mySum.textContent = `${built.count} refeição(ões) marcada(s)`;
+        }
+
+        // B. MANAGER PANEL (#srvPanelRancho)
+        const lblGer = document.getElementById('lblGerenteRanchoAtual');
+        if (lblGer) lblGer.textContent = rot.activeCadet;
+        const lblNext = document.getElementById('lblGerenteRanchoNextLine');
+        if (lblNext) lblNext.textContent = `(Próximo: ${rot.nextCadet} em ${rot.nextSwitchLabel})`;
+
+        document.getElementById('btnToggleRanchoModConfig')?.classList.toggle('hidden', !isMod);
+        const boxDesig = document.getElementById('boxDesignarRancho');
+        const selDesig = document.getElementById('selGerenteRancho');
+        const btnClrOv = document.getElementById('btnLimparOverrideRancho');
+        if (boxDesig) boxDesig.classList.toggle('hidden', !(isMod && modConfigOpen));
+        if (btnClrOv) btnClrOv.classList.toggle('hidden', !rot.isOverride);
+        if (selDesig && isMod) {
+          selDesig.innerHTML = cadets.map((c, idx) =>
+            `<option value="${c}" ${c === rot.activeCadet ? 'selected' : ''}>Nº ${pad2(getCadetRealNumber(idx))} ${c}</option>`
+          ).join('');
+        }
+
+        const hasMgrWorkspaceAccess = isActiveMgr || isExMgr;
+        document.getElementById('rnNonManagerGateBox')?.classList.toggle('hidden', hasMgrWorkspaceAccess);
+        document.getElementById('rnManagerFullWorkspace')?.classList.toggle('hidden', !hasMgrWorkspaceAccess);
+        if (!hasMgrWorkspaceAccess) {
+          const gateDesc = document.getElementById('rnNonManagerGateDesc');
+          if (gateDesc) gateDesc.textContent = `Gerente atual: ${rot.activeCadet}. Para marcar suas refeições, acesse Rotina da ABM > Rancho.`;
+        }
+
+        if (hasMgrWorkspaceAccess) {
+          let activeMgrWeek = w;
+          if (isExMgr && !mgrWeeks.some(x => x.id === activeMgrWeek.id)) {
+            activeMgrWeek = mgrWeeks[0];
+            selectedWeekId = activeMgrWeek.id;
+          }
+          const mgrTot = computeTotals(activeMgrWeek);
+          const canEditMgrWeek = canUserEditWeekInManagerPanel(activeMgrWeek);
+
+          document.getElementById('rnExManagerReadOnlyBanner')?.classList.toggle('hidden', !isExMgr);
+          document.getElementById('rnManagerWeekControls')?.classList.toggle('hidden', !isActiveMgr);
+          document.getElementById('rnManagerOverrideEditorBox')?.classList.toggle('hidden', !canEditMgrWeek);
+          document.getElementById('rnMetaEditorBox')?.classList.toggle('hidden', !canEditMgrWeek);
+          document.getElementById('rnBtnArchiveDrive')?.classList.toggle('hidden', !canEditMgrWeek);
+
+          const wkSel = document.getElementById('rnWeekSelect');
+          if (wkSel) {
+            wkSel.innerHTML = mgrWeeks.map(x =>
+              `<option value="${x.id}" ${x.id === activeMgrWeek.id ? 'selected' : ''}>${formatBrDate(x.startIso)} a ${formatBrDate(x.endIso)}${x.locked ? ' (Travada)' : ''}</option>`
+            ).join('');
+          }
+
+          const lockBadge = document.getElementById('rnWeekLockBadge');
+          if (lockBadge) {
+            lockBadge.textContent = activeMgrWeek.locked ? 'Travada' : 'Aberta';
+            lockBadge.className = activeMgrWeek.locked
+              ? 'px-2 py-1 rounded text-[10px] font-bold uppercase bg-red-100 text-[#DA291C] border border-red-300 shrink-0'
+              : 'px-2 py-1 rounded text-[10px] font-bold uppercase bg-emerald-100 text-emerald-900 border border-emerald-300 shrink-0';
+          }
+          const btnLock = document.getElementById('rnBtnToggleLock');
+          if (btnLock) btnLock.textContent = activeMgrWeek.locked ? 'Reabrir' : 'Travar';
+
+          const ownerPill = document.getElementById('rnWeekManagerOwnerPill');
+          if (ownerPill) ownerPill.textContent = `Responsável: ${activeMgrWeek.managedBy || rot.activeCadet}`;
+
+          const pct = cadets.length ? Math.round((mgrTot.confirmed.length / cadets.length) * 100) : 0;
+          const pPill = document.getElementById('rnProgressPill');
+          const pBar = document.getElementById('rnProgressBarFill');
+          if (pPill) pPill.textContent = `${mgrTot.confirmed.length}/${cadets.length}`;
+          if (pBar) pBar.style.width = `${pct}%`;
+
+          const elPendCnt = document.getElementById('rnPendingCount');
+          const elConfCnt = document.getElementById('rnConfirmedCount');
+          if (elPendCnt) elPendCnt.textContent = String(mgrTot.pending.length);
+          if (elConfCnt) elConfCnt.textContent = String(mgrTot.confirmed.length);
+
+          if (canEditMgrWeek) {
+            const ovSel = document.getElementById('rnOverrideCadetSelect');
+            if (ovSel) {
+              ovSel.innerHTML = cadets.map((c, idx) => {
+                const conf = activeMgrWeek.responses && activeMgrWeek.responses[c] && activeMgrWeek.responses[c].confirmed;
+                return `<option value="${c}" ${c === editingCadet ? 'selected' : ''}>Nº ${pad2(getCadetRealNumber(idx))} ${c} ${conf ? '(OK)' : '(Pendente)'}</option>`;
+              }).join('');
+            }
+            const edResp = ensureCadetResp(activeMgrWeek, editingCadet);
+            const mgrStBadge = document.getElementById('rnMgrEditStatusBadge');
+            if (mgrStBadge) {
+              mgrStBadge.textContent = edResp.confirmed ? 'Confirmado' : 'Pendente';
+              mgrStBadge.className = edResp.confirmed
+                ? 'px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-emerald-100 text-emerald-900 border border-emerald-300'
+                : 'px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-amber-100 text-amber-900 border border-amber-300';
+            }
+            const mgrGrid = document.getElementById('rnMgrDaysGrid');
+            if (mgrGrid) {
+              const builtMgr = buildDayCardsHtml(activeMgrWeek, edResp, true, true);
+              mgrGrid.innerHTML = builtMgr.cards;
+              const mgrSum = document.getElementById('rnMgrSummaryLine');
+              if (mgrSum) mgrSum.textContent = `${editingCadet}: ${builtMgr.count} refeição(ões)`;
+            }
+
+            const cInp = document.getElementById('rnHeaderCursoInput');
+            const tInp = document.getElementById('rnHeaderTurmaInput');
+            const rInp = document.getElementById('rnHeaderRespInput');
+            const oInp = document.getElementById('rnHeaderObsInput');
+            if (cInp && document.activeElement !== cInp) cInp.value = activeMgrWeek.curso || '2º CFO 2025';
+            if (tInp && document.activeElement !== tInp) tInp.value = activeMgrWeek.turma || 'TURMA ESPADARTES';
+            if (rInp && document.activeElement !== rInp) rInp.value = activeMgrWeek.responsavel || getCadetRegistryInfo(activeMgrWeek.managedBy || rot.activeCadet).fullName;
+            if (oInp && document.activeElement !== oInp) oInp.value = activeMgrWeek.obs || '';
+          }
+
+          renderOfficialGradeOnly(activeMgrWeek);
+          renderAuditRoster();
+          setManagerSubView(managerSubView);
+        } else {
+          renderOfficialGradeOnly(w);
+        }
+
+        updateRanchoSidebarBadge();
+      }
+
+      function copySummaryText() {
+        const w = getCurrentWeek();
+        const tot = computeTotals(w);
+        const lines = [
+          `*PREVISÃO DE REFEIÇÕES DE ${formatBrDate(w.startIso)} A ${formatBrDate(w.endIso)}*`,
+          formatCursoTurmaHeader(w),
+          ''
+        ];
+        for (let d = 0; d < 7; d++) {
+          lines.push(`*${formatDdMm(addDaysIso(w.startIso, d))} (${WEEKDAY_SHORT[d]}):* Café: ${tot.cafe[d]} | Almoço: ${tot.almoco[d]} | Jantar: ${tot.jantar[d]} (Total: ${tot.dayTotals[d]})`);
+        }
+        lines.push('');
+        lines.push(`*Totais:* Café: ${tot.sumC} | Almoço: ${tot.sumA} | Jantar: ${tot.sumJ} | *Geral: ${tot.grandTotal}*`);
+        copyTextReliable(lines.join('\n'), 'Resumo copiado.');
+      }
+
+      function exportPng() {
+        const el = document.getElementById('rnOfficialGradeSheet');
+        if (!el || typeof html2canvas !== 'function') { showToast('Exportação indisponível.'); return; }
+        const w = getCurrentWeek();
+        html2canvas(el, { scale: 2, backgroundColor: '#ffffff', useCORS: true }).then(canvas => {
+          const a = document.createElement('a');
+          a.download = `Grade_de_Rancho_${formatDdMm(w.startIso).replace('/', '-')}_a_${formatDdMm(w.endIso).replace('/', '-')}.png`;
+          a.href = canvas.toDataURL('image/png');
+          a.click();
+          showToast('Grade exportada em PNG.');
+        });
+      }
+
+      function exportPdfPrint() {
+        const sheet = document.getElementById('rnOfficialGradeSheet');
+        if (!sheet) return;
+        const win = window.open('', '_blank');
+        if (!win) { showToast('Permita pop-ups para imprimir/salvar em PDF.'); return; }
+        const originBase = window.location.href.replace(/[^/]*$/, '');
+        const cloneHtml = sheet.innerHTML.replace(/src="img\//g, `src="${originBase}img/`);
+        win.document.write(`<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title></title>
+        <style>
+          @page { size: A4 portrait; margin: 0; }
+          * { box-sizing: border-box; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+          html, body { margin: 0; padding: 0; background: #ffffff; color: #000000; font-family: Verdana, Geneva, Tahoma, sans-serif; }
+          .rn-print-page { width: 210mm; min-height: 297mm; padding: 16mm 15mm; margin: 0 auto; background: #ffffff; }
+          .rn-mivic-header { display: grid; grid-template-columns: 78px 1fr 78px; align-items: center; gap: 10px; padding: 10px 12px; border: 1.5px solid #000000; background: #ffffff; }
+          .rn-mivic-header img { width: 64px; height: 64px; object-fit: contain; display: block; margin: 0 auto; }
+          .rn-mivic-header-lines { text-align: center; font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: 10pt; font-weight: 700; line-height: 1.44; text-transform: uppercase; color: #000000; }
+          .rn-mivic-banner { margin-top: 22px; margin-bottom: 12px; text-align: center; font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: 10.5pt; font-weight: 700; text-transform: uppercase; color: #000000; }
+          .rn-grade-table { width: 100%; border-collapse: collapse; margin-top: 8px; table-layout: fixed; font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: 10pt; color: #000000; }
+          .rn-grade-table th, .rn-grade-table td { border: 1px solid #000000; padding: 13px 4px; text-align: center; vertical-align: middle; color: #000000; }
+          .rn-grade-table thead th { background: #e6e6e6; color: #000000; font-weight: 700; font-size: 9pt; padding: 11px 3px; border-bottom: 1.5px solid #000000; }
+          .rn-grade-table td.rn-meal-lbl { text-align: left; font-weight: 700; padding-left: 10px; background: #f5f5f5; font-size: 9.8pt; }
+          .rn-grade-table td.rn-cell-click { background: #ffffff; font-weight: 400; font-size: 10.5pt; }
+          .rn-grade-table td.rn-sum-col { background: #ebebeb; font-weight: 700; font-size: 10.5pt; }
+          .rn-grade-table tr.rn-total-row td { background: #ebebeb; font-weight: 700; font-size: 10.5pt; border-top: 1.5px solid #000000; }
+          .rn-grade-table tr.rn-total-row td.rn-grand-total { background: #ebebeb; color: #000000; font-weight: 700; font-size: 10.5pt; }
+          #rnDocObsLine { margin-top: 16px; font-size: 9.5pt; color: #000000; }
+          #rnDocFooterResp { padding-top: 46px; text-align: center; font-size: 10pt; color: #000000; }
+          .hidden { display: none !important; }
+        </style></head><body><div class="rn-print-page">${cloneHtml}</div>
+        <script>
+          window.addEventListener('load', function() {
+            var imgs = Array.prototype.slice.call(document.images || []);
+            Promise.all(imgs.map(function(im) {
+              if (im.complete) return Promise.resolve();
+              return new Promise(function(res) { im.onload = res; im.onerror = res; setTimeout(res, 1500); });
+            })).then(function() { setTimeout(function() { window.focus(); window.print(); }, 200); });
+          });
+        <\/script></body></html>`);
+        win.document.close();
+      }
+
+      function crc32Bytes(bytes) {
+        let crc = 0xffffffff;
+        for (let i = 0; i < bytes.length; i++) {
+          crc ^= bytes[i];
+          for (let j = 0; j < 8; j++) crc = (crc >>> 1) ^ (0xedb88320 & -(crc & 1));
+        }
+        return (crc ^ 0xffffffff) >>> 0;
+      }
+      function buildStoredZip(files) {
+        const enc = new TextEncoder();
+        const localParts = [];
+        const centralParts = [];
+        let offset = 0;
+        files.forEach(f => {
+          const nameBytes = enc.encode(f.name);
+          const dataBytes = f.data instanceof Uint8Array ? f.data : enc.encode(String(f.data));
+          const crc = crc32Bytes(dataBytes);
+          const lh = new Uint8Array(30 + nameBytes.length);
+          const lhv = new DataView(lh.buffer);
+          lhv.setUint32(0, 0x04034b50, true); lhv.setUint16(4, 20, true);
+          lhv.setUint32(14, crc, true); lhv.setUint32(18, dataBytes.length, true);
+          lhv.setUint32(22, dataBytes.length, true); lhv.setUint16(26, nameBytes.length, true);
+          lh.set(nameBytes, 30);
+          localParts.push(lh, dataBytes);
+
+          const ch = new Uint8Array(46 + nameBytes.length);
+          const chv = new DataView(ch.buffer);
+          chv.setUint32(0, 0x02014b50, true); chv.setUint16(4, 20, true); chv.setUint16(6, 20, true);
+          chv.setUint32(16, crc, true); chv.setUint32(20, dataBytes.length, true);
+          chv.setUint32(24, dataBytes.length, true); chv.setUint16(28, nameBytes.length, true);
+          chv.setUint32(42, offset, true);
+          ch.set(nameBytes, 46);
+          centralParts.push(ch);
+          offset += lh.length + dataBytes.length;
+        });
+        const centralSize = centralParts.reduce((s, a) => s + a.length, 0);
+        const eocd = new Uint8Array(22);
+        const ev = new DataView(eocd.buffer);
+        ev.setUint32(0, 0x06054b50, true); ev.setUint16(8, files.length, true);
+        ev.setUint16(10, files.length, true); ev.setUint32(12, centralSize, true);
+        ev.setUint32(16, offset, true);
+        return new Blob([...localParts, ...centralParts, eocd], {
+          type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+        });
+      }
+      async function fetchImgPngBytes(imgPath) {
+        try {
+          const resp = await fetch(imgPath);
+          if (resp.ok) {
+            const buf = await resp.arrayBuffer();
+            if (buf && buf.byteLength > 100) return new Uint8Array(buf);
+          }
+        } catch (e) {}
+        return null;
+      }
+      function xmlEsc(s) {
+        return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      }
+      function buildDrawingXml(rId, docPrId, cx, cy) {
+        return `<w:drawing><wp:inline distT="0" distB="0" distL="0" distR="0"><wp:extent cx="${cx}" cy="${cy}"/><wp:docPr id="${docPrId}" name="Img${docPrId}"/><a:graphic xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"><a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture"><pic:pic xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture"><pic:nvPicPr><pic:cNvPr id="${docPrId}" name="Img${docPrId}.png"/><pic:cNvPicPr/></pic:nvPicPr><pic:blipFill><a:blip r:embed="${rId}"/><a:stretch><a:fillRect/></a:stretch></pic:blipFill><pic:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="${cx}" cy="${cy}"/></a:xfrm><a:prstGeom prst="rect"><a:avLst/></a:prstGeom></pic:spPr></pic:pic></a:graphicData></a:graphic></wp:inline></w:drawing>`;
+      }
+
+      async function buildDocxBlobForWeek(w) {
+        const tot = computeTotals(w);
+        const cbmbaPng = await fetchImgPngBytes('img/brasao_cbmba.png');
+        const abmPng = await fetchImgPngBytes('img/brasao_abm.png');
+        const dates = Array.from({ length: 7 }, (_, i) => addDaysIso(w.startIso, i));
+
+        const pCenter = (txt, bold, sz, color, before = 20, after = 40) => `<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="${before}" w:after="${after}"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Verdana" w:hAnsi="Verdana"/>${bold ? '<w:b/>' : ''}<w:sz w:val="${sz || 20}"/>${color ? `<w:color w:val="${color}"/>` : ''}</w:rPr><w:t>${xmlEsc(txt)}</w:t></w:r></w:p>`;
+        const mkCell = (contentXml, wDxa, shd, borders = true, padTop = 140, padBot = 140) => `<w:tc><w:tcPr><w:tcW w:w="${wDxa}" w:type="dxa"/>${shd ? `<w:shd w:val="clear" w:color="auto" w:fill="${shd}"/>` : ''}${borders ? '' : '<w:tcBorders><w:top w:val="none"/><w:left w:val="none"/><w:bottom w:val="none"/><w:right w:val="none"/></w:tcBorders>'}<w:tcMar><w:top w:w="${padTop}" w:type="dxa"/><w:bottom w:w="${padBot}" w:type="dxa"/><w:left w:w="70" w:type="dxa"/><w:right w:w="70" w:type="dxa"/></w:tcMar><w:vAlign w:val="center"/></w:tcPr>${contentXml}</w:tc>`;
+
+        const leftCrestXml = cbmbaPng ? `<w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r>${buildDrawingXml('rId1', 1, 680000, 680000)}</w:r></w:p>` : pCenter('CBMBA', true, 18, '000000');
+        const rightCrestXml = abmPng ? `<w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r>${buildDrawingXml('rId2', 2, 650000, 650000)}</w:r></w:p>` : pCenter('ABM', true, 18, '000000');
+
+        const headerCenterXml = [
+          pCenter('CORPO DE BOMBEIROS MILITAR DA BAHIA', true, 20, '000000', 0, 30),
+          pCenter('ACADEMIA DE BOMBEIROS MILITAR', true, 20, '000000', 0, 30),
+          pCenter('CURSO DE FORMAÇÃO DE OFICIAIS', true, 20, '000000', 0, 30),
+          pCenter(formatCursoTurmaHeader(w), true, 20, '000000', 0, 0)
+        ].join('');
+
+        // Framed rectangular institutional header (1.5pt black outer border, clean interior)
+        const headerTbl = `<w:tbl><w:tblPr><w:tblW w:w="10200" w:type="dxa"/><w:tblBorders><w:top w:val="single" w:sz="10" w:color="000000"/><w:left w:val="single" w:sz="10" w:color="000000"/><w:bottom w:val="single" w:sz="10" w:color="000000"/><w:right w:val="single" w:sz="10" w:color="000000"/><w:insideH w:val="none"/><w:insideV w:val="none"/></w:tblBorders></w:tblPr><w:tr>${mkCell(leftCrestXml, 1500, null, false, 110, 110)}${mkCell(headerCenterXml, 7200, null, false, 110, 110)}${mkCell(rightCrestXml, 1500, null, false, 110, 110)}</w:tr></w:tbl>`;
+
+        const titlePara = pCenter(`PREVISÃO DE REFEIÇÕES DE ${formatBrDate(w.startIso)} A ${formatBrDate(w.endIso)}`, true, 20, '000000', 260, 180);
+
+        const thCells = [
+          mkCell(`<w:p><w:pPr><w:jc w:val="left"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Verdana" w:hAnsi="Verdana"/><w:b/><w:sz w:val="18"/><w:color w:val="000000"/></w:rPr><w:t>REFEIÇÃO</w:t></w:r></w:p>`, 2200, 'E6E6E6', true, 140, 140),
+          ...dates.map((iso, i) => mkCell(pCenter(formatDdMm(iso), true, 17, '000000', 0, 20) + pCenter(`(${WEEKDAY_SHORT[i]})`, false, 14, '000000', 0, 0), 950, 'E6E6E6', true, 120, 120)),
+          mkCell(pCenter('TOTAL', true, 17, '000000', 0, 20) + pCenter('SEMANAL', false, 14, '000000', 0, 0), 1350, 'E6E6E6', true, 120, 120)
+        ].join('');
+
+        const mkDataRow = (label, arr, sum, isTotal) => {
+          const lblP = `<w:p><w:pPr><w:jc w:val="left"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Verdana" w:hAnsi="Verdana"/><w:b/><w:sz w:val="18"/><w:color w:val="000000"/></w:rPr><w:t>${xmlEsc(label)}</w:t></w:r></w:p>`;
+          const cells = arr.map((v) => mkCell(pCenter(String(v), isTotal, 19, '000000', 0, 0), 950, isTotal ? 'EBEBEB' : null, true, 160, 160)).join('');
+          const sumCell = mkCell(pCenter(String(sum), true, 19, '000000', 0, 0), 1350, 'EBEBEB', true, 160, 160);
+          return `<w:tr>${mkCell(lblP, 2200, isTotal ? 'EBEBEB' : 'F5F5F5', true, 160, 160)}${cells}${sumCell}</w:tr>`;
+        };
+
+        const mainTbl = `<w:tbl><w:tblPr><w:tblW w:w="10200" w:type="dxa"/><w:tblBorders><w:top w:val="single" w:sz="8" w:color="000000"/><w:left w:val="single" w:sz="6" w:color="000000"/><w:bottom w:val="single" w:sz="8" w:color="000000"/><w:right w:val="single" w:sz="6" w:color="000000"/><w:insideH w:val="single" w:sz="4" w:color="000000"/><w:insideV w:val="single" w:sz="4" w:color="000000"/></w:tblBorders></w:tblPr><w:tr>${thCells}</w:tr>${mkDataRow('Café da Manhã', tot.cafe, tot.sumC, false)}${mkDataRow('Almoço', tot.almoco, tot.sumA, false)}${mkDataRow('Jantar', tot.jantar, tot.sumJ, false)}${mkDataRow('Total Diário', tot.dayTotals, tot.grandTotal, true)}</w:tbl>`;
+
+        const obsRow = (w.obs && w.obs.trim()) ? `<w:p><w:pPr><w:spacing w:before="200" w:after="120"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Verdana" w:hAnsi="Verdana"/><w:b/><w:sz w:val="17"/><w:color w:val="000000"/></w:rPr><w:t>Observações: </w:t></w:r><w:r><w:rPr><w:rFonts w:ascii="Verdana" w:hAnsi="Verdana"/><w:sz w:val="17"/><w:color w:val="000000"/></w:rPr><w:t>${xmlEsc(w.obs.trim())}</w:t></w:r></w:p>` : '';
+
+        const sig = getSignatureLines(w);
+        const todayFull = new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+        const sigXml = [
+          pCenter(`Salvador - BA, ${todayFull}.`, false, 18, '000000', 460, 420),
+          pCenter('________________________________________', false, 18, '000000', 0, 40),
+          pCenter(sig.line1, true, 18, '000000', 0, 20),
+          pCenter(sig.line2, false, 17, '000000', 0, 0)
+        ].join('');
+
+        const docXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing">
+  <w:body>
+    ${headerTbl}
+    ${titlePara}
+    ${mainTbl}
+    ${obsRow}
+    ${sigXml}
+    <w:sectPr>
+      <w:pgSz w:w="11906" w:h="16838"/>
+      <w:pgMar w:top="850" w:right="850" w:bottom="850" w:left="850" w:header="400" w:footer="400" w:gutter="0"/>
+    </w:sectPr>
+  </w:body>
+</w:document>`;
+
+        const rels = [];
+        const zipFiles = [
+          {
+            name: '[Content_Types].xml',
+            data: `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Default Extension="png" ContentType="image/png"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/></Types>`
+          },
+          {
+            name: '_rels/.rels',
+            data: `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>`
+          }
+        ];
+
+        if (cbmbaPng) {
+          rels.push('<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="media/cbmba.png"/>');
+          zipFiles.push({ name: 'word/media/cbmba.png', data: cbmbaPng });
+        }
+        if (abmPng) {
+          rels.push('<Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="media/abm.png"/>');
+          zipFiles.push({ name: 'word/media/abm.png', data: abmPng });
+        }
+        zipFiles.push({
+          name: 'word/_rels/document.xml.rels',
+          data: `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">${rels.join('')}</Relationships>`
+        });
+        zipFiles.push({ name: 'word/document.xml', data: docXml });
+
+        return buildStoredZip(zipFiles);
+      }
+
+      async function exportDocx() {
+        const w = getCurrentWeek();
+        const blob = await buildDocxBlobForWeek(w);
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `Grade_de_Rancho_${formatDdMm(w.startIso).replace('/', '-')}_a_${formatDdMm(w.endIso).replace('/', '-')}.docx`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+        showToast('Grade exportada em Word (.docx).');
+      }
+
+      async function archiveDocxToDrive() {
+        const weeks = getWeeks();
+        const w = weeks.find(x => x.id === selectedWeekId) || weeks[0];
+        if (!w || !canUserEditWeekInManagerPanel(w)) return;
+        if (typeof uploadArquivoToSigabmDrive !== 'function') { showToast('Integração com Drive indisponível.'); return; }
+        const btn = document.getElementById('rnBtnArchiveDrive');
+        const prevTxt = btn ? btn.textContent : '';
+        if (btn) { btn.disabled = true; btn.textContent = 'Salvando...'; }
+        try {
+          const blob = await buildDocxBlobForWeek(w);
+          const b64DataUrl = await new Promise((resolve, reject) => {
+            const rd = new FileReader();
+            rd.onload = () => resolve(String(rd.result || ''));
+            rd.onerror = reject;
+            rd.readAsDataURL(blob);
+          });
+          const fileName = `Grade_de_Rancho_${formatDdMm(w.startIso).replace('/', '-')}_a_${formatDdMm(w.endIso).replace('/', '-')}.docx`;
+          const up = await uploadArquivoToSigabmDrive({
+            caminhoPastas: ['10_Grades_de_Rancho'],
+            nomeArquivo: fileName,
+            base64DataUrl: b64DataUrl,
+            mimeType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+          });
+          if (up && up.url) {
+            w.driveUrl = up.url;
+            w.updatedAt = new Date().toISOString();
+            saveWeeksLocal(weeks);
+            render();
+            syncPushToCloud(true);
+            showToast('Grade salva no Drive (10_Grades_de_Rancho).');
+          } else {
+            showToast('Não foi possível salvar no Drive.');
+          }
+        } catch (err) {
+          showToast('Erro ao salvar no Drive.');
+        } finally {
+          if (btn) { btn.disabled = false; btn.textContent = prevTxt || 'Salvar no Drive'; }
+        }
+      }
+
+      return {
+        render,
+        resetEditingCadetToCurrentUser,
+        setManagerSubView,
+        toggleModConfig,
+        renderAuditRoster,
+        quickToggleFromAuditRoster,
+        getGerente,
+        saveGerenteLocal,
+        getRotationAnchor,
+        saveRotationAnchorLocal,
+        getManualOverride,
+        saveManualOverrideLocal,
+        setTemporaryOverride,
+        recalibrateRotationAnchor,
+        getWeeks,
+        getCloudPayloadData,
+        getDeletedWeekIds,
+        saveDeletedWeekIds,
+        mergeWeeksFromCloud,
+        getDynamicRanchoNotifications,
+        updateRanchoSidebarBadge,
+        selectWeek,
+        setEditingCadet,
+        toggleMeal,
+        toggleWholeDay,
+        applyPreset,
+        confirmEditingCadet,
+        updateWeekMeta,
+        toggleLockWeek,
+        openNewWeekModal,
+        closeNewWeekModal,
+        createNewWeek,
+        deleteCurrentWeek,
+        copyPendingCadets,
+        openCellAuditModal,
+        quickUnmarkFromAudit,
+        closeCellAuditModal,
+        copySummaryText,
+        exportPng,
+        exportPdfPrint,
+        exportDocx,
+        archiveDocxToDrive
       };
     })();
 
@@ -14137,6 +16391,29 @@ ${apecadosList.length > 0 ? apecadosList.join('\n') : '- Não consta.'}`;
           if (json.xerifeSaidas && typeof json.xerifeSaidas === 'object') {
             saveXerifeSaidasMap(json.xerifeSaidas);
           }
+          if (window.SIGABM_GerenteRancho) {
+            if (json.ranchoRotationAnchor && typeof json.ranchoRotationAnchor === 'object') {
+              window.SIGABM_GerenteRancho.saveRotationAnchorLocal(json.ranchoRotationAnchor);
+            }
+            if (json.ranchoManualOverride !== undefined) {
+              window.SIGABM_GerenteRancho.saveManualOverrideLocal(json.ranchoManualOverride);
+            }
+            if (typeof json.gerenteRancho === 'string') {
+              window.SIGABM_GerenteRancho.saveGerenteLocal(json.gerenteRancho);
+            }
+            if (Array.isArray(json.deletedRanchoWeekIds)) {
+              const delRn = window.SIGABM_GerenteRancho.getDeletedWeekIds();
+              json.deletedRanchoWeekIds.forEach(id => delRn.add(id));
+              window.SIGABM_GerenteRancho.saveDeletedWeekIds(delRn);
+            }
+            if (Array.isArray(json.ranchoWeeks)) {
+              window.SIGABM_GerenteRancho.mergeWeeksFromCloud(json.ranchoWeeks);
+            }
+            if (state.activeTab === 'rancho' || (state.activeTab === 'servico' && state.srvSubMode === 'rancho')) {
+              window.SIGABM_GerenteRancho.render();
+            }
+            window.SIGABM_GerenteRancho.updateRanchoSidebarBadge();
+          }
           // Mapa de Força é isolado por conta (armazenamento local por usuário)
           if (Array.isArray(json.deletedCdfIds)) {
             const localDelCdf = getDeletedCdfIds();
@@ -14366,6 +16643,7 @@ ${apecadosList.length > 0 ? apecadosList.join('\n') : '- Não consta.'}`;
           xerifeSemana: getXerifeSemana(),
           xerifeEfetivo: getXerifeEfetivoMap(),
           xerifeSaidas: getXerifeSaidasMap(),
+          ...(window.SIGABM_GerenteRancho ? window.SIGABM_GerenteRancho.getCloudPayloadData() : {}),
           // mapaForca mantido isolado localmente por conta
           cdfLogs: getCdfLogs().slice(0, 60),
           deletedCdfIds: Array.from(getDeletedCdfIds()),
@@ -14823,6 +17101,7 @@ ${apecadosList.length > 0 ? apecadosList.join('\n') : '- Não consta.'}`;
     // =========================================================================
     function setSimSubMode(subMode) {
       state.simSubMode = subMode;
+      if (typeof savePersistentSession === 'function') savePersistentSession();
       const simSel = document.getElementById('simSubModeSelect');
       if (simSel) simSel.value = subMode;
       const projBox = document.getElementById('subviewProjectionContainer');
@@ -14855,6 +17134,108 @@ ${apecadosList.length > 0 ? apecadosList.join('\n') : '- Não consta.'}`;
       });
       if (subMode === 'projection') renderSimulator();
       if (subMode === 'joint') renderHeadToHead();
+    }
+
+    const SIGABM_SESSION_KEY = 'sigabm_active_session_v1';
+
+    function savePersistentSession() {
+      try {
+        if (!state.currentUser) return;
+        const payload = {
+          user: state.currentUser,
+          viewMode: state.viewMode || 'standard',
+          yearScope: state.yearScope || '1',
+          activeTab: state.activeTab || 'perfis',
+          srvSubMode: state.srvSubMode || 'alunodia',
+          alunoDiaSubTab: state.alunoDiaSubTab || 'croqui',
+          xerifeSubTab: state.xerifeSubTab || 'sala',
+          tafSubMode: state.tafSubMode || 'indices',
+          simSubMode: state.simSubMode || 'projection',
+          selectedProfileCadet: state.selectedProfileCadet || state.currentUser,
+          profileDetailOpen: !(document.getElementById('profileDetailView')?.classList.contains('hidden')),
+          savedAt: Date.now()
+        };
+        localStorage.setItem(SIGABM_SESSION_KEY, JSON.stringify(payload));
+      } catch (e) {}
+    }
+
+    function clearPersistentSession() {
+      try { localStorage.removeItem(SIGABM_SESSION_KEY); } catch (e) {}
+    }
+
+    function restorePersistentSession() {
+      try {
+        const raw = localStorage.getItem(SIGABM_SESSION_KEY);
+        if (!raw) return false;
+        const saved = JSON.parse(raw);
+        if (!saved || !saved.user) return false;
+        const user = saved.user;
+        const validUser = !!(state.adminAccounts && state.adminAccounts[user]) || (state.data && Array.isArray(state.data.cadets) && state.data.cadets.includes(user));
+        if (!validUser) return false;
+
+        state.currentUser = user;
+        const isOfficerUser = typeof isStaffAccount === 'function' ? isStaffAccount(user) : false;
+        state.pinnedCadet = isOfficerUser ? 'LINHARES' : user;
+        state.viewMode = isOfficerUser ? 'standard' : (saved.viewMode === 'focus' ? 'focus' : 'standard');
+        state.portalSelectedMode = state.viewMode;
+        if (saved.yearScope && ['1', '2', '3', 'all'].includes(saved.yearScope)) {
+          state.yearScope = saved.yearScope;
+          const mobSel = document.getElementById('mobileYearScopeSelect');
+          if (mobSel) mobSel.value = state.yearScope;
+          document.querySelectorAll('.year-scope-btn').forEach(btn => {
+            const active = btn.getAttribute('data-year') === state.yearScope;
+            btn.className = `year-scope-btn py-1.5 px-3 rounded-md text-[11px] whitespace-nowrap text-center transition ${
+              active ? 'font-bold bg-[#DA291C] text-white shadow-xs' : 'font-semibold text-slate-700 hover:text-slate-950'
+            }`;
+          });
+        }
+        const tafSelInit = document.getElementById('tafActiveCadetSelect');
+        if (tafSelInit) tafSelInit.value = isOfficerUser ? 'LINHARES' : user;
+        if (saved.selectedProfileCadet) state.selectedProfileCadet = saved.selectedProfileCadet;
+        if (saved.srvSubMode) state.srvSubMode = saved.srvSubMode;
+        if (saved.alunoDiaSubTab) state.alunoDiaSubTab = saved.alunoDiaSubTab;
+        if (saved.xerifeSubTab) state.xerifeSubTab = saved.xerifeSubTab;
+        if (saved.tafSubMode) state.tafSubMode = saved.tafSubMode;
+        if (saved.simSubMode) state.simSubMode = saved.simSubMode;
+
+        document.getElementById('mandatoryAuthPortal')?.classList.add('hidden');
+        updateAdminUI();
+        updateCoordPendingAckBadges();
+        updateGazetaNotificationsUI();
+
+        const targetTab = saved.activeTab || (isOfficerUser ? 'coordenacao' : 'perfis');
+        switchTab(targetTab);
+        if (targetTab === 'perfis' && state.selectedProfileCadet && (state.viewMode === 'focus' || saved.profileDetailOpen)) {
+          openCadetProfileDetail(state.selectedProfileCadet);
+        }
+        if (targetTab === 'servico') {
+          setServicoSubMode(state.srvSubMode || 'alunodia');
+          if (state.srvSubMode === 'alunodia' && window.SIGABM_AlunoDia) {
+            window.SIGABM_AlunoDia.showSubTab(state.alunoDiaSubTab || 'croqui');
+          } else if (state.srvSubMode === 'xerife') {
+            document.getElementById(state.xerifeSubTab === 'cdf' ? 'btnXerifeTabCdf' : 'btnXerifeTabSala')?.click();
+          }
+        }
+        if (targetTab === 'taf' && typeof setTafSubMode === 'function' && state.tafSubMode) {
+          setTafSubMode(state.tafSubMode);
+        }
+        if (targetTab === 'simulador' && typeof setSimSubMode === 'function' && state.simSubMode) {
+          setSimSubMode(state.simSubMode);
+        }
+        if (window.SIGABM_AlunoDia && typeof window.SIGABM_AlunoDia.reloadForCurrentUser === 'function') {
+          window.SIGABM_AlunoDia.reloadForCurrentUser();
+        }
+        if (window.SIGABM_RelatorioServico && typeof window.SIGABM_RelatorioServico.reloadForCurrentUser === 'function') {
+          window.SIGABM_RelatorioServico.reloadForCurrentUser();
+        }
+        if (window.SIGABM_GerenteRancho && typeof window.SIGABM_GerenteRancho.resetEditingCadetToCurrentUser === 'function') {
+          window.SIGABM_GerenteRancho.resetEditingCadetToCurrentUser();
+          window.SIGABM_GerenteRancho.render();
+        }
+        return true;
+      } catch (e) {
+        return false;
+      }
     }
 
     function switchTab(tabId) {
@@ -14899,20 +17280,25 @@ ${apecadosList.length > 0 ? apecadosList.join('\n') : '- Não consta.'}`;
       // Show sub-tab trees in Sidebar when expanded, hide when minimized
       const subSim = document.getElementById('sidebarSubSimulador');
       const subTaf = document.getElementById('sidebarSubTaf');
+      const subSrv = document.getElementById('sidebarSubServico');
       const subLib = document.getElementById('sidebarSubBiblioteca');
       const chevSim = document.getElementById('chevronSubSimulador');
       const chevTaf = document.getElementById('chevronSubTaf');
+      const chevSrv = document.getElementById('chevronSubServico');
       const chevLib = document.getElementById('chevronSubBiblioteca');
 
       const showSim = !(isCollapsed || state.viewMode === 'focus' || tabId !== 'simulador');
       const showTaf = !(isCollapsed || tabId !== 'taf');
+      const showSrv = !(isCollapsed || tabId !== 'servico');
       const showLib = !(isCollapsed || tabId !== 'biblioteca');
 
       if (subSim) subSim.classList.toggle('hidden', !showSim);
       if (subTaf) subTaf.classList.toggle('hidden', !showTaf);
+      if (subSrv) subSrv.classList.toggle('hidden', !showSrv);
       if (subLib) subLib.classList.toggle('hidden', !showLib);
       if (chevSim) chevSim.textContent = showSim ? '▾' : '▸';
       if (chevTaf) chevTaf.textContent = showTaf ? '▾' : '▸';
+      if (chevSrv) chevSrv.textContent = showSrv ? '▾' : '▸';
       if (chevLib) chevLib.textContent = showLib ? '▾' : '▸';
 
       // Auto-close mobile drawer when a tab is chosen on mobile screens
@@ -14929,7 +17315,14 @@ ${apecadosList.length > 0 ? apecadosList.join('\n') : '- Não consta.'}`;
       updateNavigationVisibility();
 
       if (tabId === 'ranking') renderFullRanking();
-      if (tabId === 'servico') { renderServicoTab(); if (window.SIGABM_AlunoDia) window.SIGABM_AlunoDia.ensureInit(); }
+      if (tabId === 'rancho') {
+        if (window.SIGABM_GerenteRancho) window.SIGABM_GerenteRancho.render();
+      }
+      if (tabId === 'servico') {
+        renderServicoTab();
+        if (window.SIGABM_AlunoDia) window.SIGABM_AlunoDia.ensureInit();
+        if (window.SIGABM_GerenteRancho) window.SIGABM_GerenteRancho.render();
+      }
       if (tabId === 'simulador') {
         renderSimulator();
         renderHeadToHead();
@@ -14951,6 +17344,7 @@ ${apecadosList.length > 0 ? apecadosList.join('\n') : '- Não consta.'}`;
       if (tabId === 'estatisticas') renderStatsTab();
       if (tabId === 'biblioteca') renderAbmDocumentsLibrary();
       updateCoordPendingAckBadges();
+      savePersistentSession();
     }
 
     function setYearScope(yr) {
@@ -15128,11 +17522,11 @@ ${apecadosList.length > 0 ? apecadosList.join('\n') : '- Não consta.'}`;
 
       // Load Official Crests into Portal & Header
       if (state.data.crests_b64) {
-        ['portalCrestCbmba', 'headerCrestCbmba', 'gazetaCrestCbmba'].forEach(id => {
+        ['portalCrestCbmba', 'headerCrestCbmba', 'gazetaCrestCbmba', 'rnCrestCbmba'].forEach(id => {
           const el = document.getElementById(id);
           if (el) el.src = state.data.crests_b64.cbmba;
         });
-        ['portalCrestAbm', 'headerCrestAbm', 'gazetaCrestAbm'].forEach(id => {
+        ['portalCrestAbm', 'headerCrestAbm', 'gazetaCrestAbm', 'rnCrestAbm'].forEach(id => {
           const el = document.getElementById(id);
           if (el) el.src = state.data.crests_b64.abm;
         });
@@ -15311,6 +17705,7 @@ ${apecadosList.length > 0 ? apecadosList.join('\n') : '- Não consta.'}`;
         updateAdminUI();
         updateCoordPendingAckBadges();
         updateGazetaNotificationsUI();
+        savePersistentSession();
 
         if (isOfficerUser) {
           switchTab('coordenacao');
@@ -15339,6 +17734,7 @@ ${apecadosList.length > 0 ? apecadosList.join('\n') : '- Não consta.'}`;
       document.getElementById('btnHeaderToggleViewMode').addEventListener('click', () => {
         state.viewMode = state.viewMode === 'focus' ? 'standard' : 'focus';
         updateViewModeUI();
+        savePersistentSession();
         if (state.viewMode === 'focus') {
           const targetCad = state.currentUser || state.pinnedCadet || 'LINHARES';
           switchTab('perfis');
@@ -15369,9 +17765,14 @@ ${apecadosList.length > 0 ? apecadosList.join('\n') : '- Não consta.'}`;
         if (window.SIGABM_RelatorioServico && typeof window.SIGABM_RelatorioServico.reloadForCurrentUser === 'function') {
           window.SIGABM_RelatorioServico.reloadForCurrentUser();
         }
+        if (window.SIGABM_GerenteRancho && typeof window.SIGABM_GerenteRancho.resetEditingCadetToCurrentUser === 'function') {
+          window.SIGABM_GerenteRancho.resetEditingCadetToCurrentUser();
+          window.SIGABM_GerenteRancho.render();
+        }
       }
 
       document.getElementById('btnHeaderQuickLogout').addEventListener('click', () => {
+        clearPersistentSession();
         state.isAdminUnlocked = false;
         state.currentUser = null;
         resetTransientSessionData();
@@ -16231,7 +18632,11 @@ ${apecadosList.length > 0 ? apecadosList.join('\n') : '- Não consta.'}`;
           const tafSelAdm = document.getElementById('tafActiveCadetSelect');
           if (tafSelAdm) tafSelAdm.value = user;
           document.getElementById('adminPinInput').value = '';
+          if (window.SIGABM_GerenteRancho && typeof window.SIGABM_GerenteRancho.resetEditingCadetToCurrentUser === 'function') {
+            window.SIGABM_GerenteRancho.resetEditingCadetToCurrentUser();
+          }
           updateAdminUI();
+          savePersistentSession();
           renderFullRanking();
           showToast(`Conectado: ${acc.publicRole} ${user}.`);
         } else {
@@ -16246,6 +18651,7 @@ ${apecadosList.length > 0 ? apecadosList.join('\n') : '- Não consta.'}`;
         }
       });
       document.getElementById('btnLockAdminPin').addEventListener('click', () => {
+        clearPersistentSession();
         state.isAdminUnlocked = false;
         state.currentUser = null;
         document.getElementById('modalAdminCloud').classList.add('hidden');
@@ -16927,6 +19333,9 @@ ${apecadosList.length > 0 ? apecadosList.join('\n') : '- Não consta.'}`;
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
       });
+
+      // Restaura conta logada, modo, aba e sub-aba após todos os seletores e listeners carregarem
+      restorePersistentSession();
     });
   </script>
   <script src="js/relatorio_servico.js" defer></script>
